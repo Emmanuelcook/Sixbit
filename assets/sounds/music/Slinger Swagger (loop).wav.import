@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Slinger Swagger (loop).wav-66a67215b5b260b798f8521096e6cbe4.sample"
+path="res://.import/Slinger Swagger (loop).wav-e28ddb82179f3935b58e156243a99631.sample"
 
 [deps]
 
-source_file="res://assets/sounds/music/Slinger Swagger (loop).wav"
-dest_files=[ "res://.import/Slinger Swagger (loop).wav-66a67215b5b260b798f8521096e6cbe4.sample" ]
+source_file="res://Assets/sounds/music/Slinger Swagger (loop).wav"
+dest_files=[ "res://.import/Slinger Swagger (loop).wav-e28ddb82179f3935b58e156243a99631.sample" ]
 
 [params]
 

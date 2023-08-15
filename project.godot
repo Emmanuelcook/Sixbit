@@ -10,14 +10,14 @@ config_version=4
 
 [application]
 
-config/name="GlockWick"
-run/main_scene="res://Main.tscn"
+config/name="SixBit"
+run/main_scene="res://UI/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://Global.gd"
-GlobalScene="*res://Global.tscn"
+Global="*res://Autoload/Global.gd"
+GlobalScene="*res://Autoload/Global.tscn"
 
 [display]
 

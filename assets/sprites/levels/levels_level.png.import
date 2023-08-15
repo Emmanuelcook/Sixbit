@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/levels_level.png-461d7120f016685097807648a3f70fc4.stex"
+path="res://.import/levels_level.png-8c7da98e9c0d4b6dffbe695f477063a9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/levels/levels_level.png"
-dest_files=[ "res://.import/levels_level.png-461d7120f016685097807648a3f70fc4.stex" ]
+source_file="res://Assets/sprites/levels/levels_level.png"
+dest_files=[ "res://.import/levels_level.png-8c7da98e9c0d4b6dffbe695f477063a9.stex" ]
 
 [params]
 

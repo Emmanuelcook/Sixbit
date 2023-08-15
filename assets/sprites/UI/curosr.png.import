@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/curosr.png-f3a39c89a2b8ec3d5f8e13dd40335a1d.stex"
+path="res://.import/curosr.png-0388285cd92da9cd61e266afac2a8571.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/UI/curosr.png"
-dest_files=[ "res://.import/curosr.png-f3a39c89a2b8ec3d5f8e13dd40335a1d.stex" ]
+source_file="res://Assets/sprites/UI/curosr.png"
+dest_files=[ "res://.import/curosr.png-0388285cd92da9cd61e266afac2a8571.stex" ]
 
 [params]
 

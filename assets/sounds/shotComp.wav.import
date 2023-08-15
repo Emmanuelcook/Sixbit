@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/shotComp.wav-cebab1140eb27fc9af89c61933ef6df5.sample"
+path="res://.import/shotComp.wav-6e8e858302eea356e60af34ea4ce38cb.sample"
 
 [deps]
 
-source_file="res://assets/sounds/shotComp.wav"
-dest_files=[ "res://.import/shotComp.wav-cebab1140eb27fc9af89c61933ef6df5.sample" ]
+source_file="res://Assets/sounds/shotComp.wav"
+dest_files=[ "res://.import/shotComp.wav-6e8e858302eea356e60af34ea4ce38cb.sample" ]
 
 [params]
 

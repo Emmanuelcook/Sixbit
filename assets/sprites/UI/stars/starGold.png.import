@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/starGold.png-051f0bf620a8ba165260608ffa8a1564.stex"
+path="res://.import/starGold.png-fb9c6a546bae3dd1af1f411e6406a288.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/UI/stars/starGold.png"
-dest_files=[ "res://.import/starGold.png-051f0bf620a8ba165260608ffa8a1564.stex" ]
+source_file="res://Assets/sprites/UI/stars/starGold.png"
+dest_files=[ "res://.import/starGold.png-fb9c6a546bae3dd1af1f411e6406a288.stex" ]
 
 [params]
 
