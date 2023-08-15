@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/UI/bulletempty.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/levels/bg.png" type="Texture" id=7]
-[ext_resource path="res://UI/Thanks.tscn" type="PackedScene" id=8]
+[ext_resource path="res://UI/Menu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Player/Cam/Cam.gd" type="Script" id=10]
 [ext_resource path="res://UI/cylinder.gd" type="Script" id=11]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=12]
@@ -67,9 +67,8 @@ tracks/0/keys = {
 size = 64
 font_data = ExtResource( 18 )
 
-[node name="Level" type="Node2D"]
+[node name="Level 6" type="Node2D"]
 script = ExtResource( 12 )
-nextLevel = ExtResource( 8 )
 currentLevel = 6
 bronzeSpeedStar = 19
 silverSpeedStar = 16
@@ -299,9 +298,7 @@ margin_bottom = 68.0
 theme = ExtResource( 20 )
 custom_fonts/font = SubResource( 15 )
 
+[node name="Menu" parent="CanvasLayer" instance=ExtResource( 8 )]
+visible = false
+
 [node name="EndGameScreen" parent="CanvasLayer" instance=ExtResource( 2 )]
-
-[node name="backToLevel" parent="CanvasLayer/EndGameScreen" index="17"]
-text = "The end"
-
-[editable path="CanvasLayer/EndGameScreen"]

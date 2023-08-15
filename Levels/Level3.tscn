@@ -14,9 +14,9 @@
 [ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=13]
 [ext_resource path="res://UI/cylinder.gd" type="Script" id=14]
+[ext_resource path="res://UI/Menu.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=20]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=21]
-[ext_resource path="res://Levels/Level4.tscn" type="PackedScene" id=22]
 [ext_resource path="res://UI/EndGameScreen.tscn" type="PackedScene" id=23]
 
 [sub_resource type="Animation" id=1]
@@ -64,9 +64,8 @@ tracks/0/keys = {
 size = 64
 font_data = ExtResource( 21 )
 
-[node name="Level" type="Node2D"]
+[node name="Level 3" type="Node2D"]
 script = ExtResource( 3 )
-nextLevel = ExtResource( 22 )
 currentLevel = 3
 bronzeSpeedStar = 6
 silverSpeedStar = 4
@@ -282,6 +281,9 @@ margin_right = 391.0
 margin_bottom = 68.0
 theme = ExtResource( 9 )
 custom_fonts/font = SubResource( 15 )
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource( 15 )]
+visible = false
 
 [node name="EndGameScreen" parent="CanvasLayer" instance=ExtResource( 23 )]
 visible = false

@@ -1,7 +1,10 @@
 extends Node2D
 
-export(PackedScene) var nextLevel
 export var currentLevel = 1
+export var isLastLevel = false
+var nextLevel
+var levelIsFinished
+
 export var bronzeSpeedStar = 8
 export var silverSpeedStar = 6
 export var goldSpeedStar = 4
@@ -27,6 +30,8 @@ var targetShot = 0
 var targetNumber = 0
 
 func _ready():
+	nextLevel = currentLevel + 1
+
 	get_tree().paused = false
 	$CanvasLayer.visible = true
 	$CanvasLayer/EndGameScreen.visible = false
@@ -40,7 +45,6 @@ func _ready():
 		$PlayerRoot/Start2.bbcode_text = '[center]Best time: ' + str(bestTime) + '\n Bullets: ' + str(bestBullets)
 		$PlayerRoot/Start2.visible = true
 
-	
 func _process(delta):
 	
 	$PlayerRoot/Start1.global_position = $PlayerRoot/Player.global_position
@@ -58,7 +62,8 @@ func _process(delta):
 		time_passed = "%02d:%02d" % [secs,mils]
 	
 	$CanvasLayer/Timer/gameTime.text = time_passed
-	
+
+
 func targetShot():
 	targetShot += 1
 	if targetShot == targetNumber:
@@ -66,8 +71,9 @@ func targetShot():
 
 func timer(onOrOff):
 	timerState = onOrOff
-	
+
 func ending_level():
+	levelIsFinished = true
 	GlobalScene.get_node("shot").play()
 	GlobalScene.get_node("click").play()
 	get_tree().paused = true
@@ -78,9 +84,8 @@ func ending_level():
 	targetShot = 0
 
 func unlockNextLevel():
-	var nextLevel = currentLevel + 1
 	Global.save[0][nextLevel][6] = true
-	
+
 func get_results():
 	$CanvasLayer/EndGameScreen.visible = true
 	$CanvasLayer/cylinder.visible = false
@@ -94,7 +99,11 @@ func get_results():
 		if Global.save[0][currentLevel][3] == 99: 
 			$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "Like greased lightning !"
 		else:	
-			$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "Your best: " + str(Global.save[0][currentLevel][2])
+			if (secs <= Global.save[0][currentLevel][3]) || (secs == Global.save[0][currentLevel][3] && mils <= Global.save[0][currentLevel][4]):
+				$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "Your best: " + str(time_passed)
+			else:
+				$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "Your best: " + str(Global.save[0][currentLevel][2])
+
 	elif secs <= silverSpeedStar:
 		levelSpeed = 2
 		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "3 star: " + str(goldSpeedStar) + " sec"
@@ -134,3 +143,4 @@ func get_results():
 		$CanvasLayer/EndGameScreen/Silver/Sprite.visible = true
 	if levelSharp > 0:
 		$CanvasLayer/EndGameScreen/Bronze/Sprite.visible = true
+
