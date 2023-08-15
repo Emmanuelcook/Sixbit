@@ -1,0 +1,188 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/sprites/UI/title.png" type="Texture" id=2]
+[ext_resource path="res://UI.tres" type="Theme" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=4]
+[ext_resource path="res://assets/sprites/player/target.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[node name="Title" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="BG" type="Node2D" parent="."]
+scale = Vector2( 4, 4 )
+
+[node name="TextureRect" type="TextureRect" parent="BG"]
+margin_right = 200.0
+margin_bottom = 200.0
+texture = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 188.0
+margin_top = 391.0
+margin_right = 464.0
+margin_bottom = 452.0
+theme = ExtResource( 3 )
+custom_colors/font_color_hover = Color( 0.827451, 0.658824, 0.2, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+text = "Play"
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+margin_left = 419.0
+margin_top = 226.0
+margin_right = 591.0
+margin_bottom = 277.0
+theme = ExtResource( 3 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+text = "Settings"
+
+[node name="target1" type="Button" parent="."]
+margin_left = 31.0
+margin_top = 13.0
+margin_right = 71.0
+margin_bottom = 51.0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+flat = true
+icon_align = 1
+
+[node name="Sprite" type="Sprite" parent="target1"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 21, 19 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+
+[node name="target2" type="Button" parent="."]
+margin_left = 587.0
+margin_top = 185.0
+margin_right = 627.0
+margin_bottom = 223.0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+flat = true
+icon_align = 1
+
+[node name="Sprite" type="Sprite" parent="target2"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 21, 19 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+
+[node name="target3" type="Button" parent="."]
+margin_left = 543.0
+margin_top = 361.0
+margin_right = 583.0
+margin_bottom = 399.0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+flat = true
+icon_align = 1
+
+[node name="Sprite" type="Sprite" parent="target3"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 21, 19 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+
+[node name="target4" type="Button" parent="."]
+margin_left = 103.0
+margin_top = 285.0
+margin_right = 143.0
+margin_bottom = 323.0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+flat = true
+icon_align = 1
+
+[node name="Sprite" type="Sprite" parent="target4"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 21, 19 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+
+[node name="target5" type="Button" parent="."]
+margin_left = 11.0
+margin_top = 429.0
+margin_right = 51.0
+margin_bottom = 467.0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+flat = true
+icon_align = 1
+
+[node name="Sprite" type="Sprite" parent="target5"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 21, 19 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="target1" to="." method="_on_target1_pressed"]
+[connection signal="pressed" from="target1" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="target2" to="." method="_on_target2_pressed"]
+[connection signal="pressed" from="target2" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="target3" to="." method="_on_target3_pressed"]
+[connection signal="pressed" from="target3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="target4" to="." method="_on_target4_pressed"]
+[connection signal="pressed" from="target4" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="target5" to="." method="_on_target5_pressed"]
+[connection signal="pressed" from="target5" to="." method="_on_Button3_pressed"]
