@@ -1,12 +1,12 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=1]
 [ext_resource path="res://UI/EndGameScreen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/sprites/levels/Level8.png" type="Texture" id=3]
+[ext_resource path="res://Assets/sprites/levels/Level9.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/player/start1.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/UI/bulletempty.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/levels/bg.png" type="Texture" id=7]
+[ext_resource path="res://Assets/sprites/levels/bg.png" type="Texture" id=7]
 [ext_resource path="res://UI/Menu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Player/Cam/Cam.gd" type="Script" id=10]
 [ext_resource path="res://UI/cylinder.gd" type="Script" id=11]
@@ -20,6 +20,9 @@
 [ext_resource path="res://Themes/UI16.tres" type="Theme" id=20]
 
 [sub_resource type="PhysicsMaterial" id=16]
+friction = 0.0
+
+[sub_resource type="PhysicsMaterial" id=17]
 friction = 0.0
 
 [sub_resource type="Animation" id=1]
@@ -71,28 +74,30 @@ font_data = ExtResource( 18 )
 script = ExtResource( 12 )
 currentLevel = 9
 isLastLevel = true
-bronzeSpeedStar = 7
-silverSpeedStar = 4
-goldSpeedStar = 3
+bronzeSpeedStar = 9
+silverSpeedStar = 7
+goldSpeedStar = 6
+bronzeSharpStar = 8
+silverSharpStar = 7
+goldSharpStar = 6
 
 [node name="colorAround" type="Node2D" parent="."]
-visible = false
 
 [node name="top*" type="ColorRect" parent="colorAround"]
-margin_left = -318.0
-margin_top = -249.0
-margin_right = 1162.0
-margin_bottom = 1.0
+margin_left = -172.0
+margin_top = -236.0
+margin_right = 1511.0
+margin_bottom = 14.0
 color = Color( 0.878431, 0.670588, 0.298039, 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="right" type="ColorRect" parent="colorAround"]
-margin_left = 1037.0
-margin_top = -249.0
-margin_right = 1453.0
-margin_bottom = 1182.0
+margin_left = 1328.0
+margin_top = -94.0
+margin_right = 1744.0
+margin_bottom = 1585.0
 color = Color( 0.878431, 0.670588, 0.298039, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -100,9 +105,9 @@ __meta__ = {
 
 [node name="bottom" type="ColorRect" parent="colorAround"]
 margin_left = -381.0
-margin_top = 791.0
-margin_right = 1576.0
-margin_bottom = 1127.0
+margin_top = 1581.0
+margin_right = 1739.0
+margin_bottom = 1917.0
 color = Color( 0.878431, 0.670588, 0.298039, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -110,83 +115,127 @@ __meta__ = {
 
 [node name="left" type="ColorRect" parent="colorAround"]
 margin_left = -407.0
-margin_top = -10.0
+margin_top = 121.0
 margin_right = 9.0
-margin_bottom = 1084.0
+margin_bottom = 1618.0
 color = Color( 0.878431, 0.670588, 0.298039, 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="LevelSprite" type="TextureRect" parent="."]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 rect_scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-visible = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.7, 0.7 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 466, 327 )
+position = Vector2( 472, 643 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
 
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="Walls" type="StaticBody2D" parent="Walls"]
+position = Vector2( 65, 0 )
 collision_layer = 257
 collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
 position = Vector2( 4.8, 99 )
+polygon = PoolVector2Array( 1213.2, 523, 1197.2, 475, 1152.2, 435, 1129.2, 412, 1128.2, 358, 1103.2, 316, 1077.2, 299, 1052.2, 293, 1003.2, 256, 983.2, 220, 958.2, 178, 935.2, 167, 874.2, 52, 853.2, 11, 814.2, -26, 775.2, -42, 718.2, -64, 667.2, -64, 621.2, -62, 603.2, -47, 599.2, 6, 580.2, 265, 555.2, 438, 559.2, 574, 546.2, 639, 536.2, 726, 511.2, 735, 454.2, 733, 375.2, 726, 341.2, 732, 340.2, 748, 363.2, 782, 395.2, 818, 432.2, 836, 489.2, 847, 529.2, 847, 535.2, 905, 545.2, 924, 573.2, 937, 602.2, 938, 624.2, 923, 634.2, 904, 643.2, 867, 664.2, 885, 898.2, 928, 896.2, 968, 868.2, 1007, 821.2, 1037, 759.2, 1062, 715.2, 1071, 628.2, 1068, 576.2, 1051, 533.2, 1032, 494.2, 1011, 459.2, 989, 421.2, 965, 381.2, 956, 331.2, 955, 287.2, 962, 224.2, 992, 209.2, 1021, 209.2, 1058, 182.2, 1069, 176.2, 1096, 180.2, 1154, 166.2, 1194, 187.2, 1247, 226.2, 1275, 274.2, 1297, 283.2, 1314, 284.2, 1349, 308.2, 1367, 338.2, 1388, 350.2, 1399, 384.2, 1408, 408.2, 1366, 415.2, 1323, 425.2, 1288, 456.2, 1268, 496.2, 1237, 627.2, 1253, 724.2, 1413, 460.2, 1482, 51.2, 1462, -52.8, 1391, -16.8, 390, 180.2, -42, 471.2, -141, 987.2, -151, 1300.2, 101, 1315.2, 466 )
 
-[node name="OIL" type="RigidBody2D" parent="Walls"]
+[node name="Walls2" type="StaticBody2D" parent="Walls"]
+position = Vector2( 65, 0 )
+collision_layer = 257
+collision_mask = 257
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls2"]
+position = Vector2( 4.8, 99 )
+polygon = PoolVector2Array( 1164.2, 944, 1187.2, 932, 1202.2, 893, 1205.2, 853, 1196.2, 818, 1167.2, 771, 1141.2, 748, 1099.2, 736, 998.2, 729, 884.2, 729, 800.2, 731, 707.2, 731, 672.2, 731, 655.2, 721, 679.2, 532, 684.2, 458, 697.2, 381, 704.2, 334, 714.2, 306, 728.2, 306, 737.2, 319, 768.2, 369, 794.2, 415, 805.2, 438, 826.2, 453, 848.2, 463, 869.2, 487, 900.2, 518, 927.2, 547, 957.2, 554, 971.2, 567, 1010.2, 565, 1052.2, 579, 1091.2, 610, 1127.2, 650, 1169.2, 668, 1196.2, 665, 1207.2, 643, 1213.2, 581, 1214.2, 527, 1217.2, 466, 1397.2, 456, 1480.2, 1288, 1263.2, 1231 )
+
+[node name="OIL" type="RigidBody2D" parent="Walls" groups=["slippy"]]
+visible = false
+position = Vector2( 65, 352 )
 mode = 1
 physics_material_override = SubResource( 16 )
+contacts_reported = 1
+contact_monitor = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/OIL"]
 position = Vector2( 528.8, 220 )
+polygon = PoolVector2Array( -187.8, 1244, -176.8, 1018, -69.8, 1033, 108.2, 1037, 211.2, 1020, 302.2, 997, 474.2, 1210, 573.2, 1084, 612.2, 955, 624.2, 841, 639.2, 821, 663.2, 814, 714.2, 819, 766.2, 1108, 682.2, 1258, 496.2, 1414 )
+
+[node name="OIL2" type="RigidBody2D" parent="Walls" groups=["slippy"]]
+position = Vector2( 65, 0 )
+mode = 1
+physics_material_override = SubResource( 16 )
+contacts_reported = 1
+contact_monitor = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/OIL2"]
+position = Vector2( 529.295, 220 )
+scale = Vector2( 0.987981, 1 )
+polygon = PoolVector2Array( 119.2, 747, 129.2, 730, 337.764, 746, 378.251, 761, 377.239, 807, 378.251, 786, 379.2, 779, 377.2, 809, 357.2, 833, 338.2, 842, 318.2, 844, 237.2, 824, 133.2, 786 )
+
+[node name="OIL3" type="RigidBody2D" parent="Walls"]
+position = Vector2( 151, 667 )
+mode = 1
+physics_material_override = SubResource( 17 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/OIL3"]
+position = Vector2( 366, 281 )
+scale = Vector2( 1.38472, 1.23115 )
+polygon = PoolVector2Array( 492.518, 226.617, 475.186, 277.789, 448, 323, 424, 347, 394, 363, 364.694, 373.634, 309.81, 379.32, 248.426, 377.695, 209.429, 370.385, 181.264, 360.638, 158.877, 349.267, 129.99, 327.336, 121, 414, 188.2, 413, 457, 411, 503.408, 345.532, 513, 332, 583, 261, 568, 211, 522, -111, 258, -100, 314.143, -85.286, 346.64, -69.8533, 382.026, -47.1104, 416.69, -14.6204, 436.911, 18.6818, 455.688, 52.7961, 469.409, 83.6616, 482.408, 121.025, 491.074, 168.135 )
 
 [node name="Targets" type="Node2D" parent="."]
+position = Vector2( 65, 0 )
 
 [node name="Target" parent="Targets" instance=ExtResource( 15 )]
-position = Vector2( 199, 568 )
+position = Vector2( 1003, 622 )
+collision_layer = 257
+collision_mask = 257
+
+[node name="Target6" parent="Targets" instance=ExtResource( 15 )]
+position = Vector2( 1167, 719 )
 collision_layer = 257
 collision_mask = 257
 
 [node name="Target2" parent="Targets" instance=ExtResource( 15 )]
-position = Vector2( 66, 220 )
+position = Vector2( 671, 89 )
 collision_layer = 257
 collision_mask = 257
 
 [node name="Target3" parent="Targets" instance=ExtResource( 15 )]
-position = Vector2( 508, 419 )
+position = Vector2( 479, 900 )
 collision_layer = 257
 collision_mask = 257
 
 [node name="Target4" parent="Targets" instance=ExtResource( 15 )]
-position = Vector2( 860, 458 )
+position = Vector2( 583, 1000 )
 collision_layer = 257
 collision_mask = 257
 
-[node name="Target5" parent="Targets" instance=ExtResource( 15 )]
-position = Vector2( 1016, 213 )
+[node name="Target7" parent="Targets" instance=ExtResource( 15 )]
+position = Vector2( 344, 1120 )
 collision_layer = 257
 collision_mask = 257
 
 [node name="PlayerRoot" type="Node2D" parent="."]
-position = Vector2( -48, -96 )
+position = Vector2( 1065, 543 )
 
 [node name="Player" parent="PlayerRoot" instance=ExtResource( 14 )]
-position = Vector2( 242, 461 )
+position = Vector2( 1, -1 )
+contacts_reported = 1
+contact_monitor = true
 
 [node name="Anchor" type="Position2D" parent="PlayerRoot"]
-position = Vector2( 244, 460 )
+position = Vector2( 3, -2 )
 script = ExtResource( 13 )
 
 [node name="Cam" type="Camera2D" parent="PlayerRoot/Anchor"]
@@ -197,7 +246,7 @@ drag_margin_v_enabled = true
 script = ExtResource( 10 )
 
 [node name="Start1" type="Sprite" parent="PlayerRoot"]
-position = Vector2( 243, 466 )
+position = Vector2( 2, 4 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )
 

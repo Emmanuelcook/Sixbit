@@ -72,14 +72,12 @@ level = 7
 target = ExtResource( 11 )
 
 [node name="Level8" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 308, 344 )
+position = Vector2( 319, 304 )
 level = 8
 target = ExtResource( 12 )
 
 [node name="Level9" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 474, 344 )
+position = Vector2( 485, 304 )
 level = 9
 target = ExtResource( 10 )
 

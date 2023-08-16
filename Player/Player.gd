@@ -93,7 +93,7 @@ func reload():
 	
 	is_reloading = true
 	timer.connect("timeout", self, "end_reload")
-	timer.set_wait_time(2.5)
+	timer.set_wait_time(2)
 	timer.start()
 	
 	cylinder.reload()
@@ -130,3 +130,10 @@ func reset_damp():
 	self.linear_damp = -1
 	$resetdamp.stop()
 
+
+
+func _on_Player_body_entered(body):
+	if body.is_in_group('slippy'):
+		if self.linear_damp == 8:
+			self.linear_damp = 6
+	pass # Replace with function body.

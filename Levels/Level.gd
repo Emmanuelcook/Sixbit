@@ -84,7 +84,8 @@ func ending_level():
 	targetShot = 0
 
 func unlockNextLevel():
-	Global.save[0][nextLevel][6] = true
+	if !isLastLevel:
+		Global.save[0][nextLevel][6] = true
 
 func get_results():
 	$CanvasLayer/EndGameScreen.visible = true
@@ -143,4 +144,5 @@ func get_results():
 		$CanvasLayer/EndGameScreen/Silver/Sprite.visible = true
 	if levelSharp > 0:
 		$CanvasLayer/EndGameScreen/Bronze/Sprite.visible = true
+
 
