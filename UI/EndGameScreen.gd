@@ -1,5 +1,9 @@
 extends Node2D
 
+func _process(delta):
+	if Input.is_action_just_pressed("reset"):
+		get_tree().reload_current_scene()
+
 func _on_retryButton_pressed():
 	get_tree().reload_current_scene()
 

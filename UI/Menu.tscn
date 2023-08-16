@@ -26,15 +26,15 @@ margin_bottom = 480.0
 color = Color( 0, 0, 0, 0.529412 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 323, 165 )
+position = Vector2( 323, 196 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 
 [node name="Levels" type="Button" parent="."]
 margin_left = 240.0
-margin_top = 142.0
+margin_top = 173.0
 margin_right = 406.0
-margin_bottom = 180.0
+margin_bottom = 211.0
 theme = ExtResource( 2 )
 custom_colors/font_color_hover = Color( 0.878431, 0.670588, 0.298039, 1 )
 custom_styles/hover = SubResource( 1 )
@@ -46,11 +46,13 @@ text = "Levels"
 flat = true
 
 [node name="Sprite2" type="Sprite" parent="."]
+visible = false
 position = Vector2( 323, 239 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 
 [node name="Settings" type="Button" parent="."]
+visible = false
 margin_left = 240.0
 margin_top = 216.0
 margin_right = 406.0
@@ -66,15 +68,15 @@ text = "Settings"
 flat = true
 
 [node name="Sprite3" type="Sprite" parent="."]
-position = Vector2( 323, 317 )
+position = Vector2( 323, 266 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 
 [node name="Main" type="Button" parent="."]
 margin_left = 240.0
-margin_top = 294.0
+margin_top = 243.0
 margin_right = 406.0
-margin_bottom = 332.0
+margin_bottom = 281.0
 theme = ExtResource( 2 )
 custom_colors/font_color_hover = Color( 0.878431, 0.670588, 0.298039, 1 )
 custom_styles/hover = SubResource( 1 )

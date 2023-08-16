@@ -1,8 +1,8 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=1]
 [ext_resource path="res://UI/EndGameScreen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/sprites/levels/level6.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/levels/level4.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/player/start1.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/UI/bulletempty.png" type="Texture" id=6]
@@ -17,10 +17,6 @@
 [ext_resource path="res://Player/bulletParticles.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=19]
-[ext_resource path="res://Themes/UI16.tres" type="Theme" id=20]
-
-[sub_resource type="PhysicsMaterial" id=16]
-friction = 0.0
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -70,50 +66,44 @@ font_data = ExtResource( 18 )
 [node name="Level 6" type="Node2D"]
 script = ExtResource( 12 )
 currentLevel = 6
-bronzeSpeedStar = 19
-silverSpeedStar = 16
-goldSpeedStar = 13
-bronzeSharpStar = 13
-silverSharpStar = 11
-goldSharpStar = 9
 
 [node name="colorAround" type="Node2D" parent="."]
 
-[node name="top*" type="ColorRect" parent="colorAround"]
-margin_left = -68.0
+[node name="ColorRect" type="ColorRect" parent="colorAround"]
+margin_left = -412.0
+margin_top = -254.0
+margin_right = 4.0
+margin_bottom = 864.0
+color = Color( 0.878431, 0.670588, 0.298039, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect2" type="ColorRect" parent="colorAround"]
+margin_left = 319.0
+margin_top = -254.0
+margin_right = 735.0
+margin_bottom = 864.0
+color = Color( 0.878431, 0.670588, 0.298039, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect3" type="ColorRect" parent="colorAround"]
+margin_left = -60.0
+margin_top = 638.0
+margin_right = 356.0
+margin_bottom = 880.0
+color = Color( 0.878431, 0.670588, 0.298039, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect4" type="ColorRect" parent="colorAround"]
+margin_left = -77.0
 margin_top = -249.0
-margin_right = 1412.0
+margin_right = 339.0
 margin_bottom = 1.0
-color = Color( 0.878431, 0.670588, 0.298039, 1 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="right" type="ColorRect" parent="colorAround"]
-margin_left = 1368.0
-margin_top = -249.0
-margin_right = 1784.0
-margin_bottom = 1182.0
-color = Color( 0.878431, 0.670588, 0.298039, 1 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="bottom" type="ColorRect" parent="colorAround"]
-margin_left = -381.0
-margin_top = 837.0
-margin_right = 1576.0
-margin_bottom = 1173.0
-color = Color( 0.878431, 0.670588, 0.298039, 1 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="left" type="ColorRect" parent="colorAround"]
-margin_left = -407.0
-margin_top = -247.0
-margin_right = 9.0
-margin_bottom = 847.0
 color = Color( 0.878431, 0.670588, 0.298039, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -131,7 +121,7 @@ texture = ExtResource( 3 )
 motion_scale = Vector2( 0.7, 0.7 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 479, 327 )
+position = Vector2( 161, 309 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
 
@@ -142,59 +132,57 @@ collision_layer = 257
 collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
-position = Vector2( 118, 0 )
-polygon = PoolVector2Array( 341, 32, 742, 61, 698, 63, 683, 84, 681, 159, 662, 201, 647, 234, 629, 250, 617, 250, 582, 227, 559, 219, 508, 221, 449, 248, 414, 279, 399, 315, 387, 376, 362, 399, 334, 426, 326, 454, 344, 477, 423, 457, 496, 428, 559, 410, 595, 393, 609, 355, 610, 322, 621, 315, 630, 319, 652, 353, 675, 373, 715, 387, 748, 393, 783, 394, 824, 379, 844, 365, 834, 335, 835, 313, 855, 294, 876, 285, 903, 258, 920, 230, 926, 205, 933, 173, 955, 193, 1061, 196, 1104, 211, 1105, 242, 1076, 287, 1058, 340, 1049, 364, 1049, 382, 1057, 391, 1082, 393, 1089, 401, 1087, 436, 1072, 471, 1058, 487, 1026, 501, 978, 510, 934, 533, 912, 542, 884, 544, 800, 611, 750, 648, 722, 665, 698, 669, 648, 669, 562, 654, 533, 645, 430, 642, 349, 655, 302, 677, 272, 689, 236, 687, 196, 665, 150, 647, 111, 643, 103, 632, 98, 602, 70, 547, 65, 525, 57, 442, 51, 389, 61, 348, 102, 347, 107, 310, 96, 228, 77, 187, 72, 158, 69, 129, 71, 110, 87, 101, 180, 106, 257, 124, 270, 147, 264, 171, 269, 253, 285, 262, 344, 262, 379, 263, 394, 257, 413, 232, 425, 216, 430, 162, 418, 108, 404, 78, 387, 48 )
+polygon = PoolVector2Array( 287, 576, 206, 575, 191, 508, 190, 465, 198, 446, 155, 447, 153, 480, 117, 507, 87, 537, 62, 541, 40, 513, 40, 474, 66, 423, 98, 404, 156, 356, 165, 333, 165, 304, 147, 307, 113, 330, 92, 347, 66, 356, -13, 356, -40, 662, 400, 688, 373, 571 )
 
 [node name="Walls2" type="StaticBody2D" parent="Walls"]
 collision_layer = 257
 collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls2"]
-position = Vector2( 118, 0 )
-polygon = PoolVector2Array( 536, 73, 799, 62, 856, 77, 956, 101, 1016, 112, 1056, 114, 1126, 137, 1174, 178, 1205, 221, 1219, 293, 1227, 408, 1224, 482, 1202, 546, 1192, 578, 1198, 627, 1200, 695, 1189, 732, 1152, 781, 1113, 789, 1013, 778, 939, 780, 895, 790, 875, 799, 867, 811, 795, 783, 760, 768, 722, 768, 685, 847, 307, 857, 290, 799, 209, 800, 140, 819, 112, 830, 55, 829, 24, 820, -3, 801, -43, 721, -64, 599, -64, 431, -54, 351, -28, 324, -18, 245, -26, 205, -70, 120, -85, 78, -83, 31, 22, 29, 189, 26, 309, 26, 349, 31, 486, 107, 481, -137, -235, -137, -225, 949, 1438, 948, 1376, -165, 514, -148 )
-
-[node name="Walls3" type="StaticBody2D" parent="Walls"]
-collision_layer = 257
-collision_mask = 257
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls3"]
-position = Vector2( 119, 0 )
-polygon = PoolVector2Array( 362, 741, 382, 728, 412, 721, 451, 709, 511, 709, 544, 715, 562, 719, 584, 728, 559, 744, 543, 749, 493, 754, 433, 755, 409, 754 )
-
-[node name="OIL" type="RigidBody2D" parent="Walls"]
-mode = 1
-physics_material_override = SubResource( 16 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/OIL"]
-polygon = PoolVector2Array( 390, 800, 416, 800, 455, 812, 502, 820, 571, 826, 644, 828, 713, 816, 761, 794, 789, 783, 807, 778, 821, 769, 839, 768, 854, 797, 844, 852, 742, 893, 527, 911, 430, 885, 389, 849 )
-
-[node name="OIL2" type="RigidBody2D" parent="Walls"]
-mode = 1
-physics_material_override = SubResource( 16 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/OIL2"]
-polygon = PoolVector2Array( 1051, 173, 1053, 209, 1212, 231, 1222, 211, 1212, 198, 1191, 187, 1173, 180, 1154, 176, 1129, 172, 1084, 172 )
+polygon = PoolVector2Array( 288, 576, 288, 224, 163, 224, 167, 205, 178, 193, 288, 191, 289, 128, 258, 120, 225, 123, 224, 106, 231, 98, 289, 95, 290, 30, 30, 32, 31, 382, -35, 380, -141, 5, -84, -259, 486, -109, 593, 194, 440, 554 )
 
 [node name="Targets" type="Node2D" parent="."]
 
 [node name="Target" parent="Targets" instance=ExtResource( 15 )]
-position = Vector2( 460, 204 )
+position = Vector2( 260, 71 )
+collision_layer = 257
+collision_mask = 257
+
+[node name="Target2" parent="Targets" instance=ExtResource( 15 )]
+position = Vector2( 64, 323 )
+collision_layer = 257
+collision_mask = 257
+
+[node name="Target3" parent="Targets" instance=ExtResource( 15 )]
+position = Vector2( 244, 542 )
+collision_layer = 257
+collision_mask = 257
+
+[node name="Target5" parent="Targets" instance=ExtResource( 15 )]
+position = Vector2( 259, 166 )
+collision_layer = 257
+collision_mask = 257
+
+[node name="Target4" parent="Targets" instance=ExtResource( 15 )]
+position = Vector2( 88, 489 )
 collision_layer = 257
 collision_mask = 257
 
 [node name="PlayerRoot" type="Node2D" parent="."]
-position = Vector2( 311, -82 )
 
 [node name="Player" parent="PlayerRoot" instance=ExtResource( 14 )]
 position = Vector2( 242, 461 )
 
 [node name="Anchor" type="Position2D" parent="PlayerRoot"]
-position = Vector2( 244, 460 )
+position = Vector2( 241, 456 )
 script = ExtResource( 13 )
 
 [node name="Cam" type="Camera2D" parent="PlayerRoot/Anchor"]
-position = Vector2( -1, 4 )
 current = true
+limit_left = -1000
+limit_top = -50
+limit_right = 1000
+limit_bottom = 690
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 script = ExtResource( 10 )
@@ -295,7 +283,7 @@ margin_left = 282.0
 margin_top = 17.0
 margin_right = 391.0
 margin_bottom = 68.0
-theme = ExtResource( 20 )
+theme = ExtResource( 19 )
 custom_fonts/font = SubResource( 15 )
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource( 8 )]
