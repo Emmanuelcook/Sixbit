@@ -6,9 +6,8 @@ export var unlockedLevel = true
 
 
 func _ready():
+	# check if level is unlocked
 	unlockedLevel = Global.save[0][level][6]
-	
-	updateStars()
 	
 	$Button/Sprite.texture = target
 	
@@ -16,6 +15,7 @@ func _ready():
 		$hidden.visible = true
 		$stars.visible = false
 	else:
+		updateStars()
 		$hidden.visible = false
 		$stars.visible = true
 

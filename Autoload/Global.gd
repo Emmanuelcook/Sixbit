@@ -29,6 +29,7 @@ var save = [
 
 func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeSecs, levelTimeMils, bulletsFired):
 	
+	# Get current saved results
 	var bestCurrentLevelSpeed = save[0][currentLevel][0]
 	var bestCurrentLevelSharp = save[0][currentLevel][1]
 	var bestCurrentTimer = save[0][currentLevel][2]
@@ -42,11 +43,14 @@ func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeSecs, l
 		save[0][currentLevel][3] = levelTimeSecs
 		save[0][currentLevel][4] = levelTimeMils
 	
+	# Change speed star if better
 	if bestCurrentLevelSpeed < levelSpeed:
 		save[0][currentLevel][0] = levelSpeed
 	
+	# Change sharp star if better	
 	if bestCurrentLevelSharp < levelSharp:
 		save[0][currentLevel][1] = levelSharp
 		
+	# Change the number of bullets fired to finish the level if better		
 	if bestBulletsFired > bulletsFired:
 		save[0][currentLevel][5] = bulletsFired

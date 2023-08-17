@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bulletempty.png-f843cdb2d85bcc0fc0c29f399a1b6edd.stex"
+path="res://.import/bulletempty.png-8e852ccf1c2350477fc09cde94ef9fc3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/UI/bulletempty.png"
-dest_files=[ "res://.import/bulletempty.png-f843cdb2d85bcc0fc0c29f399a1b6edd.stex" ]
+source_file="res://assets/sprites/UI/bulletempty.png"
+dest_files=[ "res://.import/bulletempty.png-8e852ccf1c2350477fc09cde94ef9fc3.stex" ]
 
 [params]
 

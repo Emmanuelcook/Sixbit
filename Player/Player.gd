@@ -21,6 +21,9 @@ var is_reloading = false
 
 func _ready():
 	self.gravity_scale = 0
+	
+	$resetdamp.connect("timeout", self, "reset_damp")
+	$resetdamp.set_wait_time(0.2)
 
 func _process(delta):
 	
@@ -108,7 +111,7 @@ func end_reload():
 	cylinder.end_reload()	
 	is_reloading = false
 	
-func _integrate_forces(state):
+func _integrate_forces(_state):
 	set_angular_velocity((get_angle_to(get_global_mouse_position())) * -((get_angle_to(get_global_mouse_position())) -3.14) * 5)
 
 func recoil():
@@ -121,8 +124,7 @@ func recoil():
 
 	# Effet de recul adoucit qu'on remet rapidement
 	self.linear_damp = 8
-	$resetdamp.connect("timeout", self, "reset_damp")
-	$resetdamp.set_wait_time(0.2)
+	
 	$resetdamp.start()
 
 func reset_damp():
@@ -136,4 +138,4 @@ func _on_Player_body_entered(body):
 	if body.is_in_group('slippy'):
 		if self.linear_damp == 8:
 			self.linear_damp = 6
-	pass # Replace with function body.
+

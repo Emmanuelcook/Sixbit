@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/4-Audio-0004-_2023-08-11-154230_.wav-3e6f76189e8984ffbe8c362db70ec1f8.sample"
+path="res://.import/4-Audio-0004-_2023-08-11-154230_.wav-e1774d16bb2d3002f8769602d699eb4e.sample"
 
 [deps]
 
-source_file="res://Assets/sounds/4-Audio-0004-_2023-08-11-154230_.wav"
-dest_files=[ "res://.import/4-Audio-0004-_2023-08-11-154230_.wav-3e6f76189e8984ffbe8c362db70ec1f8.sample" ]
+source_file="res://assets/sounds/4-Audio-0004-_2023-08-11-154230_.wav"
+dest_files=[ "res://.import/4-Audio-0004-_2023-08-11-154230_.wav-e1774d16bb2d3002f8769602d699eb4e.sample" ]
 
 [params]
 

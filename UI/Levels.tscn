@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Assets/sprites/UI/titleBG2.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/UI/titleBG2.png" type="Texture" id=1]
 [ext_resource path="res://UI/levelTarget.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/levels/levels_level3.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/levels/levels_level2.png" type="Texture" id=4]

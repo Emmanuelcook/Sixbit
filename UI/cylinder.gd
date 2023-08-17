@@ -1,15 +1,15 @@
 extends Sprite
 
 func shot(ballUsed):
-#	print("cylinder-shot")
+	# On each shot, rotate the cylinder and make the ball disappear
 	$Bullets.rotation_degrees += 60
 	$Bullets/bullet.get_node(str(ballUsed)).visible = false
 
 func reload():
-#	print("cylinder-reload")
+	# 360 degres to reload animation
 	$Bullets/AnimCylinder.play('reload')
 
 func end_reload():
-#	print("cylinder-endreload")
+	#	At the end of the animation get bullets back
 	for i in $Bullets/bullet.get_children():
 		i.visible = true

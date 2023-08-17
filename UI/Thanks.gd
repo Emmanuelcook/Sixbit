@@ -5,9 +5,8 @@ func _ready():
 
 func _on_Button_pressed():
 	get_tree().change_scene("res://UI/Main.tscn")
-	GlobalScene.get_node('shot').play()
+	GlobalScene.getnode('shot').play()
 
 func _on_Levels_pressed():
 	get_tree().change_scene("res://UI/Levels.tscn")
 	GlobalScene.get_node('shot').play()
-

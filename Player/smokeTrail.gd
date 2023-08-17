@@ -27,5 +27,4 @@ func _process(delta):
 		tick += delta
 
 func _on_Decay_tween_all_completed():
-#	queue_free()
-	pass
+	queue_free()

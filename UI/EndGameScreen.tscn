@@ -186,7 +186,7 @@ position = Vector2( -18, 232.667 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 9 )
 
-[node name="nextButton" type="Button" parent="."]
+[node name="LevelsButton" type="Button" parent="."]
 margin_left = -156.0
 margin_top = 147.333
 margin_right = -46.0003
@@ -217,7 +217,7 @@ custom_styles/disabled = SubResource( 13 )
 custom_styles/normal = SubResource( 14 )
 text = "Retry"
 
-[node name="backToLevel" type="Button" parent="."]
+[node name="nextLevelButton" type="Button" parent="."]
 margin_left = -100.667
 margin_top = 203.333
 margin_right = 65.333
@@ -233,6 +233,6 @@ custom_styles/disabled = SubResource( 13 )
 custom_styles/normal = SubResource( 14 )
 text = "Next Level"
 
-[connection signal="pressed" from="nextButton" to="." method="_on_nextButton_pressed"]
+[connection signal="pressed" from="LevelsButton" to="." method="_on_LevelsButton_pressed"]
 [connection signal="pressed" from="retryButton" to="." method="_on_retryButton_pressed"]
-[connection signal="pressed" from="backToLevel" to="." method="_on_backToLevel_pressed"]
+[connection signal="pressed" from="nextLevelButton" to="." method="_on_nextLevelButton_pressed"]

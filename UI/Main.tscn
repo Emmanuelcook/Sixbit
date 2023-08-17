@@ -176,13 +176,13 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 5 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="target1" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="target1" to="." method="_on_target1_pressed"]
-[connection signal="pressed" from="target2" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="target1" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="target2" to="." method="_on_target2_pressed"]
-[connection signal="pressed" from="target3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="target2" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="target3" to="." method="_on_target3_pressed"]
-[connection signal="pressed" from="target4" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="target3" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="target4" to="." method="_on_target4_pressed"]
-[connection signal="pressed" from="target5" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="target4" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="target5" to="." method="_on_target5_pressed"]
+[connection signal="pressed" from="target5" to="." method="_on_Button3_pressed"]

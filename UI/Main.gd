@@ -6,10 +6,9 @@ func _ready():
 func _on_Button_pressed():
 	get_tree().change_scene("res://UI/Levels.tscn")
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("click"):
 		GlobalScene.get_node('shot').play()
-		
 
 func _on_target1_pressed():
 	$target1/Sprite.visible = true

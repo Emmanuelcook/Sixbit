@@ -75,7 +75,7 @@ goldSharpStar = 6
 
 [node name="colorAround" type="Node2D" parent="."]
 
-[node name="top*" type="ColorRect" parent="colorAround"]
+[node name="top" type="ColorRect" parent="colorAround"]
 margin_left = -32.0
 margin_top = -249.0
 margin_right = 967.0

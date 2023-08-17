@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/starfull2.png-12efdc0c51583663801ac8f08d57f9af.stex"
+path="res://.import/starfull2.png-0ae2ba951984aadd015a3fb32a8382da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/UI/starfull2.png"
-dest_files=[ "res://.import/starfull2.png-12efdc0c51583663801ac8f08d57f9af.stex" ]
+source_file="res://assets/sprites/UI/starfull2.png"
+dest_files=[ "res://.import/starfull2.png-0ae2ba951984aadd015a3fb32a8382da.stex" ]
 
 [params]
 

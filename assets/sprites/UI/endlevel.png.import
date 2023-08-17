@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/endlevel.png-53be701a5511b66b89d6e72ee1e3d58f.stex"
+path="res://.import/endlevel.png-0c6e7016e67ed2cde5bcffeda6a2c83a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/UI/endlevel.png"
-dest_files=[ "res://.import/endlevel.png-53be701a5511b66b89d6e72ee1e3d58f.stex" ]
+source_file="res://assets/sprites/UI/endlevel.png"
+dest_files=[ "res://.import/endlevel.png-0c6e7016e67ed2cde5bcffeda6a2c83a.stex" ]
 
 [params]
 

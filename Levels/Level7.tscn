@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=1]
 [ext_resource path="res://UI/EndGameScreen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/sprites/levels/Level8.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/levels/Level8.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/player/start1.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/UI/bulletempty.png" type="Texture" id=6]
@@ -76,7 +76,7 @@ goldSpeedStar = 3
 
 [node name="colorAround" type="Node2D" parent="."]
 
-[node name="top*" type="ColorRect" parent="colorAround"]
+[node name="top" type="ColorRect" parent="colorAround"]
 margin_left = -318.0
 margin_top = -249.0
 margin_right = 1162.0
