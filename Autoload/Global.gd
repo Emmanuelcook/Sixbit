@@ -112,9 +112,4 @@ func cheat_entry(key: int):
 				godGun = false
 			else:
 				godGun = true
-				print('e')
-			
-
-
-				
 

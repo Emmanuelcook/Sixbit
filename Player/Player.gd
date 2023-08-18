@@ -209,9 +209,9 @@ func reset_damp():
 
 func _on_OilDetect_body_entered(body):
 	if body.is_in_group('slippy'):
-		print("oil")
 		onOil = true
 		if !Global.godGun:
 			if self.linear_damp == 8:
 				self.linear_damp = 6
+
 
