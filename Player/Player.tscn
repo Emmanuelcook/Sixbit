@@ -139,4 +139,5 @@ scale_amount_curve = SubResource( 5 )
 color_ramp = SubResource( 6 )
 
 [connection signal="body_entered" from="OilDetect" to="." method="_on_OilDetect_body_entered"]
+[connection signal="body_exited" from="OilDetect" to="." method="_on_OilDetect_body_exited"]
 [connection signal="timeout" from="godGunFireRate" to="." method="_on_godGunFireRate_timeout"]

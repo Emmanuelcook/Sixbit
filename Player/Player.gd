@@ -215,3 +215,8 @@ func _on_OilDetect_body_entered(body):
 				self.linear_damp = 6
 
 
+
+
+func _on_OilDetect_body_exited(body):
+	if body.is_in_group('slippy'):
+		onOil = false
