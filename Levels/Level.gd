@@ -31,6 +31,8 @@ var secs = 0
 var targetNumber = 0
 var targetShot = 0
 
+onready var player = $PlayerRoot/Player
+
 func _ready():
 	
 	nextLevel = currentLevel + 1 # update nextlevel number
@@ -52,9 +54,8 @@ func _ready():
 		$PlayerRoot/Start2.visible = true
 
 func _process(delta):
-	
 	# display effect around the gun at the start and makes it rotate
-	$PlayerRoot/Start1.global_position = $PlayerRoot/Player.global_position
+	$PlayerRoot/Start1.global_position = player.global_position
 	if $PlayerRoot/Start1.visible:
 		$PlayerRoot/Start1.rotation_degrees += 1
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=1]
 [ext_resource path="res://UI/EndGameScreen.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sprites/UI/bulletempty.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/levels/bg.png" type="Texture" id=7]
 [ext_resource path="res://UI/Menu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Player/godGunBulletParticles.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Player/Cam/Cam.gd" type="Script" id=10]
 [ext_resource path="res://UI/cylinder.gd" type="Script" id=11]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=12]
@@ -205,6 +206,8 @@ custom_constants/line_separation = -3
 bbcode_enabled = true
 
 [node name="bullet" parent="." instance=ExtResource( 16 )]
+
+[node name="godGunBullet" parent="." instance=ExtResource( 9 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
