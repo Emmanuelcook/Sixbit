@@ -5,6 +5,8 @@ export var isLastLevel = false
 var nextLevel
 var levelIsFinished
 
+
+
 # Rank to get stars
 export var bronzeSpeedStar = 8
 export var silverSpeedStar = 6
@@ -26,6 +28,8 @@ var timerState = false
 var time_passed = '00:00'
 var mils = 1
 var secs = 0
+var mins = 0
+var timerMoved = false
 
 # Number of targets in the level / Number of targets shots
 var targetNumber = 0
@@ -47,9 +51,9 @@ func _ready():
 		targetNumber += 1
 	
 	# If a score is saved, display above the gun
-	if Global.save[0][currentLevel][5] != 99:
+	if Global.save[0][currentLevel][4] != 99:
 		var bestTime = Global.save[0][currentLevel][2]
-		var bestBullets = Global.save[0][currentLevel][5]
+		var bestBullets = Global.save[0][currentLevel][6]
 		$PlayerRoot/Start2.bbcode_text = '[center]Best time: ' + str(bestTime) + '\n Bullets: ' + str(bestBullets)
 		$PlayerRoot/Start2.visible = true
 
@@ -68,11 +72,33 @@ func _process(delta):
 		timeToFinish += delta
 		mils = fmod(timeToFinish,1)*100
 		secs = fmod(timeToFinish, 60)
+		mins = fmod(timeToFinish, 60*60) / 60
+
+
 		
-		time_passed = "%02d:%02d" % [secs,mils]
+		
+		if mins >= 1:
+			time_passed = "%02d:%02d:%02d" % [mins,secs,mils]
+			if !timerMoved:
+				timerMoved = true
+				$CanvasLayer/Timer/gameTime.margin_left -= 60
+		else:
+			time_passed = "%02d:%02d" % [secs,mils]
 	
 	# display result of the time
-	$CanvasLayer/Timer/gameTime.text = time_passed
+	# Anti cheat System
+	if mins > 59 && mins < 59.02:
+		$CanvasLayer/Timer/gameTime.text = "nope"
+	elif mins > 59.02 && mins < 59.04:
+		$CanvasLayer/Timer/gameTime.text = "you"
+	elif mins > 59.04 && mins < 59.06:
+		$CanvasLayer/Timer/gameTime.text = "cant"
+	elif mins > 59.06 && mins < 59.08:
+		$CanvasLayer/Timer/gameTime.text = "cheat"
+	elif mins > 59.1:
+		get_tree().reload_current_scene()
+	else:
+		$CanvasLayer/Timer/gameTime.text = time_passed
 
 
 func targetShot():
@@ -105,14 +131,14 @@ func ending_level():
 	unlockNextLevel()
 	
 	# save score
-	Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, secs, mils, bulletsFired)
+	Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired)
 	
 	# reset targetshot
 	targetShot = 0
 
 func unlockNextLevel():
 	if !isLastLevel:
-		Global.save[0][nextLevel][6] = true
+		Global.save[0][nextLevel][7] = true
 
 func get_results():
 	# hide game UI
@@ -126,20 +152,20 @@ func get_results():
 	
 	# display the number of stars you got for this run
 	# also display the saved score if better
-	if secs <= goldSpeedStar:
+	if secs <= goldSpeedStar && mins < 1:
 		levelSpeed = 3
 		if Global.save[0][currentLevel][3] == 99: 
 			$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "Like greased lightning !"
 		else:	
-			if (secs <= Global.save[0][currentLevel][3]) || (secs == Global.save[0][currentLevel][3] && mils <= Global.save[0][currentLevel][4]):
+			if (secs <= Global.save[0][currentLevel][4]) || (secs == Global.save[0][currentLevel][4] && mils <= Global.save[0][currentLevel][5]):
 				$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "Your best: " + str(time_passed)
 			else:
 				$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "Your best: " + str(Global.save[0][currentLevel][2])
 
-	elif secs <= silverSpeedStar:
+	elif secs <= silverSpeedStar && mins < 1:
 		levelSpeed = 2
 		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "3 star: " + str(goldSpeedStar) + " sec"
-	elif secs <= bronzeSpeedStar:
+	elif secs <= bronzeSpeedStar && mins < 1:
 		levelSpeed = 1
 		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "2 star: " + str(silverSpeedStar) + " sec"
 	else:
@@ -155,10 +181,10 @@ func get_results():
 	
 	if bulletsFired <= goldSharpStar:
 		levelSharp = 3
-		if Global.save[0][currentLevel][5] == 99:
+		if Global.save[0][currentLevel][6] == 99:
 			$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "Right on the money !"
 		else:
-			$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "Your best: " + str(Global.save[0][currentLevel][5]) + " bullets"
+			$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "Your best: " + str(Global.save[0][currentLevel][6]) + " bullets"
 	elif bulletsFired <= silverSharpStar:
 		levelSharp = 2
 		$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "3 star: " + str(goldSharpStar) + " bullets"

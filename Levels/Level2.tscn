@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Player/bulletParticles.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=3]
 [ext_resource path="res://Levels/Target.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Cam/Anchor.gd" type="Script" id=5]
@@ -118,8 +117,8 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 208.0
+margin_bottom = 120.0
 rect_scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 
@@ -140,6 +139,7 @@ collision_layer = 257
 collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
+position = Vector2( -2, 0 )
 polygon = PoolVector2Array( 63, 90, 51, 172, 41, 253, 31, 302, 30, 426, 55, 446, 130, 449, 128, 436, 169, 442, 185, 437, 227, 424, 282, 357, 348, 279, 372, 258, 402, 257, 424, 279, 433, 298, 449, 313, 492, 357, 532, 397, 551, 411, 599, 424, 628, 432, 655, 434, 700, 409, 731, 366, 772, 358, 773, 300, 779, 235, 798, 150, 797, 115, 780, 68, 759, 41, 740, 35, 675, 32, 418, 33, 332, 58, 219, 57, 122, 41, 25, -20, 34, -41, 99, -42, 197, -41, 890, -35, 874, 498, -34, 503, -29, -37, 159, 35, 77, 46 )
 
 [node name="Targets" type="Node2D" parent="."]
@@ -190,8 +190,6 @@ theme = ExtResource( 20 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_constants/line_separation = -3
 bbcode_enabled = true
-
-[node name="bullet" parent="." instance=ExtResource( 2 )]
 
 [node name="godGunBullet" parent="." instance=ExtResource( 16 )]
 
@@ -267,9 +265,9 @@ position = Vector2( 235, 401 )
 z_index = 12
 
 [node name="gameTime" type="Label" parent="CanvasLayer/Timer"]
-margin_left = 282.0
+margin_left = 283.0
 margin_top = 17.0
-margin_right = 391.0
+margin_right = 332.0
 margin_bottom = 68.0
 theme = ExtResource( 9 )
 custom_fonts/font = SubResource( 15 )

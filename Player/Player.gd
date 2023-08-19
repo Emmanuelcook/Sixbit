@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 var Smoketrail = preload("res://Player/smokeTrail.tscn")
+var bulletParticle = preload("res://Player/bulletParticles.tscn")
 
 onready var AimCast = $AimCast
 onready var timer = $Timer
@@ -67,7 +68,12 @@ func _process(delta):
 		cylinder.shot(ballUsed)
 		
 		# particle bullet
-		bullet.emitOne() 
+#		bullet.emitOne() 
+		var bulletP = bulletParticle.instance()
+		get_parent().get_parent().add_child(bulletP)
+		bulletP.global_position = global_position
+		bulletP.restart()
+		get_tree().create_timer(bulletP.lifetime,false).connect("timeout", bulletP, "queue_free")
 		
 		# Si c'est la premiere fois
 		# On remet la gravité et on enleve les effets du rond au début

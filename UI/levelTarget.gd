@@ -7,7 +7,7 @@ export var unlockedLevel = true
 
 func _ready():
 	# check if level is unlocked
-	unlockedLevel = Global.save[0][level][6]
+	unlockedLevel = Global.save[0][level][7]
 	
 	$Button/Sprite.texture = target
 	
