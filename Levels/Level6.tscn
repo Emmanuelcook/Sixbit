@@ -67,6 +67,12 @@ font_data = ExtResource( 18 )
 [node name="Level 6" type="Node2D"]
 script = ExtResource( 12 )
 currentLevel = 6
+bronzeSpeedStar = 8
+silverSpeedStar = 6
+goldSpeedStar = 4
+bronzeSharpStar = 7
+silverSharpStar = 6
+goldSharpStar = 5
 
 [node name="colorAround" type="Node2D" parent="."]
 
@@ -133,7 +139,7 @@ collision_layer = 257
 collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
-polygon = PoolVector2Array( 287, 576, 206, 575, 191, 508, 190, 465, 198, 446, 155, 447, 153, 480, 117, 507, 87, 537, 62, 541, 40, 513, 40, 474, 66, 423, 98, 404, 156, 356, 165, 333, 165, 304, 147, 307, 113, 330, 92, 347, 66, 356, -13, 356, -40, 662, 400, 688, 373, 571 )
+polygon = PoolVector2Array( 287, 576, 206, 575, 191, 508, 190, 465, 198, 446, 155, 447, 153, 480, 117, 507, 87, 537, 62, 541, 40, 513, 40, 474, 70, 426, 111, 398, 145, 364, 160, 359, 160, 324, 165, 325, 165, 304, 145, 304, 138, 314, 120, 327, 95, 351, 66, 356, -13, 356, -40, 662, 400, 688, 373, 571 )
 
 [node name="Walls2" type="StaticBody2D" parent="Walls"]
 collision_layer = 257

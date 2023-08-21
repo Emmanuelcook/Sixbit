@@ -218,7 +218,6 @@ custom_constants/line_separation = -3
 bbcode_enabled = true
 
 [node name="bullet" parent="." instance=ExtResource( 16 )]
-local_coords = false
 
 [node name="godGunBullet" parent="." instance=ExtResource( 17 )]
 

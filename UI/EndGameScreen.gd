@@ -1,5 +1,6 @@
 extends Node2D
 
+
 func _process(delta):
 	# Can reload with R
 	if Input.is_action_just_pressed("reset"):
@@ -22,5 +23,3 @@ func _on_nextLevelButton_pressed():
 		get_tree().change_scene("res://UI/Thanks.tscn")
 	else:
 		get_tree().change_scene("res://Levels/Level" + str(nextLevel) +".tscn")
-	
-	

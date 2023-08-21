@@ -5,15 +5,13 @@ export var isLastLevel = false
 var nextLevel
 var levelIsFinished
 
-
-
 # Rank to get stars
-export var bronzeSpeedStar = 8
-export var silverSpeedStar = 6
-export var goldSpeedStar = 4
-export var bronzeSharpStar = 7
-export var silverSharpStar = 6
-export var goldSharpStar = 5
+export var bronzeSpeedStar = 0
+export var silverSpeedStar = 0
+export var goldSpeedStar = 0
+export var bronzeSharpStar = 0
+export var silverSharpStar = 0
+export var goldSharpStar = 0
 
 # Stars levels
 var levelSharp = 0
@@ -117,6 +115,8 @@ func ending_level():
 	get_tree().paused = true
 	levelIsFinished = true
 	
+	
+		
 	# Game is paused so play gunshot and targetshot
 	GlobalScene.get_node("shot").play()
 	GlobalScene.get_node("click").play()
@@ -136,6 +136,16 @@ func ending_level():
 	# reset targetshot
 	targetShot = 0
 
+	SilentWolf.Scores.persist_score("Cle", timeToFinish, "Level " + str(currentLevel))
+
+	yield(SilentWolf.Scores.get_high_scores(5, "Level " + str(currentLevel)), "sw_scores_received")
+	var i = 0
+	for score in SilentWolf.Scores.scores:
+		i += 1
+		print(str(i) + 'place')
+		print("player" + str(score.player_name))
+		print("score" + str(score.score))
+
 func unlockNextLevel():
 	if !isLastLevel:
 		Global.save[0][nextLevel][7] = true
@@ -147,30 +157,30 @@ func get_results():
 	$CanvasLayer/Timer.visible = false
 	
 	# display results of the run
-	$CanvasLayer/EndGameScreen/speed_results.bbcode_text = str(time_passed)
-	$CanvasLayer/EndGameScreen/sharp_results.bbcode_text = str(bulletsFired)
+	$CanvasLayer/EndGameScreen/speed_results.bbcode_text = "[center]" + str(time_passed)
+	$CanvasLayer/EndGameScreen/sharp_results.bbcode_text = "[center]" + str(bulletsFired)
 	
 	# display the number of stars you got for this run
 	# also display the saved score if better
 	if secs <= goldSpeedStar && mins < 1:
 		levelSpeed = 3
 		if Global.save[0][currentLevel][3] == 99: 
-			$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "Like greased lightning !"
+			$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]Like greased lightning !"
 		else:	
 			if (secs <= Global.save[0][currentLevel][4]) || (secs == Global.save[0][currentLevel][4] && mils <= Global.save[0][currentLevel][5]):
-				$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "Your best: " + str(time_passed)
+				$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]best: " + str(time_passed)
 			else:
-				$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "Your best: " + str(Global.save[0][currentLevel][2])
+				$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]best: " + str(Global.save[0][currentLevel][2])
 
 	elif secs <= silverSpeedStar && mins < 1:
 		levelSpeed = 2
-		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "3 star: " + str(goldSpeedStar) + " sec"
+		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]next: " + str(goldSpeedStar)
 	elif secs <= bronzeSpeedStar && mins < 1:
 		levelSpeed = 1
-		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "2 star: " + str(silverSpeedStar) + " sec"
+		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]next: " + str(silverSpeedStar)
 	else:
 		levelSpeed = 0
-		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "1 star: " + str(bronzeSpeedStar) + " sec"
+		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]next: " + str(bronzeSpeedStar)
 
 	if levelSpeed > 2:
 		$CanvasLayer/EndGameScreen/Gold2/Sprite.visible = true
@@ -182,18 +192,18 @@ func get_results():
 	if bulletsFired <= goldSharpStar:
 		levelSharp = 3
 		if Global.save[0][currentLevel][6] == 99:
-			$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "Right on the money !"
+			$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "[center]Right on the money !"
 		else:
-			$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "Your best: " + str(Global.save[0][currentLevel][6]) + " bullets"
+			$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "[center]best: " + str(Global.save[0][currentLevel][6])
 	elif bulletsFired <= silverSharpStar:
 		levelSharp = 2
-		$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "3 star: " + str(goldSharpStar) + " bullets"
+		$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "[center]next: " + str(goldSharpStar)
 	elif bulletsFired <= bronzeSharpStar:
 		levelSharp = 1
-		$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "2 star: " + str(silverSharpStar) + " bullets"
+		$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "[center]next: " + str(silverSharpStar)
 	else:
 		levelSharp = 0
-		$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "1 star: " + str(bronzeSharpStar) + " bullets"
+		$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "[center]next: " + str(bronzeSharpStar)
 
 	if levelSharp > 2:
 		$CanvasLayer/EndGameScreen/Gold/Sprite.visible = true

@@ -69,6 +69,7 @@ font_data = ExtResource( 18 )
 script = ExtResource( 12 )
 currentLevel = 8
 bronzeSpeedStar = 9
+silverSpeedStar = 6
 goldSpeedStar = 3
 bronzeSharpStar = 9
 silverSharpStar = 7

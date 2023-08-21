@@ -229,7 +229,6 @@ bbcode_enabled = true
 [node name="bullet" parent="." instance=ExtResource( 16 )]
 
 [node name="godGunBullet" parent="." instance=ExtResource( 9 )]
-local_coords = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

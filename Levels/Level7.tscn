@@ -74,6 +74,9 @@ currentLevel = 7
 bronzeSpeedStar = 7
 silverSpeedStar = 4
 goldSpeedStar = 3
+bronzeSharpStar = 7
+silverSharpStar = 6
+goldSharpStar = 5
 
 [node name="colorAround" type="Node2D" parent="."]
 

@@ -1,9 +1,12 @@
 extends Node
 
+const SAVE_DIR = "user://saves/"
+
 var currentLevel = 1
 var cheat_code: Array
 var godGun = false
 
+var save_path = SAVE_DIR + "save.dat"
 
 var save = [
 	{
@@ -29,8 +32,6 @@ var save = [
 		9 : [0,0,0,99,99,99,99,false]
 	}
 ]
-
-
 
 func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, levelTimeSecs, levelTimeMils, bulletsFired):
 	
@@ -62,11 +63,77 @@ func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, l
 	if bestBulletsFired > bulletsFired:
 		save[0][currentLevel][6] = bulletsFired
 
+	var dir = Directory.new()
+	if !dir.dir_exists(SAVE_DIR):
+		dir.make_dir_recursive(SAVE_DIR)
+
+	var file = File.new()
+	var error = file.open_encrypted_with_pass(save_path, File.WRITE, "dontcheat")
+	if error == OK:
+		file.store_var(save)
+		file.close()
+	
 
 
+func loadSave():
+	var file = File.new()
+	if file.file_exists(save_path):
+		var error = file.open_encrypted_with_pass(save_path, File.READ, "dontcheat")
+		if error == OK:
+			var savedfile = file.get_var()
+			file.close()
+#			print(savedfile)
+			save = savedfile
 
+func resetSave():
+	save = [
+		{
+	#		1 : [
+	#			{ 0: "speed" : 0 },
+	#			{ 1: "sharp" : 0 },
+	#			{ 2: "bestTime" : "99:99" },
+	#			{ 3: "mins" : 99 },
+	#			{ 4: "secs" : 99 },
+	#			{ 5: "mils" : 99 },
+	#			{ 6: "bulletsFired" : 99 },
+	#			{ 7: "unlockedLevel" : true },
+	#
+	#		],
+			1 : [0,0,0,99,99,99,99,true],
+			2 : [0,0,0,99,99,99,99,false],
+			3 : [0,0,0,99,99,99,99,false],
+			4 : [0,0,0,99,99,99,99,false],
+			5 : [0,0,0,99,99,99,99,false],
+			6 : [0,0,0,99,99,99,99,false],
+			7 : [0,0,0,99,99,99,99,false],
+			8 : [0,0,0,99,99,99,99,false],
+			9 : [0,0,0,99,99,99,99,false]
+		}
+	]
+	
+	var dir = Directory.new()
+	if !dir.dir_exists(SAVE_DIR):
+		dir.make_dir_recursive(SAVE_DIR)
+
+	var file = File.new()
+	var error = file.open_encrypted_with_pass(save_path, File.WRITE, "dontcheat")
+	if error == OK:
+		file.store_var(save)
+		file.close()
 
 func _ready():
+	
+	SilentWolf.configure({
+		"api_key": "a5V8hGp6ruaQNWXmWdK0LavREndIjwM81Je8ITHs",
+		"game_id": "sixbit",
+		"game_version": "1.0.2",
+		"log_level": 1
+	})
+	
+
+	
+	loadSave()
+	
 	# for example, "cheat1" and "cheat2" for codes
 	cheat_code.resize(2)
 	cheat_code[0] = [int(0), KEY_U, KEY_N, KEY_L, KEY_O, KEY_C, KEY_K]
