@@ -3,7 +3,8 @@ extends Button
 export var letter = "A"
 
 func _ready():
-	$Label.text = letter
+	$Node2D/Label.text = letter
 
 func _on_Letter_pressed():
+	$AnimationPlayer.play("shot")
 	get_parent().letterPressed(letter)
