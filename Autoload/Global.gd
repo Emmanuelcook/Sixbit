@@ -5,6 +5,9 @@ const SAVE_DIR = "user://saves/"
 var currentLevel = 1
 var cheat_code: Array
 var godGun = false
+var sceneAfterNaming = ""
+
+var playerName = ""
 
 var save_path = SAVE_DIR + "save.dat"
 
@@ -30,6 +33,9 @@ var save = [
 		7 : [0,0,0,99,99,99,99,false],
 		8 : [0,0,0,99,99,99,99,false],
 		9 : [0,0,0,99,99,99,99,false]
+	},
+	{
+		"playerName" : ""
 	}
 ]
 
@@ -73,7 +79,16 @@ func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, l
 		file.store_var(save)
 		file.close()
 	
+func saveGame():
+	var dir = Directory.new()
+	if !dir.dir_exists(SAVE_DIR):
+		dir.make_dir_recursive(SAVE_DIR)
 
+	var file = File.new()
+	var error = file.open_encrypted_with_pass(save_path, File.WRITE, "dontcheat")
+	if error == OK:
+		file.store_var(save)
+		file.close()
 
 func loadSave():
 	var file = File.new()
@@ -88,17 +103,6 @@ func loadSave():
 func resetSave():
 	save = [
 		{
-	#		1 : [
-	#			{ 0: "speed" : 0 },
-	#			{ 1: "sharp" : 0 },
-	#			{ 2: "bestTime" : "99:99" },
-	#			{ 3: "mins" : 99 },
-	#			{ 4: "secs" : 99 },
-	#			{ 5: "mils" : 99 },
-	#			{ 6: "bulletsFired" : 99 },
-	#			{ 7: "unlockedLevel" : true },
-	#
-	#		],
 			1 : [0,0,0,99,99,99,99,true],
 			2 : [0,0,0,99,99,99,99,false],
 			3 : [0,0,0,99,99,99,99,false],
@@ -108,6 +112,9 @@ func resetSave():
 			7 : [0,0,0,99,99,99,99,false],
 			8 : [0,0,0,99,99,99,99,false],
 			9 : [0,0,0,99,99,99,99,false]
+		},
+		{
+			"playerName" : playerName
 		}
 	]
 	
@@ -122,15 +129,13 @@ func resetSave():
 		file.close()
 
 func _ready():
-	
+
 	SilentWolf.configure({
 		"api_key": "a5V8hGp6ruaQNWXmWdK0LavREndIjwM81Je8ITHs",
 		"game_id": "sixbit",
 		"game_version": "1.0.2",
 		"log_level": 1
 	})
-	
-
 	
 	loadSave()
 	

@@ -4,6 +4,8 @@ var textColor = Color(.3,.26,.18,1)
 
 
 func _ready():
+	Global.playerName = Global.save[1].playerName 
+
 	$Levels/Label.modulate = textColor
 	$SpeedRun/Label.modulate = textColor
 	$How/Label.modulate = textColor
@@ -11,20 +13,34 @@ func _ready():
 	$Stats/Label.modulate = textColor
 
 func _on_Levels_pressed():
-	get_tree().change_scene("res://UI/Levels.tscn")
+	if Global.playerName == "":
+		get_tree().change_scene("res://UI/PlayerNameScreen.tscn")
+		Global.sceneAfterNaming = "res://UI/Levels.tscn"
+	else:
+		get_tree().change_scene("res://UI/Levels.tscn")
+		
+	GlobalScene.get_node('shot').play()
+	GlobalScene.get_node('click').play()
 
 func _on_SpeedRun_pressed():
-	pass # Replace with function body.
+	GlobalScene.get_node('shot').play()
+	GlobalScene.get_node('click').play()
+
 
 func _on_How_pressed():
-	pass # Replace with function body.
+	GlobalScene.get_node('shot').play()
+	GlobalScene.get_node('click').play()
+
 
 func _on_Settings_pressed():
-	pass # Replace with function body.
+	GlobalScene.get_node('shot').play()
+	GlobalScene.get_node('click').play()
 
 
 func _on_Stats_pressed():
-	pass
+	GlobalScene.get_node('shot').play()
+	GlobalScene.get_node('click').play()
+
 
 
 

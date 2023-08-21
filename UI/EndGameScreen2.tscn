@@ -423,9 +423,9 @@ text = "01:42"
 
 [node name="LevelsButton" type="Button" parent="."]
 margin_left = -112.5
-margin_top = 191.0
+margin_top = 162.0
 margin_right = -59.5
-margin_bottom = 217.0
+margin_bottom = 188.0
 theme = ExtResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.878431, 0.670588, 0.298039, 1 )
@@ -438,9 +438,9 @@ text = "All Levels"
 
 [node name="retryButton" type="Button" parent="."]
 margin_left = 14.5
-margin_top = 194.5
+margin_top = 165.5
 margin_right = 45.5
-margin_bottom = 212.5
+margin_bottom = 183.5
 theme = ExtResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.878431, 0.670588, 0.298039, 1 )
@@ -454,9 +454,9 @@ align = 2
 
 [node name="nextLevelButton" type="Button" parent="."]
 margin_left = -66.0
-margin_top = 188.0
+margin_top = 159.0
 margin_right = 20.0
-margin_bottom = 214.0
+margin_bottom = 185.0
 theme = ExtResource( 11 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.878431, 0.670588, 0.298039, 1 )
@@ -470,6 +470,17 @@ text = "Next"
 icon_align = 1
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="godGunLabel" type="Label" parent="."]
+visible = false
+margin_left = -135.5
+margin_top = 19.0
+margin_right = 47.5
+margin_bottom = 51.0
+theme = ExtResource( 11 )
+custom_constants/line_spacing = -1
+text = "God gun was used this level.
+No scoreboard or unlocking level."
 
 [connection signal="pressed" from="LevelsButton" to="." method="_on_LevelsButton_pressed"]
 [connection signal="pressed" from="retryButton" to="." method="_on_retryButton_pressed"]

@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="SixBit"
-run/main_scene="res://UI/Main.tscn"
+run/main_scene="res://UI/MainNavigation.tscn"
 config/icon="res://icon.png"
 
 [autoload]

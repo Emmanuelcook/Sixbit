@@ -4,6 +4,7 @@ export var currentLevel = 1
 export var isLastLevel = false
 var nextLevel
 var levelIsFinished
+var godGunWasUsed = false
 
 # Rank to get stars
 export var bronzeSpeedStar = 0
@@ -56,6 +57,10 @@ func _ready():
 		$PlayerRoot/Start2.visible = true
 
 func _process(delta):
+	
+	if Global.godGun:
+		godGunWasUsed = true
+	
 	# display effect around the gun at the start and makes it rotate
 	$PlayerRoot/Start1.global_position = player.global_position
 	if $PlayerRoot/Start1.visible:
@@ -127,16 +132,17 @@ func ending_level():
 	# display results
 	get_results()
 	
-	# unlock next level in the levels menu
-	unlockNextLevel()
-	
-	# save score
-	Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired)
-	
-	# reset targetshot
-	targetShot = 0
 
-	SilentWolf.Scores.persist_score("Cle", timeToFinish, "Level " + str(currentLevel))
+	
+	
+	# unlock next level in the levels menu
+	if !godGunWasUsed:
+		unlockNextLevel()
+	
+		# save score
+		Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired)
+		
+		SilentWolf.Scores.persist_score(Global.playerName, timeToFinish, "Level " + str(currentLevel))
 
 	yield(SilentWolf.Scores.get_high_scores(5, "Level " + str(currentLevel)), "sw_scores_received")
 	var i = 0
@@ -145,7 +151,11 @@ func ending_level():
 		print(str(i) + 'place')
 		print("player" + str(score.player_name))
 		print("score" + str(score.score))
-
+	
+	# reset targetshot
+	targetShot = 0
+	
+	
 func unlockNextLevel():
 	if !isLastLevel:
 		Global.save[0][nextLevel][7] = true
@@ -153,6 +163,10 @@ func unlockNextLevel():
 func get_results():
 	# hide game UI
 	$CanvasLayer/EndGameScreen.visible = true
+	
+	if godGunWasUsed:
+		$CanvasLayer/EndGameScreen/godGunLabel.visible = true
+	
 	$CanvasLayer/cylinder.visible = false
 	$CanvasLayer/Timer.visible = false
 	

@@ -14,7 +14,7 @@ func _process(delta):
 
 
 func _on_Main_pressed():
-	get_tree().change_scene("res://UI/Main.tscn")
+	get_tree().change_scene("res://UI/MainNavigation.tscn")
 	GlobalScene.get_node('shot').play()
 
 
