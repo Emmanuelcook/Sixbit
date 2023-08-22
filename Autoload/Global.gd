@@ -39,7 +39,7 @@ var save = [
 	}
 ]
 
-func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, levelTimeSecs, levelTimeMils, bulletsFired):
+func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, levelTimeSecs, levelTimeMils, bulletsFired, timeToFinishAsDecimal):
 	
 	# Get current saved results
 	var bestCurrentLevelSpeed = save[0][currentLevel][0]
@@ -50,12 +50,23 @@ func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, l
 	var bestCurrentMils = save[0][currentLevel][5]
 	var bestBulletsFired = save[0][currentLevel][6]
 	
+	
 	# Change Time if better
 	if (bestCurrentMins > levelTimeMins) || (bestCurrentMins == levelTimeMins && bestCurrentSecs > levelTimeSecs) || (bestCurrentMins == levelTimeMins && bestCurrentSecs == levelTimeSecs && bestCurrentMils > levelTimeMils):
 		save[0][currentLevel][2] = levelTime
 		save[0][currentLevel][3] = levelTimeMins
 		save[0][currentLevel][4] = levelTimeSecs
 		save[0][currentLevel][5] = levelTimeMils
+		
+		if Global.playerName != "" && currentLevel != 1:
+			# Silent wolf ne fait que des leaderboard avec le plus gros score
+			# nous on veut faire le plus petit score, donc j'inverse le temps
+			# si un joueur fait 1s et l'autre 2s
+			# celui qui a fait 1s sera à 9999 et l'autre à 9998 donc il est meilleur
+			# il faut que je pense à inverser aussi quand je récupère les score par contre
+			var invTime = 10000 - timeToFinishAsDecimal
+			SilentWolf.Scores.persist_score(Global.playerName, invTime, "level" + str(currentLevel))
+
 	
 	# Change speed star if better
 	if bestCurrentLevelSpeed < levelSpeed:
@@ -129,9 +140,14 @@ func resetSave():
 		file.close()
 
 func _ready():
-
+	
+	var f=File.new()
+	f.open('res://apiKey.env',File.READ)
+	self.apiKey=f.get_line()
+	f.close()
+	
 	SilentWolf.configure({
-		"api_key": "a5V8hGp6ruaQNWXmWdK0LavREndIjwM81Je8ITHs",
+		"api_key": "self.apiKey",
 		"game_id": "sixbit",
 		"game_version": "1.0.2",
 		"log_level": 1

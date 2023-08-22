@@ -36,7 +36,7 @@
 size = 32
 font_data = ExtResource( 5 )
 
-[node name="EndGameScreen2" type="Node2D"]
+[node name="EndGameScreen" type="Node2D"]
 pause_mode = 2
 position = Vector2( 366, 11 )
 scale = Vector2( 2, 2 )
@@ -218,6 +218,7 @@ bbcode_text = "[center]Best: 1:35"
 text = "Best: 1:35"
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 position = Vector2( -135.5, 145 )
 points = PoolVector2Array( 130.5, -4, 207, -4 )
 width = 0.5
@@ -266,39 +267,28 @@ bbcode_text = "4."
 text = "4."
 
 [node name="05" type="RichTextLabel" parent="Rank"]
-margin_top = 63.6667
+margin_top = 57.1667
 margin_right = 38.0
-margin_bottom = 97.6667
+margin_bottom = 91.1667
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "11."
-text = "11."
-
-[node name="06" type="RichTextLabel" parent="Rank"]
-visible = false
-modulate = Color( 1, 1, 1, 0.588235 )
-margin_top = 65.6667
-margin_right = 38.0
-margin_bottom = 99.6667
-theme = ExtResource( 6 )
-bbcode_enabled = true
-bbcode_text = "6."
-text = "6."
+bbcode_text = "5."
+text = "5."
 
 [node name="Name" type="Node2D" parent="."]
 position = Vector2( 7.66667, 76.5 )
 
-[node name="01" type="RichTextLabel" parent="Name"]
+[node name="1" type="RichTextLabel" parent="Name"]
 modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 7.00002
 margin_right = 71.0
 margin_bottom = 33.0
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "Man"
-text = "Man"
+bbcode_text = "___"
+text = "___"
 
-[node name="02" type="RichTextLabel" parent="Name"]
+[node name="2" type="RichTextLabel" parent="Name"]
 modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 7.00002
 margin_top = 14.1667
@@ -306,10 +296,10 @@ margin_right = 71.0
 margin_bottom = 47.1667
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "CLE"
-text = "CLE"
+bbcode_text = "___"
+text = "___"
 
-[node name="03" type="RichTextLabel" parent="Name"]
+[node name="3" type="RichTextLabel" parent="Name"]
 modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 7.0
 margin_top = 27.6667
@@ -317,10 +307,10 @@ margin_right = 71.0
 margin_bottom = 61.6667
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "Man"
-text = "Man"
+bbcode_text = "___"
+text = "___"
 
-[node name="04" type="RichTextLabel" parent="Name"]
+[node name="4" type="RichTextLabel" parent="Name"]
 modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 7.00002
 margin_top = 42.0
@@ -328,45 +318,33 @@ margin_right = 71.0
 margin_bottom = 75.0
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "JER"
-text = "JER"
+bbcode_text = "___"
+text = "___"
 
-[node name="05" type="RichTextLabel" parent="Name"]
+[node name="5" type="RichTextLabel" parent="Name"]
 margin_left = 7.0
-margin_top = 63.5
+margin_top = 57.0
 margin_right = 71.0
-margin_bottom = 99.5
+margin_bottom = 93.0
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "TOM"
-text = "TOM"
+bbcode_text = "___"
+text = "___"
 
-[node name="06" type="RichTextLabel" parent="Name"]
-visible = false
-modulate = Color( 1, 1, 1, 0.588235 )
-margin_left = 7.0
-margin_top = 66.0
-margin_right = 71.0
-margin_bottom = 102.0
-theme = ExtResource( 6 )
-bbcode_enabled = true
-bbcode_text = "TOM"
-text = "TOM"
-
-[node name="TIME" type="Node2D" parent="."]
+[node name="Time" type="Node2D" parent="."]
 position = Vector2( 20.3333, 76.5 )
 
-[node name="01" type="RichTextLabel" parent="TIME"]
+[node name="1" type="RichTextLabel" parent="Time"]
 modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 25.6667
 margin_right = 95.6667
 margin_bottom = 33.0
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "01:21"
-text = "01:21"
+bbcode_text = "__:__"
+text = "__:__"
 
-[node name="02" type="RichTextLabel" parent="TIME"]
+[node name="2" type="RichTextLabel" parent="Time"]
 modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 25.6667
 margin_top = 14.1667
@@ -374,10 +352,10 @@ margin_right = 95.6667
 margin_bottom = 47.1667
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "01:25"
-text = "01:25"
+bbcode_text = "__:__"
+text = "__:__"
 
-[node name="03" type="RichTextLabel" parent="TIME"]
+[node name="3" type="RichTextLabel" parent="Time"]
 modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 26.0
 margin_top = 27.6667
@@ -385,10 +363,10 @@ margin_right = 96.0
 margin_bottom = 63.6667
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "01:35"
-text = "01:35"
+bbcode_text = "__:__"
+text = "__:__"
 
-[node name="04" type="RichTextLabel" parent="TIME"]
+[node name="4" type="RichTextLabel" parent="Time"]
 modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 25.6667
 margin_top = 42.0
@@ -396,30 +374,18 @@ margin_right = 95.6667
 margin_bottom = 75.0
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "01:38"
-text = "01:38"
+bbcode_text = "__:__"
+text = "__:__"
 
-[node name="05" type="RichTextLabel" parent="TIME"]
+[node name="5" type="RichTextLabel" parent="Time"]
 margin_left = 26.0
-margin_top = 63.5
+margin_top = 57.0
 margin_right = 96.0
-margin_bottom = 101.5
+margin_bottom = 95.0
 theme = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "01:42"
-text = "01:42"
-
-[node name="06" type="RichTextLabel" parent="TIME"]
-visible = false
-modulate = Color( 1, 1, 1, 0.588235 )
-margin_left = 26.0
-margin_top = 66.0
-margin_right = 96.0
-margin_bottom = 104.0
-theme = ExtResource( 6 )
-bbcode_enabled = true
-bbcode_text = "01:42"
-text = "01:42"
+bbcode_text = "__:__"
+text = "__:__"
 
 [node name="LevelsButton" type="Button" parent="."]
 margin_left = -112.5

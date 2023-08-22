@@ -45,9 +45,9 @@ func _process(_delta):
 func _on_Go_pressed():
 
 	if third.text != "":
-		print(Global.save)
 		Global.save[1].playerName = str(first.text) + str(second.text) + str(third.text)
 		Global.saveGame()
+		Global.playerName = Global.save[1].playerName 
 		get_tree().change_scene(str(Global.sceneAfterNaming))
 		GlobalScene.get_node('shot').play()
 		GlobalScene.get_node('click').play()

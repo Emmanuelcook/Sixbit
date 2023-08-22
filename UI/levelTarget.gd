@@ -1,15 +1,14 @@
 extends Node2D
 
 export var level = 1
-export(Texture) var target
 export var unlockedLevel = true
 
 
 func _ready():
+	
+	$Button/Label.text = str(level)
 	# check if level is unlocked
 	unlockedLevel = Global.save[0][level][7]
-	
-	$Button/Sprite.texture = target
 	
 	if !unlockedLevel:
 		$hidden.visible = true

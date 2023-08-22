@@ -16,9 +16,9 @@
 [ext_resource path="res://UI/cylinder.gd" type="Script" id=14]
 [ext_resource path="res://UI/Menu.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Player/godGunBulletParticles.tscn" type="PackedScene" id=16]
+[ext_resource path="res://UI/EndGameScreen2.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=20]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=21]
-[ext_resource path="res://UI/EndGameScreen.tscn" type="PackedScene" id=23]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -288,5 +288,4 @@ custom_fonts/font = SubResource( 15 )
 [node name="Menu" parent="CanvasLayer" instance=ExtResource( 15 )]
 visible = false
 
-[node name="EndGameScreen" parent="CanvasLayer" instance=ExtResource( 23 )]
-visible = false
+[node name="EndGameScreen" parent="CanvasLayer" instance=ExtResource( 17 )]

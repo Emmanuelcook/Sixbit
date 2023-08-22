@@ -35,6 +35,9 @@ var targetNumber = 0
 var targetShot = 0
 
 onready var player = $PlayerRoot/Player
+onready var endGameScreenNode = $CanvasLayer/EndGameScreen
+onready var speedCustomMessage = $CanvasLayer/EndGameScreen/speed_nextOrBest
+onready var sharpCustomMessage = $CanvasLayer/EndGameScreen/sharp_nextOrBest
 
 func _ready():
 	
@@ -43,7 +46,7 @@ func _ready():
 	
 	# Display UI but the endscreen game
 	$CanvasLayer.visible = true
-	$CanvasLayer/EndGameScreen.visible = false
+	endGameScreenNode.visible = false
 	
 	#Update the number of targets in the level
 	for i in $Targets.get_children():
@@ -132,7 +135,6 @@ func ending_level():
 	# display results
 	get_results()
 	
-
 	
 	
 	# unlock next level in the levels menu
@@ -140,17 +142,24 @@ func ending_level():
 		unlockNextLevel()
 	
 		# save score
-		Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired)
+		Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired, timeToFinish)
 		
-		SilentWolf.Scores.persist_score(Global.playerName, timeToFinish, "Level " + str(currentLevel))
+	# Get scoreBoard
+	if currentLevel != 1:
+		yield(SilentWolf.Scores.get_high_scores(0, "level" + str(currentLevel)), "sw_scores_received")
 
-	yield(SilentWolf.Scores.get_high_scores(5, "Level " + str(currentLevel)), "sw_scores_received")
-	var i = 0
-	for score in SilentWolf.Scores.scores:
-		i += 1
-		print(str(i) + 'place')
-		print("player" + str(score.player_name))
-		print("score" + str(score.score))
+		var i = 0
+		for score in SilentWolf.Scores.scores:
+			i += 1
+			if i <= 5:
+				endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.player_name)
+				
+				var invTimeBack = (10000 - score.score)
+				var LeaderboardSecs = fmod(invTimeBack, 60)
+				var LeaderboardMils = fmod(invTimeBack,1)*100
+				var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
+				
+				endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
 	
 	# reset targetshot
 	targetShot = 0
@@ -162,10 +171,10 @@ func unlockNextLevel():
 
 func get_results():
 	# hide game UI
-	$CanvasLayer/EndGameScreen.visible = true
+	endGameScreenNode.visible = true
 	
 	if godGunWasUsed:
-		$CanvasLayer/EndGameScreen/godGunLabel.visible = true
+		endGameScreenNode.get_node('godGunLabel').visible = true
 	
 	$CanvasLayer/cylinder.visible = false
 	$CanvasLayer/Timer.visible = false
@@ -179,22 +188,22 @@ func get_results():
 	if secs <= goldSpeedStar && mins < 1:
 		levelSpeed = 3
 		if Global.save[0][currentLevel][3] == 99: 
-			$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]Like greased lightning !"
+			speedCustomMessage.bbcode_text = "[center]YEEHAW !"
 		else:	
 			if (secs <= Global.save[0][currentLevel][4]) || (secs == Global.save[0][currentLevel][4] && mils <= Global.save[0][currentLevel][5]):
-				$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]best: " + str(time_passed)
+				speedCustomMessage.bbcode_text = "[center]best: " + str(time_passed)
 			else:
-				$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]best: " + str(Global.save[0][currentLevel][2])
+				speedCustomMessage.bbcode_text = "[center]best: " + str(Global.save[0][currentLevel][2])
 
 	elif secs <= silverSpeedStar && mins < 1:
 		levelSpeed = 2
-		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]next: " + str(goldSpeedStar)
+		speedCustomMessage.bbcode_text = "[center]next: " + str(goldSpeedStar)
 	elif secs <= bronzeSpeedStar && mins < 1:
 		levelSpeed = 1
-		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]next: " + str(silverSpeedStar)
+		speedCustomMessage.bbcode_text = "[center]next: " + str(silverSpeedStar)
 	else:
 		levelSpeed = 0
-		$CanvasLayer/EndGameScreen/speed_nextOrBest.bbcode_text = "[center]next: " + str(bronzeSpeedStar)
+		speedCustomMessage.bbcode_text = "[center]next: " + str(bronzeSpeedStar)
 
 	if levelSpeed > 2:
 		$CanvasLayer/EndGameScreen/Gold2/Sprite.visible = true
@@ -206,18 +215,18 @@ func get_results():
 	if bulletsFired <= goldSharpStar:
 		levelSharp = 3
 		if Global.save[0][currentLevel][6] == 99:
-			$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "[center]Right on the money !"
+			sharpCustomMessage.bbcode_text = "[center]SHARP !"
 		else:
-			$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "[center]best: " + str(Global.save[0][currentLevel][6])
+			sharpCustomMessage.bbcode_text = "[center]best: " + str(Global.save[0][currentLevel][6])
 	elif bulletsFired <= silverSharpStar:
 		levelSharp = 2
-		$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "[center]next: " + str(goldSharpStar)
+		sharpCustomMessage.bbcode_text = "[center]next: " + str(goldSharpStar)
 	elif bulletsFired <= bronzeSharpStar:
 		levelSharp = 1
-		$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "[center]next: " + str(silverSharpStar)
+		sharpCustomMessage.bbcode_text = "[center]next: " + str(silverSharpStar)
 	else:
 		levelSharp = 0
-		$CanvasLayer/EndGameScreen/sharp_nextOrBest.bbcode_text = "[center]next: " + str(bronzeSharpStar)
+		sharpCustomMessage.bbcode_text = "[center]next: " + str(bronzeSharpStar)
 
 	if levelSharp > 2:
 		$CanvasLayer/EndGameScreen/Gold/Sprite.visible = true

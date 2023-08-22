@@ -4,6 +4,11 @@ var textColor = Color(.3,.26,.18,1)
 
 
 func _ready():
+#	SilentWolf.Scores.wipe_leaderboard("Level 1")
+#	SilentWolf.Scores.wipe_leaderboard("Level 2")
+#	SilentWolf.Scores.wipe_leaderboard("level2")
+#	Global.resetSave()
+	
 	Global.playerName = Global.save[1].playerName 
 
 	$Levels/Label.modulate = textColor
@@ -23,22 +28,22 @@ func _on_Levels_pressed():
 	GlobalScene.get_node('click').play()
 
 func _on_SpeedRun_pressed():
-	GlobalScene.get_node('shot').play()
+#	GlobalScene.get_node('shot').play()
 	GlobalScene.get_node('click').play()
 
 
 func _on_How_pressed():
-	GlobalScene.get_node('shot').play()
+#	GlobalScene.get_node('shot').play()
 	GlobalScene.get_node('click').play()
 
 
 func _on_Settings_pressed():
-	GlobalScene.get_node('shot').play()
+#	GlobalScene.get_node('shot').play()
 	GlobalScene.get_node('click').play()
 
 
 func _on_Stats_pressed():
-	GlobalScene.get_node('shot').play()
+#	GlobalScene.get_node('shot').play()
 	GlobalScene.get_node('click').play()
 
 
