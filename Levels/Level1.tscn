@@ -330,16 +330,10 @@ margin_right = 29.0
 margin_left = -79.0
 margin_right = 29.0
 
-[node name="Line2D" parent="CanvasLayer/EndGameScreen" index="17"]
-visible = false
-
 [node name="Rank" parent="CanvasLayer/EndGameScreen" index="18"]
 visible = false
 
 [node name="Name" parent="CanvasLayer/EndGameScreen" index="19"]
-visible = false
-
-[node name="TIME" parent="CanvasLayer/EndGameScreen" index="20"]
 visible = false
 
 [editable path="CanvasLayer/EndGameScreen"]

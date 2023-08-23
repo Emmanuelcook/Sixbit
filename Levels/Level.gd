@@ -120,11 +120,11 @@ func timer(onOrOff):
 func ending_level():
 	# When level is finished
 	# pause the game
-	get_tree().paused = true
+#	get_tree().paused = true
 	levelIsFinished = true
+	$PlayerRoot/Anchor.camPaused = true
 	
 	
-		
 	# Game is paused so play gunshot and targetshot
 	GlobalScene.get_node("shot").play()
 	GlobalScene.get_node("click").play()
@@ -147,7 +147,7 @@ func ending_level():
 	# Get scoreBoard
 	if currentLevel != 1:
 		yield(SilentWolf.Scores.get_high_scores(0, "level" + str(currentLevel)), "sw_scores_received")
-
+#		print(SilentWolf.Scores.scores)
 		var i = 0
 		for score in SilentWolf.Scores.scores:
 			i += 1

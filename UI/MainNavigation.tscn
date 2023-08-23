@@ -84,6 +84,7 @@ align = 2
 
 [node name="Label" type="Label" parent="SpeedRun"]
 modulate = Color( 0.519531, 0.519531, 0.519531, 0.588235 )
+self_modulate = Color( 0.568627, 0.568627, 0.568627, 0.568627 )
 margin_left = -100.0
 margin_top = 6.0
 margin_right = -4.0
@@ -120,6 +121,7 @@ align = 2
 
 [node name="Label" type="Label" parent="How"]
 modulate = Color( 0.425781, 0.425781, 0.425781, 0.490196 )
+self_modulate = Color( 0.568627, 0.568627, 0.568627, 0.568627 )
 margin_left = -132.0
 margin_top = 6.0
 margin_right = -4.0
@@ -156,6 +158,7 @@ align = 2
 
 [node name="Label" type="Label" parent="Settings"]
 modulate = Color( 0.425781, 0.425781, 0.425781, 0.490196 )
+self_modulate = Color( 0.486275, 0.486275, 0.486275, 0.572549 )
 margin_left = -90.0
 margin_top = 6.0
 margin_right = 38.0
@@ -191,7 +194,6 @@ custom_styles/normal = SubResource( 5 )
 align = 2
 
 [node name="Label" type="Label" parent="Stats"]
-modulate = Color( 0.425781, 0.425781, 0.425781, 0.490196 )
 margin_left = -98.0
 margin_top = 6.0
 margin_right = 30.0
@@ -207,7 +209,7 @@ texture = ExtResource( 4 )
 [node name="Sprite2" type="Sprite" parent="Stats"]
 position = Vector2( 21, 22 )
 scale = Vector2( 4, 4 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="playerName" type="Node2D" parent="."]
 

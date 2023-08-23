@@ -8,9 +8,11 @@ func _ready():
 #	SilentWolf.Scores.wipe_leaderboard("Level 2")
 #	SilentWolf.Scores.wipe_leaderboard("level2")
 #	Global.resetSave()
-	
+
+	get_tree().paused = false
 	Global.playerName = Global.save[1].playerName 
 
+	
 	$Levels/Label.modulate = textColor
 	$SpeedRun/Label.modulate = textColor
 	$How/Label.modulate = textColor
@@ -18,7 +20,7 @@ func _ready():
 	$Stats/Label.modulate = textColor
 
 func _on_Levels_pressed():
-	if Global.playerName == "":
+	if Global.playerName == "" || Global.playerName == null:
 		get_tree().change_scene("res://UI/PlayerNameScreen.tscn")
 		Global.sceneAfterNaming = "res://UI/Levels.tscn"
 	else:
@@ -43,27 +45,28 @@ func _on_Settings_pressed():
 
 
 func _on_Stats_pressed():
-#	GlobalScene.get_node('shot').play()
+	GlobalScene.get_node('shot').play()
 	GlobalScene.get_node('click').play()
-
-
-
+	get_tree().change_scene("res://UI/statsScreen.tscn")
 
 func _on_Levels_mouse_entered():
 	$Levels/Label.modulate = Color(1,1,1,1)
 	$Levels/Sprite.visible = true
 
 func _on_SpeedRun_mouse_entered():
-	$SpeedRun/Label.modulate = Color(1,1,1,1)
-	$SpeedRun/Sprite.visible = true
+#	$SpeedRun/Label.modulate = Color(1,1,1,1)
+#	$SpeedRun/Sprite.visible = true
+	pass
 
 func _on_How_mouse_entered():
-	$How/Label.modulate = Color(1,1,1,1)
-	$How/Sprite.visible = true
-
+#	$How/Label.modulate = Color(1,1,1,1)
+#	$How/Sprite.visible = true
+	pass
+	
 func _on_Settings_mouse_entered():
-	$Settings/Label.modulate = Color(1,1,1,1)
-	$Settings/Sprite.visible = true
+#	$Settings/Label.modulate = Color(1,1,1,1)
+#	$Settings/Sprite.visible = true
+	pass
 	
 func _on_Stats_mouse_entered():
 	$Stats/Label.modulate = Color(1,1,1,1)

@@ -39,6 +39,29 @@ var save = [
 	}
 ]
 
+
+func _ready():
+	
+	var f=File.new()
+	f.open('res://apiKey.env',File.READ)
+	var apiKey=f.get_line()
+	f.close()
+	
+	SilentWolf.configure({
+		"api_key": apiKey,
+		"game_id": "sixbit",
+		"game_version": "1.4",
+		"log_level": 0
+	})
+	
+	loadSave()
+	
+	# for example, "cheat1" and "cheat2" for codes
+	cheat_code.resize(2)
+	cheat_code[0] = [int(0), KEY_U, KEY_N, KEY_L, KEY_O, KEY_C, KEY_K]
+	cheat_code[1] = [int(0), KEY_G, KEY_O, KEY_D, KEY_G, KEY_U, KEY_N]
+
+
 func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, levelTimeSecs, levelTimeMils, bulletsFired, timeToFinishAsDecimal):
 	
 	# Get current saved results
@@ -125,7 +148,7 @@ func resetSave():
 			9 : [0,0,0,99,99,99,99,false]
 		},
 		{
-			"playerName" : playerName
+			"playerName" : ""
 		}
 	]
 	
@@ -138,27 +161,6 @@ func resetSave():
 	if error == OK:
 		file.store_var(save)
 		file.close()
-
-func _ready():
-	
-	var f=File.new()
-	f.open('res://apiKey.env',File.READ)
-	self.apiKey=f.get_line()
-	f.close()
-	
-	SilentWolf.configure({
-		"api_key": "self.apiKey",
-		"game_id": "sixbit",
-		"game_version": "1.0.2",
-		"log_level": 1
-	})
-	
-	loadSave()
-	
-	# for example, "cheat1" and "cheat2" for codes
-	cheat_code.resize(2)
-	cheat_code[0] = [int(0), KEY_U, KEY_N, KEY_L, KEY_O, KEY_C, KEY_K]
-	cheat_code[1] = [int(0), KEY_G, KEY_O, KEY_D, KEY_G, KEY_U, KEY_N]
 
 func _unhandled_input(event: InputEvent):
 	if event is InputEventKey and event.pressed:

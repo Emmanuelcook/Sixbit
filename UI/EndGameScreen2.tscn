@@ -96,8 +96,8 @@ theme = ExtResource( 6 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_constants/line_separation = -5
 bbcode_enabled = true
-bbcode_text = "[center]ScoreBoard"
-text = "ScoreBoard"
+bbcode_text = "[center]LeaderBoard"
+text = "LeaderBoard"
 
 [node name="sharp_results" type="RichTextLabel" parent="."]
 margin_left = -135.5
@@ -228,7 +228,6 @@ default_color = Color( 1, 1, 1, 1 )
 position = Vector2( -5, 76.5 )
 
 [node name="01" type="RichTextLabel" parent="Rank"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_right = 38.0
 margin_bottom = 34.0
 theme = ExtResource( 6 )
@@ -237,7 +236,6 @@ bbcode_text = "1."
 text = "1."
 
 [node name="02" type="RichTextLabel" parent="Rank"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_top = 14.1667
 margin_right = 38.0
 margin_bottom = 48.1667
@@ -247,7 +245,6 @@ bbcode_text = "2."
 text = "2."
 
 [node name="03" type="RichTextLabel" parent="Rank"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_top = 28.3333
 margin_right = 38.0
 margin_bottom = 62.3333
@@ -257,7 +254,6 @@ bbcode_text = "3."
 text = "3."
 
 [node name="04" type="RichTextLabel" parent="Rank"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_top = 42.0
 margin_right = 38.0
 margin_bottom = 76.0
@@ -279,7 +275,6 @@ text = "5."
 position = Vector2( 7.66667, 76.5 )
 
 [node name="1" type="RichTextLabel" parent="Name"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 7.00002
 margin_right = 71.0
 margin_bottom = 33.0
@@ -289,7 +284,6 @@ bbcode_text = "___"
 text = "___"
 
 [node name="2" type="RichTextLabel" parent="Name"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 7.00002
 margin_top = 14.1667
 margin_right = 71.0
@@ -300,7 +294,6 @@ bbcode_text = "___"
 text = "___"
 
 [node name="3" type="RichTextLabel" parent="Name"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 7.0
 margin_top = 27.6667
 margin_right = 71.0
@@ -311,7 +304,6 @@ bbcode_text = "___"
 text = "___"
 
 [node name="4" type="RichTextLabel" parent="Name"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 7.00002
 margin_top = 42.0
 margin_right = 71.0
@@ -335,7 +327,6 @@ text = "___"
 position = Vector2( 20.3333, 76.5 )
 
 [node name="1" type="RichTextLabel" parent="Time"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 25.6667
 margin_right = 95.6667
 margin_bottom = 33.0
@@ -345,7 +336,6 @@ bbcode_text = "__:__"
 text = "__:__"
 
 [node name="2" type="RichTextLabel" parent="Time"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 25.6667
 margin_top = 14.1667
 margin_right = 95.6667
@@ -356,7 +346,6 @@ bbcode_text = "__:__"
 text = "__:__"
 
 [node name="3" type="RichTextLabel" parent="Time"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 26.0
 margin_top = 27.6667
 margin_right = 96.0
@@ -367,7 +356,6 @@ bbcode_text = "__:__"
 text = "__:__"
 
 [node name="4" type="RichTextLabel" parent="Time"]
-modulate = Color( 1, 1, 1, 0.588235 )
 margin_left = 25.6667
 margin_top = 42.0
 margin_right = 95.6667

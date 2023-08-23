@@ -6,6 +6,7 @@ onready var third = $third/label
 var textColor = Color(.3,.26,.18,1)
 
 func _ready():
+	get_tree().paused = false
 	$Go.visible = false
 	$Go/Label.modulate = textColor
 	
