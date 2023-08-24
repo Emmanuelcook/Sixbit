@@ -34,30 +34,99 @@ var timerMoved = false
 var targetNumber = 0
 var targetShot = 0
 
+
+#Score System
+var scoreSavedAtStart = []
+var isPlayerInLeaderboard = false
+var playerScoreInLeaderboard = 0
+var playerScoreInLeaderboardKey = 0
+var newTimeToLB = false
+var personalPB = false
+var doNotSaveFixAfterReset = false
+
 onready var player = $PlayerRoot/Player
 onready var endGameScreenNode = $CanvasLayer/EndGameScreen
 onready var speedCustomMessage = $CanvasLayer/EndGameScreen/speed_nextOrBest
 onready var sharpCustomMessage = $CanvasLayer/EndGameScreen/sharp_nextOrBest
 
 func _ready():
-	
+
 	nextLevel = currentLevel + 1 # update nextlevel number
 	get_tree().paused = false # unpaused if coming from menu
-	
+
 	# Display UI but the endscreen game
 	$CanvasLayer.visible = true
 	endGameScreenNode.visible = false
-	
+
 	#Update the number of targets in the level
 	for i in $Targets.get_children():
 		targetNumber += 1
-	
+
 	# If a score is saved, display above the gun
 	if Global.save[0][currentLevel][4] != 99:
 		var bestTime = Global.save[0][currentLevel][2]
 		var bestBullets = Global.save[0][currentLevel][6]
 		$PlayerRoot/Start2.bbcode_text = '[center]Best time: ' + str(bestTime) + '\n Bullets: ' + str(bestBullets)
 		$PlayerRoot/Start2.visible = true
+	
+	# Get scoreBoard
+	if currentLevel != 1:
+		if Global.needToReloadScore:
+			yield(SilentWolf.Scores.get_high_scores(0, "level" + str(currentLevel)), "sw_scores_received")
+			Global.needToReloadScore = false
+		
+		var i = 0
+
+		for score in SilentWolf.Scores.scores:
+			scoreSavedAtStart.push_back({"name" : score.player_name, "score" : score.score})
+			if score.player_name == Global.playerName:
+				isPlayerInLeaderboard = true
+				playerScoreInLeaderboard = score.score
+				playerScoreInLeaderboardKey = i
+			i += 1
+		
+		i = 0
+		
+		#UPLOAD LEADERBOARD
+		for score in scoreSavedAtStart:
+			if i < 5:
+				i += 1
+				endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.name)
+
+				var invTimeBack = (10000 - score.score)
+				var LeaderboardSecs = fmod(invTimeBack, 60)
+				var LeaderboardMils = fmod(invTimeBack,1)*100
+				var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
+
+				endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
+		
+		update_menu()
+
+func update_menu():
+	endGameScreenNode.get_node("sharp_results").bbcode_text = "[center]-"
+	endGameScreenNode.get_node("speed_results").bbcode_text = "[center]--:--"
+	if Global.save[0][currentLevel][2] != "99":
+		speedCustomMessage.bbcode_text = "[center]best: " + str(Global.save[0][currentLevel][2])
+	else:
+		speedCustomMessage.bbcode_text = "[center]No score yet"
+	if Global.save[0][currentLevel][6] != 99:
+		sharpCustomMessage.bbcode_text = "[center]best: " + str(Global.save[0][currentLevel][6])
+	else:
+		sharpCustomMessage.bbcode_text = "[center]No score yet"
+		
+	if Global.save[0][currentLevel][1] > 2:
+		$CanvasLayer/EndGameScreen/Gold/Sprite.visible = true
+	if Global.save[0][currentLevel][1] > 1:
+		$CanvasLayer/EndGameScreen/Silver/Sprite.visible = true
+	if Global.save[0][currentLevel][1] > 0:
+		$CanvasLayer/EndGameScreen/Bronze/Sprite.visible = true
+	if Global.save[0][currentLevel][0] > 2:
+		$CanvasLayer/EndGameScreen/Gold2/Sprite.visible = true
+	if Global.save[0][currentLevel][0] > 1:
+		$CanvasLayer/EndGameScreen/Silver2/Sprite.visible = true
+	if Global.save[0][currentLevel][0] > 0:
+		$CanvasLayer/EndGameScreen/Bronze2/Sprite.visible = true
+	
 
 func _process(delta):
 	
@@ -117,7 +186,9 @@ func targetShot():
 func timer(onOrOff):
 	timerState = onOrOff
 
+
 func ending_level():
+	
 	# When level is finished
 	# pause the game
 #	get_tree().paused = true
@@ -139,28 +210,103 @@ func ending_level():
 	
 	# unlock next level in the levels menu
 	if !godGunWasUsed:
+		
+		var timeToFinishForSilentWolf = 10000 - timeToFinish
+
+		
 		unlockNextLevel()
+	
+		if currentLevel != 1:
+#			print("timeToFinishForSilentWolf " + str(timeToFinishForSilentWolf))
+#			print("score saved " + str(Global.save[0][currentLevel][8]))
+			if timeToFinishForSilentWolf > Global.save[0][currentLevel][8] :
+				personalPB = true
+
+				
+#				print("PB")
+				endGameScreenNode.get_node('PBParticles').emitting = true
+				
+#				print("playerScoreInLeaderboard " + str(playerScoreInLeaderboard))
+				# if PB is not best than already registered player with same name
+				if timeToFinishForSilentWolf <= playerScoreInLeaderboard:
+					doNotSaveFixAfterReset = true
+#					print('yooo')
 	
 		# save score
 		Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired, timeToFinish)
-		
-	# Get scoreBoard
-	if currentLevel != 1:
-		yield(SilentWolf.Scores.get_high_scores(0, "level" + str(currentLevel)), "sw_scores_received")
-#		print(SilentWolf.Scores.scores)
-		var i = 0
-		for score in SilentWolf.Scores.scores:
-			i += 1
-			if i <= 5:
-				endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.player_name)
-				
-				var invTimeBack = (10000 - score.score)
-				var LeaderboardSecs = fmod(invTimeBack, 60)
-				var LeaderboardMils = fmod(invTimeBack,1)*100
-				var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
-				
-				endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
 	
+		if currentLevel != 1:
+			
+#			print('basic one')
+#			print(scoreSavedAtStart)
+			
+			if isPlayerInLeaderboard:
+				if timeToFinishForSilentWolf > playerScoreInLeaderboard:
+					scoreSavedAtStart.remove(playerScoreInLeaderboardKey)
+#					print('without')
+
+#					print(scoreSavedAtStart)
+
+			var ii = 0
+			var highScored = false
+			var keyToInsert = 0
+			for score in scoreSavedAtStart:
+#				print("timeToFinishForSilentWolf " + str(timeToFinishForSilentWolf) )
+#				print("score.score " + str(score.score) )
+				if timeToFinishForSilentWolf > score.score && !doNotSaveFixAfterReset:
+					keyToInsert = ii
+					highScored = true
+					endGameScreenNode.get_node('HSParticles').emitting = true
+					
+#					print("keyToInsert " + str(keyToInsert))
+					break
+				ii += 1
+			
+			if !doNotSaveFixAfterReset:
+				if highScored:
+					scoreSavedAtStart.insert(keyToInsert, {"name" : Global.playerName, "score" : timeToFinishForSilentWolf})
+				elif personalPB:
+					scoreSavedAtStart.push_back({"name" : Global.playerName, "score" : timeToFinishForSilentWolf})
+
+			if !highScored && (scoreSavedAtStart.size() - 1) <= 5 && personalPB && !doNotSaveFixAfterReset:
+				newTimeToLB = true
+				keyToInsert = scoreSavedAtStart.size() - 1
+				endGameScreenNode.get_node('HSParticles').emitting = true
+				Global.needToReloadScore = true
+				
+			var i = 0
+			
+#			print(scoreSavedAtStart)
+#			print("HS:" + str(highScored))
+#			print("newTimeToLB:" + str(newTimeToLB))
+#			print("keyToInsert:" + str(keyToInsert))
+			
+			for score in scoreSavedAtStart:
+#				print("i:" + str(i) + "name" + str(score.name) + "score" + str(score.score))
+				if i < 5:
+					if newTimeToLB && keyToInsert == i && !doNotSaveFixAfterReset || highScored && keyToInsert == i && !doNotSaveFixAfterReset:
+						i += 1
+						endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = "[wave]" + str(score.name)
+
+						var invTimeBack = (10000 - score.score)
+						var LeaderboardSecs = fmod(invTimeBack, 60)
+						var LeaderboardMils = fmod(invTimeBack,1)*100
+						var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
+
+						endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = "[wave]" + str(LeaderboardTime)
+						Global.needToReloadScore = true
+					else: 
+						i += 1
+						endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.name)
+
+						var invTimeBack = (10000 - score.score)
+						var LeaderboardSecs = fmod(invTimeBack, 60)
+						var LeaderboardMils = fmod(invTimeBack,1)*100
+						var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
+
+						endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
+			
+
 	# reset targetshot
 	targetShot = 0
 	

@@ -5,6 +5,16 @@ func _process(delta):
 	# Can reload with R
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+		
+	if Input.is_action_just_pressed("pause"):
+		if get_parent().get_parent().levelIsFinished: return true
+		
+		if self.visible:
+			get_tree().paused = false
+			self.visible = false
+		else:
+			self.visible = true
+			get_tree().paused = true
 
 func _on_retryButton_pressed():
 	get_tree().reload_current_scene()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/sprites/UI/starfull2.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/UI/staroutline2bullets.png" type="Texture" id=2]
@@ -35,6 +35,18 @@
 [sub_resource type="DynamicFont" id=15]
 size = 32
 font_data = ExtResource( 5 )
+
+[sub_resource type="Curve" id=16]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, -360 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=17]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=18]
+offsets = PoolRealArray( 0, 0.421788, 0.815642 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 1, 1, 1, 1, 0.972656, 0, 1 )
 
 [node name="EndGameScreen" type="Node2D"]
 pause_mode = 2
@@ -106,8 +118,6 @@ margin_right = -27.5
 margin_bottom = 87.0
 theme = ExtResource( 7 )
 bbcode_enabled = true
-bbcode_text = "[center]6"
-text = "6"
 scroll_active = false
 
 [node name="sharp_nextOrBest" type="RichTextLabel" parent="."]
@@ -119,8 +129,6 @@ margin_bottom = 102.0
 theme = ExtResource( 6 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
-bbcode_text = "[center]next: 5"
-text = "next: 5"
 
 [node name="Bronze2" type="Node2D" parent="."]
 position = Vector2( -73, 116 )
@@ -202,8 +210,6 @@ margin_bottom = 154.0
 theme = ExtResource( 7 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
-bbcode_text = "[center]1:35"
-text = "1:35"
 
 [node name="speed_nextOrBest" type="RichTextLabel" parent="."]
 modulate = Color( 1, 1, 1, 0.588235 )
@@ -214,8 +220,6 @@ margin_bottom = 161.0
 theme = ExtResource( 6 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
-bbcode_text = "[center]Best: 1:35"
-text = "Best: 1:35"
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -435,6 +439,42 @@ theme = ExtResource( 11 )
 custom_constants/line_spacing = -1
 text = "God gun was used this level.
 No scoreboard or unlocking level."
+
+[node name="PBParticles" type="CPUParticles2D" parent="."]
+position = Vector2( -80, 136 )
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 273.4
+initial_velocity_random = 0.25
+angle_curve = SubResource( 16 )
+scale_amount = 16.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 17 )
+color_ramp = SubResource( 18 )
+
+[node name="HSParticles" type="CPUParticles2D" parent="."]
+position = Vector2( 33.5, 108.5 )
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 273.4
+initial_velocity_random = 0.25
+angle_curve = SubResource( 16 )
+scale_amount = 16.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 17 )
+color_ramp = SubResource( 18 )
 
 [connection signal="pressed" from="LevelsButton" to="." method="_on_LevelsButton_pressed"]
 [connection signal="pressed" from="retryButton" to="." method="_on_retryButton_pressed"]
