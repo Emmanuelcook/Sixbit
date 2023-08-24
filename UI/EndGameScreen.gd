@@ -17,18 +17,29 @@ func _process(delta):
 			get_tree().paused = true
 
 func _on_retryButton_pressed():
+	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
+	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired - 1)	 # moins 1 pour enlever celle ou on appuie sur le menu c'est tout.
+	if get_tree().paused:
+		GlobalScene.get_node('shot').play()
 	get_tree().reload_current_scene()
 
 func _on_LevelsButton_pressed():
+	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired - 1)	
+	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
+
+	if get_tree().paused:
+		GlobalScene.get_node('shot').play()
 	Global.needToReloadScore = true
 	get_tree().change_scene("res://UI/Levels.tscn")
-	GlobalScene.get_node('shot').play()
 
 func _on_nextLevelButton_pressed():
+	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
+	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired - 1)	
+	if get_tree().paused:
+		GlobalScene.get_node('shot').play()
 	Global.needToReloadScore = true
 	var nextLevel = get_parent().get_parent().nextLevel
 	var isLastLevel = get_parent().get_parent().isLastLevel
-	GlobalScene.get_node('shot').play()
 	
 	# Go to next level or thank you page if it was the last
 	if isLastLevel:

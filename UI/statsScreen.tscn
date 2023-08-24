@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://UI/statsScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/UI/titleBG2test2.png" type="Texture" id=2]
@@ -7,6 +7,19 @@
 [ext_resource path="res://Themes/UI.tres" type="Theme" id=5]
 [ext_resource path="res://assets/sprites/UI/targetOutline.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/player/target.png" type="Texture" id=7]
+[ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=15]
+size = 64
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 64
+font_data = ExtResource( 8 )
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -51,30 +64,128 @@ margin_right = 160.0
 margin_bottom = 120.0
 texture = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="."]
-margin_left = 54.0
-margin_top = 38.0
-margin_right = 586.0
-margin_bottom = 267.0
+[node name="fulleRunTitle" type="Label" parent="."]
+margin_left = 141.0
+margin_top = 64.0
+margin_right = 294.0
+margin_bottom = 123.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -8
+text = "All Levels
+Time Run"
+align = 1
+
+[node name="fullRunStat" type="Label" parent="."]
+margin_left = 135.0
+margin_top = 119.0
+margin_right = 302.0
+margin_bottom = 170.0
 theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = -5
-text = "A day will come where you'll find 
-All your stats here. 
+custom_fonts/font = SubResource( 15 )
+text = "00:00"
+align = 1
 
-Full run time, speed run time, bullets used, 
-targets shots, global accuracy, and else.
+[node name="SpeedRunTitle" type="Label" parent="."]
+margin_left = 355.0
+margin_top = 64.0
+margin_right = 508.0
+margin_bottom = 123.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -8
+text = "SpeedrRun
+Time"
+align = 1
 
-Tell me in the itch comments what would be 
-important stats to you."
+[node name="speedRunStat" type="Label" parent="."]
+self_modulate = Color( 1, 1, 1, 0.552941 )
+margin_left = 356.0
+margin_top = 133.0
+margin_right = 523.0
+margin_bottom = 184.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -5
+custom_fonts/font = SubResource( 16 )
+text = "coming Soon"
+align = 1
+
+[node name="bulletsTitle" type="Label" parent="."]
+margin_left = 55.0
+margin_top = 221.0
+margin_right = 208.0
+margin_bottom = 253.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -5
+text = "Bullets Fired"
+align = 1
+
+[node name="targetsTitle" type="Label" parent="."]
+margin_left = 250.0
+margin_top = 221.0
+margin_right = 403.0
+margin_bottom = 253.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -5
+text = "Targets Shot"
+align = 1
+
+[node name="accuracyTitle" type="Label" parent="."]
+margin_left = 445.0
+margin_top = 221.0
+margin_right = 598.0
+margin_bottom = 253.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -5
+text = "Accuracy"
+align = 1
+
+[node name="bulletsStat" type="Label" parent="."]
+margin_left = 55.0
+margin_top = 242.0
+margin_right = 208.0
+margin_bottom = 293.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -5
+custom_fonts/font = SubResource( 17 )
+align = 1
+
+[node name="targetsStat" type="Label" parent="."]
+margin_left = 250.0
+margin_top = 242.0
+margin_right = 403.0
+margin_bottom = 293.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -5
+custom_fonts/font = SubResource( 17 )
+align = 1
+
+[node name="accuracyStat" type="Label" parent="."]
+margin_left = 445.0
+margin_top = 242.0
+margin_right = 598.0
+margin_bottom = 293.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -5
+custom_fonts/font = SubResource( 17 )
+align = 1
 
 [node name="changeName" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = 566.0
-margin_top = 332.0
-margin_right = 608.0
-margin_bottom = 374.0
+margin_left = 32.0
+margin_top = 412.0
+margin_right = 74.0
+margin_bottom = 454.0
 theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0.309804, 0.262745, 0.180392, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
@@ -86,28 +197,28 @@ custom_styles/normal = SubResource( 6 )
 align = 2
 
 [node name="Label" type="Label" parent="changeName"]
-margin_left = -212.0
+margin_left = -21.0
 margin_top = 6.0
-margin_right = -4.0
+margin_right = 187.0
 margin_bottom = 38.0
 text = "Change Name"
 align = 2
 
 [node name="Sprite" type="Sprite" parent="changeName"]
 visible = false
-position = Vector2( 21, 22 )
+position = Vector2( 19, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 
 [node name="Sprite2" type="Sprite" parent="changeName"]
-position = Vector2( 21, 22 )
+position = Vector2( 19, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
 
 [node name="ColorRect" type="ColorRect" parent="changeName"]
-margin_left = 37.0
+margin_left = -32.0
 margin_top = 19.0
-margin_right = 74.0
+margin_right = 5.0
 margin_bottom = 26.0
 color = Color( 0.309804, 0.262745, 0.180392, 1 )
 
@@ -115,9 +226,9 @@ color = Color( 0.309804, 0.262745, 0.180392, 1 )
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = 566.0
-margin_top = 384.0
+margin_top = 412.0
 margin_right = 608.0
-margin_bottom = 426.0
+margin_bottom = 454.0
 theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0.309804, 0.262745, 0.180392, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
@@ -157,10 +268,10 @@ color = Color( 0.309804, 0.262745, 0.180392, 1 )
 [node name="resetSave" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = 566.0
-margin_top = 283.0
-margin_right = 608.0
-margin_bottom = 325.0
+margin_left = 32.0
+margin_top = 363.0
+margin_right = 74.0
+margin_bottom = 405.0
 theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0.309804, 0.262745, 0.180392, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
@@ -172,28 +283,28 @@ custom_styles/normal = SubResource( 6 )
 align = 2
 
 [node name="Label" type="Label" parent="resetSave"]
-margin_left = -119.0
+margin_left = 47.0
 margin_top = 6.0
-margin_right = -3.0
+margin_right = 163.0
 margin_bottom = 38.0
 text = "Reset Save"
 align = 2
 
 [node name="Sprite" type="Sprite" parent="resetSave"]
 visible = false
-position = Vector2( 21, 22 )
+position = Vector2( 19, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 
 [node name="Sprite2" type="Sprite" parent="resetSave"]
-position = Vector2( 21, 22 )
+position = Vector2( 19, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
 
 [node name="ColorRect" type="ColorRect" parent="resetSave"]
-margin_left = 37.0
+margin_left = -32.0
 margin_top = 19.0
-margin_right = 74.0
+margin_right = 5.0
 margin_bottom = 26.0
 color = Color( 0.309804, 0.262745, 0.180392, 1 )
 

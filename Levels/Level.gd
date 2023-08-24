@@ -90,17 +90,18 @@ func _ready():
 
 		
 		#UPLOAD LEADERBOARD
-		for score in scoreSavedAtStart:
-			if i < 5:
-				i += 1
-				endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.name)
+		if currentLevel != 1:
+			for score in scoreSavedAtStart:
+				if i < 5:
+					i += 1
+					endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.name)
 
-				var invTimeBack = (10000 - score.score)
-				var LeaderboardSecs = fmod(invTimeBack, 60)
-				var LeaderboardMils = fmod(invTimeBack,1)*100
-				var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
+					var invTimeBack = (10000 - score.score)
+					var LeaderboardSecs = fmod(invTimeBack, 60)
+					var LeaderboardMils = fmod(invTimeBack,1)*100
+					var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
 
-				endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
+					endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
 		
 		update_menu()
 
@@ -142,6 +143,8 @@ func _process(delta):
 
 	# Can reset the level with R
 	if Input.is_action_just_pressed("reset"):
+		Global.saveAllTimeBulletsFired(bulletsFired)	
+		Global.saveAllTimeTargets(targetShot)
 		get_tree().reload_current_scene()
 
 	# update the timer if it's on
@@ -308,7 +311,9 @@ func ending_level():
 
 						endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
 			
+	Global.saveFullTimeRun()
 
+	Global.saveAllTimeTargets(targetShot)
 	# reset targetshot
 	targetShot = 0
 	

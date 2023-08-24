@@ -40,6 +40,15 @@ var save = [
 	{
 		"playerName" : "",
 		"gameVersion" : "1.4"
+	},
+	{
+		#STATS
+		"fullRunTime" : 0,
+		"speedRunTime" : 0,		
+		"allTimebulletsShot" : 0,
+		"AllTimetargetHits" : 0,
+		"accuracy" : 0,
+		
 	}
 ]
 
@@ -59,6 +68,15 @@ func resetSave():
 		{
 			"playerName" : "",
 			"gameVersion" : "1.4"
+		},
+		{
+			#STATS
+			"fullRunTime" : 0,
+			"speedRunTime" : 0,		
+			"allTimebulletsShot" : 0,
+			"AllTimetargetHits" : 0,
+			"accuracy" : 0,
+			
 		}
 	]
 	
@@ -96,6 +114,12 @@ func _ready():
 		for time in save[0]:
 			if typeof(save[0][time][2]) != TYPE_STRING:
 				save[0][time][2] = "99"
+	
+	if save.size() < 3:
+		save.push_back({"fullRunTime": 0, "speedRunTime": 0, "allTimebulletsShot": 0, "AllTimetargetHits": 0, "accuracy": 0})
+
+	saveFullTimeRun()
+	saveGame()
 
 
 
@@ -227,3 +251,23 @@ func cheat_entry(key: int):
 			else:
 				godGun = true
 
+# STATS
+
+func saveFullTimeRun():
+	var fullScoreTime
+	
+	if save[0][9][8] != 0:
+		var fullScoreTimeInv = save[0][1][8] + save[0][2][8] + save[0][3][8] + save[0][4][8] + save[0][5][8] + save[0][6][8] + save[0][7][8] + save[0][8][8] + save[0][9][8]
+		fullScoreTime = 90000 - fullScoreTimeInv
+		
+	save[2]["fullRunTime"] = fullScoreTime
+	saveGame()
+
+
+func saveAllTimeBulletsFired(bulletNumberToAdd):
+	save[2]["allTimebulletsShot"] += bulletNumberToAdd
+	saveGame()
+	
+func saveAllTimeTargets(targetNumberToAdd):
+	save[2]["AllTimetargetHits"] += targetNumberToAdd
+	saveGame()
