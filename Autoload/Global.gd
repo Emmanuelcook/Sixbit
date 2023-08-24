@@ -107,6 +107,12 @@ func _ready():
 
 func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, levelTimeSecs, levelTimeMils, bulletsFired, timeToFinish):
 	
+	var score = 10000 - timeToFinish
+	
+	if Global.playerName != "" && currentLevel != 1:
+		SilentWolf.Scores.persist_score(Global.playerName, score, "level" + str(currentLevel))
+
+	
 	# Get current saved results
 	var bestCurrentLevelSpeed = save[0][currentLevel][0]
 	var bestCurrentLevelSharp = save[0][currentLevel][1]
@@ -117,7 +123,6 @@ func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, l
 	var bestBulletsFired = save[0][currentLevel][6]
 	var bestScore = save[0][currentLevel][8]
 	
-	var score = 10000 - timeToFinish
 	
 	# Change Time if better
 	if score > bestScore:
@@ -127,9 +132,7 @@ func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, l
 		save[0][currentLevel][5] = levelTimeMils
 		save[0][currentLevel][8] = score
 	
-		if Global.playerName != "" && currentLevel != 1:
-			SilentWolf.Scores.persist_score(Global.playerName, score, "level" + str(currentLevel))
-
+		
 	# Change speed star if better
 	if bestCurrentLevelSpeed < levelSpeed:
 		save[0][currentLevel][0] = levelSpeed
@@ -207,15 +210,15 @@ func cheat_entry(key: int):
 	
 	match prize:
 		0:  # "CHEAT1"
-			save[0][1][6] = true
-			save[0][2][6] = true
-			save[0][3][6] = true
-			save[0][4][6] = true
-			save[0][5][6] = true
-			save[0][6][6] = true
-			save[0][7][6] = true
-			save[0][8][6] = true
-			save[0][9][6] = true
+			save[0][1][7] = true
+			save[0][2][7] = true
+			save[0][3][7] = true
+			save[0][4][7] = true
+			save[0][5][7] = true
+			save[0][6][7] = true
+			save[0][7][7] = true
+			save[0][8][7] = true
+			save[0][9][7] = true
 			GlobalScene.get_node("unlocked").play()
 			
 		1:  # "CHEAT2"

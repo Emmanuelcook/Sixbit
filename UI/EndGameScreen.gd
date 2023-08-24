@@ -20,10 +20,12 @@ func _on_retryButton_pressed():
 	get_tree().reload_current_scene()
 
 func _on_LevelsButton_pressed():
+	Global.needToReloadScore = true
 	get_tree().change_scene("res://UI/Levels.tscn")
 	GlobalScene.get_node('shot').play()
 
 func _on_nextLevelButton_pressed():
+	Global.needToReloadScore = true
 	var nextLevel = get_parent().get_parent().nextLevel
 	var isLastLevel = get_parent().get_parent().isLastLevel
 	GlobalScene.get_node('shot').play()

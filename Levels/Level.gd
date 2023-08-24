@@ -87,6 +87,8 @@ func _ready():
 		
 		i = 0
 		
+
+		
 		#UPLOAD LEADERBOARD
 		for score in scoreSavedAtStart:
 			if i < 5:
@@ -217,20 +219,20 @@ func ending_level():
 		unlockNextLevel()
 	
 		if currentLevel != 1:
-#			print("timeToFinishForSilentWolf " + str(timeToFinishForSilentWolf))
-#			print("score saved " + str(Global.save[0][currentLevel][8]))
+			print("timeToFinishForSilentWolf " + str(timeToFinishForSilentWolf))
+			print("score saved " + str(Global.save[0][currentLevel][8]))
 			if timeToFinishForSilentWolf > Global.save[0][currentLevel][8] :
 				personalPB = true
 
 				
-#				print("PB")
+				print("PB")
 				endGameScreenNode.get_node('PBParticles').emitting = true
 				
-#				print("playerScoreInLeaderboard " + str(playerScoreInLeaderboard))
+				print("playerScoreInLeaderboard " + str(playerScoreInLeaderboard))
 				# if PB is not best than already registered player with same name
 				if timeToFinishForSilentWolf <= playerScoreInLeaderboard:
 					doNotSaveFixAfterReset = true
-#					print('yooo')
+					print('yooo')
 	
 		# save score
 		Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired, timeToFinish)
@@ -243,9 +245,9 @@ func ending_level():
 			if isPlayerInLeaderboard:
 				if timeToFinishForSilentWolf > playerScoreInLeaderboard:
 					scoreSavedAtStart.remove(playerScoreInLeaderboardKey)
-#					print('without')
+					print('without')
 
-#					print(scoreSavedAtStart)
+					print(scoreSavedAtStart)
 
 			var ii = 0
 			var highScored = false
@@ -280,7 +282,7 @@ func ending_level():
 #			print("HS:" + str(highScored))
 #			print("newTimeToLB:" + str(newTimeToLB))
 #			print("keyToInsert:" + str(keyToInsert))
-			
+#
 			for score in scoreSavedAtStart:
 #				print("i:" + str(i) + "name" + str(score.name) + "score" + str(score.score))
 				if i < 5:
