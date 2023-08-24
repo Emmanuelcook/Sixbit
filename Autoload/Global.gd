@@ -55,15 +55,15 @@ var save = [
 func resetSave():
 	save = [
 		{
-			1 : [0,0,"99",99,99,99,99,true, 0],
-			2 : [0,0,"99",99,99,99,99,false, 0],
-			3 : [0,0,"99",99,99,99,99,false, 0],
-			4 : [0,0,"99",99,99,99,99,false, 0],
-			5 : [0,0,"99",99,99,99,99,false, 0],
-			6 : [0,0,"99",99,99,99,99,false, 0],
-			7 : [0,0,"99",99,99,99,99,false, 0],
-			8 : [0,0,"99",99,99,99,99,false, 0],
-			9 : [0,0,"99",99,99,99,99,false, 0]
+			1 : [0,0,"99",099,99,99,99,true,0],
+			2 : [0,0,"99",99,99,99,99,false,0],
+			3 : [0,0,"99",99,99,99,99,false,0],
+			4 : [0,0,"99",99,99,99,99,false,0],
+			5 : [0,0,"99",99,99,99,99,false,0],
+			6 : [0,0,"99",99,99,99,99,false,0],
+			7 : [0,0,"99",99,99,99,99,false,0],
+			8 : [0,0,"99",99,99,99,99,false,0],
+			9 : [0,0,"99",99,99,99,99,false,0]
 		},
 		{
 			"playerName" : "",
@@ -92,7 +92,7 @@ func resetSave():
 	
 
 func _ready():
-	
+
 	var f=File.new()
 	f.open('res://apiKey.env',File.READ)
 	var apiKey=f.get_line()
@@ -107,22 +107,14 @@ func _ready():
 	
 	loadSave()
 
-	# Update save for game version below 1.4 so game doesnt crash	
-	if !save[1].has('gameVersion'):
-		save[1]["gameVersion"] = "1.4"
-	
-		for time in save[0]:
-			if typeof(save[0][time][2]) != TYPE_STRING:
-				save[0][time][2] = "99"
-	
 	if save.size() < 3:
-		save.push_back({"fullRunTime": 0, "speedRunTime": 0, "allTimebulletsShot": 0, "AllTimetargetHits": 0, "accuracy": 0})
-
+		resetSave()
+	
 	saveFullTimeRun()
 	saveGame()
 
 
-
+#	print(save)
 	# for example, "cheat1" and "cheat2" for codes
 	cheat_code.resize(2)
 	cheat_code[0] = [int(0), KEY_U, KEY_N, KEY_L, KEY_O, KEY_C, KEY_K]
@@ -259,8 +251,10 @@ func saveFullTimeRun():
 	if save[0][9][8] != 0:
 		var fullScoreTimeInv = save[0][1][8] + save[0][2][8] + save[0][3][8] + save[0][4][8] + save[0][5][8] + save[0][6][8] + save[0][7][8] + save[0][8][8] + save[0][9][8]
 		fullScoreTime = 90000 - fullScoreTimeInv
+		if Global.playerName != "":
+			SilentWolf.Scores.persist_score(Global.playerName, fullScoreTimeInv, "desert")
+		save[2]["fullRunTime"] = fullScoreTime
 		
-	save[2]["fullRunTime"] = fullScoreTime
 	saveGame()
 
 

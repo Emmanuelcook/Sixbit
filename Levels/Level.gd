@@ -87,8 +87,6 @@ func _ready():
 		
 		i = 0
 		
-
-		
 		#UPLOAD LEADERBOARD
 		if currentLevel != 1:
 			for score in scoreSavedAtStart:
@@ -103,7 +101,7 @@ func _ready():
 
 					endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
 		
-		update_menu()
+	update_menu()
 
 func update_menu():
 	endGameScreenNode.get_node("sharp_results").bbcode_text = "[center]-"
@@ -316,7 +314,7 @@ func ending_level():
 	Global.saveAllTimeTargets(targetShot)
 	# reset targetshot
 	targetShot = 0
-	
+	Global.saveFullTimeRun()
 	
 func unlockNextLevel():
 	if !isLastLevel:

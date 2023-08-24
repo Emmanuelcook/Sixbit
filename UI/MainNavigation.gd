@@ -35,7 +35,7 @@ func _on_SpeedRun_pressed():
 
 
 func _on_How_pressed():
-#	GlobalScene.get_node('shot').play()
+	GlobalScene.get_node('shot').play()
 	GlobalScene.get_node('click').play()
 
 
@@ -59,8 +59,8 @@ func _on_SpeedRun_mouse_entered():
 	pass
 
 func _on_How_mouse_entered():
-#	$How/Label.modulate = Color(1,1,1,1)
-#	$How/Sprite.visible = true
+	$How/Label.modulate = Color(1,1,1,1)
+	$How/Sprite.visible = true
 	pass
 	
 func _on_Settings_mouse_entered():

@@ -7,7 +7,7 @@ func _ready():
 	$changeName/Label.modulate = textColor
 	$backMain/Label.modulate = textColor
 	$resetSave/Label.modulate = textColor
-	
+
 	if Global.save[2]["fullRunTime"] != 0:
 		
 		var mils = fmod(Global.save[2]["fullRunTime"],1)*100
@@ -20,20 +20,20 @@ func _ready():
 			fullTime = "%02d:%02d:%02d" % [mins,secs,mils]
 		else:
 			fullTime = "%02d:%02d" % [secs,mils]
+		
+		$fullRunStat.text = str(stepify(Global.save[2]["fullRunTime"], 0.01))
+		
 	
-	print(Global.save[2]["fullRunTime"])
-	print(Global.save[2]["allTimebulletsShot"])
-	print(Global.save[2]["AllTimetargetHits"])
-	
-	Global.save[2]["accuracy"] = (Global.save[2]["AllTimetargetHits"] * 100) / Global.save[2]["allTimebulletsShot"]
-	print(str(Global.save[2]["accuracy"]) + "%")
+	if Global.save[2]["allTimebulletsShot"] == 0:
+		$accuracyStat.text = "-%"
+	else:	
+		Global.save[2]["accuracy"] = (Global.save[2]["AllTimetargetHits"] * 100) / Global.save[2]["allTimebulletsShot"]
+		$accuracyStat.text = str(stepify(Global.save[2]["accuracy"], 0.01)) + "%"
 	
 	Global.saveGame()
 	
-	$fullRunStat.text = str(stepify(Global.save[2]["fullRunTime"], 0.01))
 	$bulletsStat.text = str(Global.save[2]["allTimebulletsShot"])
 	$targetsStat.text = str(Global.save[2]["AllTimetargetHits"])
-	$accuracyStat.text = str(stepify(Global.save[2]["accuracy"], 0.01)) + "%"
 
 	
 		
@@ -60,6 +60,7 @@ func _on_resetSave_pressed():
 	GlobalScene.get_node("shot").play()
 	GlobalScene.get_node("click").play()
 	
+	
 func _on_NO_pressed():
 	$AreyouSure.visible = false
 	GlobalScene.get_node("shot").play()
@@ -71,6 +72,12 @@ func _on_YES_pressed():
 	Global.resetSave()
 	$AreyouSure.visible = false
 	$resetParticles.emitting = true
+	
+	$fullRunStat.text = "--:--"
+	$accuracyStat.text = "-%"
+	$bulletsStat.text = str(Global.save[2]["allTimebulletsShot"])
+	$targetsStat.text = str(Global.save[2]["AllTimetargetHits"])
+	
 
 func _on_changeName_mouse_entered():
 	$changeName/Label.modulate = Color(1,1,1,1)

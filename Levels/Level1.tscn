@@ -332,4 +332,7 @@ visible = false
 [node name="Name" parent="CanvasLayer/EndGameScreen" index="19"]
 visible = false
 
+[node name="Time" parent="CanvasLayer/EndGameScreen" index="20"]
+visible = false
+
 [editable path="CanvasLayer/EndGameScreen"]
