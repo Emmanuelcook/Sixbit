@@ -37,6 +37,7 @@ func _on_SpeedRun_pressed():
 func _on_How_pressed():
 	GlobalScene.get_node('shot').play()
 	GlobalScene.get_node('click').play()
+	get_tree().change_scene("res://UI/HowToScreen.tscn")
 
 
 func _on_Settings_pressed():

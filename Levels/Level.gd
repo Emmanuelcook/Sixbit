@@ -216,20 +216,23 @@ func ending_level():
 		
 		var timeToFinishForSilentWolf = 10000 - timeToFinish
 
-		
 		unlockNextLevel()
 	
 		if currentLevel != 1:
-			print("timeToFinishForSilentWolf " + str(timeToFinishForSilentWolf))
-			print("score saved " + str(Global.save[0][currentLevel][8]))
+			
+			# Si on bat son score sur la save actuelle
 			if timeToFinishForSilentWolf > Global.save[0][currentLevel][8] :
+				#Personal PB && Effect for it
 				personalPB = true
-
-				
-				print("PB")
 				endGameScreenNode.get_node('PBParticles').emitting = true
 				
-				print("playerScoreInLeaderboard " + str(playerScoreInLeaderboard))
+				
+				
+				
+				
+				
+				
+				
 				# if PB is not best than already registered player with same name
 				if timeToFinishForSilentWolf <= playerScoreInLeaderboard:
 					doNotSaveFixAfterReset = true

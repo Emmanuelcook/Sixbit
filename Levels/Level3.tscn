@@ -128,7 +128,7 @@ texture = ExtResource( 6 )
 motion_scale = Vector2( 0.7, 0.7 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 287, 299 )
+position = Vector2( 280, 284 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
 
@@ -140,7 +140,7 @@ collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
 position = Vector2( 0, 65 )
-polygon = PoolVector2Array( 71, 30, 38, 58, 31, 77, 33, 129, 54, 138, 89, 140, 92, 143, 168, 144, 168, 141, 223, 140, 227, 146, 227, 157, 194, 243, 179, 306, 176, 376, 199, 421, 220, 453, 242, 477, 277, 487, 300, 495, 320, 566, 339, 606, 356, 622, 372, 627, 390, 622, 416, 599, 458, 555, 466, 523, 442, 474, 412, 417, 397, 368, 385, 348, 385, 330, 420, 295, 447, 276, 465, 228, 478, 141, 482, 55, 473, 10, 445, -19, 412, -31, 349, -30, 212, 25, 140, 34, 91, 30, 55, 29, 63, -83, 709, -98, 708, 697, -93, 680, -44, -74, 56, -76 )
+polygon = PoolVector2Array( 77, 30, 54, 42, 39, 60, 31, 77, 32, 126, 57, 139, 91, 139, 92, 143, 168, 143, 168, 139, 224, 139, 228, 145, 227, 157, 194, 243, 179, 306, 177, 376, 199, 421, 220, 453, 242, 477, 272, 484, 298, 493, 305, 503, 312, 529, 320, 566, 339, 606, 356, 622, 372, 627, 385.365, 623.288, 392, 618, 392, 600, 400, 598, 400, 613, 416, 599, 453, 556, 461, 540, 466, 523, 442, 474, 412, 417, 397, 368, 385, 348, 385, 330, 420, 295, 447, 276, 465, 228, 478, 141, 482, 55, 473, 10, 442, -17, 416, -29, 349, -30, 212, 25, 192.552, 27.4309, 191, 35, 140, 34, 99, 34, 91, 30, 55, 29, 63, -83, 709, -98, 708, 697, -93, 680, -44, -74, 56, -76 )
 
 [node name="Targets" type="Node2D" parent="."]
 
@@ -206,6 +206,7 @@ bbcode_enabled = true
 [node name="godGunBullet" parent="." instance=ExtResource( 16 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="cylinder" type="Sprite" parent="CanvasLayer"]
 position = Vector2( 44, 44 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=1]
 [ext_resource path="res://UI/EndGameScreen2.tscn" type="PackedScene" id=2]
@@ -18,6 +18,9 @@
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=19]
 [ext_resource path="res://Themes/UI16.tres" type="Theme" id=20]
+
+[sub_resource type="PhysicsMaterial" id=16]
+friction = 0.0
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -139,14 +142,14 @@ collision_layer = 257
 collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
-polygon = PoolVector2Array( 75, 667, 56, 697, 52, 742, 35, 821, 39, 832, 49, 836, 85, 873, 127, 867, 192, 858, 264, 844, 304, 826, 321, 826, 344, 866, 357, 881, 375, 893, 401, 897, 446, 895, 480, 864, 499, 826, 501, 778, 486, 722, 471, 676, 481, 652, 501, 641, 531, 639, 545, 649, 582, 698, 631, 773, 659, 814, 680, 832, 711, 841, 758, 844, 777, 845, 807, 865, 860, 870, 899, 876, 919, 859, 916, 748, 930, 522, 912, 395, 899, 209, 888, 118, 869, 85, 828, 59, 754, 33, 172, 33, 146, 45, 126, 61, 122, 97, 126, 129, 156, 150, 192, 160, 265, 165, 309, 202, 320, 254, 331, 298, 262, 421, 250, 478, 265, 522, 302, 529, 391, 525, 390, 536, 375, 551, 332, 564, 274, 599, 232, 664, -147, 665, -136, -57, 1189, -73, 1129, 977, -161, 989, -160, 680 )
+polygon = PoolVector2Array( 91, 643, 56, 697, 52, 742, 35, 821, 39, 832, 49, 836, 85, 873, 127, 867, 192, 858, 264, 844, 304, 826, 321, 826, 344, 866, 357, 881, 375, 893, 401, 897, 446, 895, 480, 864, 499, 826, 501, 778, 486, 722, 471, 676, 481, 652, 501, 641, 531, 639, 545, 649, 582, 698, 631, 773, 659, 814, 680, 832, 711, 841, 758, 844, 777, 845, 807, 865, 860, 870, 899, 876, 919, 859, 911, 804, 916, 748, 930, 522, 912, 395, 899, 209, 888, 118, 869, 85, 828, 59, 754, 33, 172, 33, 146, 45, 127, 63, 122, 97, 126, 129, 156, 150, 192, 160, 265, 165, 309, 202, 320, 254, 331, 298, 262, 421, 250, 451, 250, 478, 265, 522, 302, 529, 352, 524, 391, 525, 390, 536, 375, 551, 332, 564, 274, 599, 231, 667, -147, 665, -136, -57, 1189, -73, 1129, 977, -161, 989, -160, 667 )
 
 [node name="Walls2" type="StaticBody2D" parent="Walls"]
 collision_layer = 257
 collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls2"]
-polygon = PoolVector2Array( 514, 145, 669, 141, 715, 144, 741, 162, 758, 210, 729, 227, 677, 249, 636, 256, 585, 250, 543, 220, 520, 193, 500, 169, 504, 152 )
+polygon = PoolVector2Array( 514, 145, 565, 144, 639, 180, 686, 197, 727, 174, 758, 210, 729, 227, 677, 249, 636, 256, 585, 250, 543, 220, 520, 193, 500, 169, 504, 152 )
 
 [node name="Walls3" type="StaticBody2D" parent="Walls"]
 collision_layer = 257
@@ -154,6 +157,19 @@ collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls3"]
 polygon = PoolVector2Array( 521, 364, 570, 363, 603, 356, 664, 357, 702, 366, 732, 390, 746, 422, 754, 535, 762, 628, 764, 686, 750, 709, 733, 726, 681, 727, 643, 722, 629, 706, 582, 640, 581, 601, 582, 565, 564, 489, 558, 464, 544, 443, 513, 401, 508, 380 )
+
+[node name="OIL2" type="RigidBody2D" parent="Walls" groups=["slippy"]]
+position = Vector2( 65, 0 )
+collision_layer = 524288
+collision_mask = 524288
+mode = 1
+physics_material_override = SubResource( 16 )
+contacts_reported = 1
+contact_monitor = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/OIL2"]
+position = Vector2( 529.295, 220 )
+polygon = PoolVector2Array( 163.705, -10, 148.705, -51, 132.705, -68, 113.705, -76, 80.705, -77, 45.705, -77, -29.295, -76, -20.295, -64, -3.29498, -63, 6.70502, -56, 20.705, -51, 28.705, -22, 57.705, -22, 102.705, -15, 132.705, -28, 142.705, -27 )
 
 [node name="Targets" type="Node2D" parent="."]
 
