@@ -11,6 +11,8 @@ var needToReloadScore = true
 
 var playerName = ""
 
+var maxTrauma = .6
+
 var save_path = SAVE_DIR + "save.dat"
 
 var save = [

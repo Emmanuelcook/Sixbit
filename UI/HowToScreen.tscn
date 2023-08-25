@@ -209,7 +209,7 @@ collision_layer = 257
 collision_mask = 257
 script = ExtResource( 10 )
 
-[node name="Target4" parent="Targets" instance=ExtResource( 4 )]
+[node name="Target2" parent="Targets" instance=ExtResource( 4 )]
 position = Vector2( 392, 379 )
 collision_layer = 257
 collision_mask = 257
@@ -275,8 +275,12 @@ scale_amount_random = 0.5
 scale_amount_curve = SubResource( 8 )
 color_ramp = SubResource( 9 )
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="mouse_entered" from="backMain" to="." method="_on_backMain_mouse_entered"]
 [connection signal="mouse_exited" from="backMain" to="." method="_on_backMain_mouse_exited"]
 [connection signal="pressed" from="backMain" to="." method="_on_backMain_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [editable path="howToPlayr"]

@@ -23,6 +23,8 @@ func _process(delta):
 		$howtoParticles.emitting = true
 		$howtoParticles2.emitting = true
 		$howtoParticles3.emitting = true
+		targetShot = 0
+		$Timer.start()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,3 +46,13 @@ func _on_backMain_mouse_entered():
 func _on_backMain_mouse_exited():
 	$backMain/Label.modulate = textColor
 	$backMain/Sprite.visible = false
+
+
+func _on_Timer_timeout():
+
+	$Targets/Target/Sprite.modulate = 	Color(1,1,1,1)
+	$Targets/Target2/Sprite.modulate = 	Color(1,1,1,1)
+	$Targets/Target3/Sprite.modulate = 	Color(1,1,1,1)
+	$Targets/Target.gotshot = false
+	$Targets/Target2.gotshot = false
+	$Targets/Target3.gotshot = false

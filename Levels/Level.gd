@@ -42,7 +42,8 @@ var playerScoreInLeaderboard = 0
 var playerScoreInLeaderboardKey = 0
 var newTimeToLB = false
 var personalPB = false
-var doNotSaveFixAfterReset = false
+var highScore = false
+var highScoreRank = 99
 
 onready var player = $PlayerRoot/Player
 onready var endGameScreenNode = $CanvasLayer/EndGameScreen
@@ -226,92 +227,57 @@ func ending_level():
 				personalPB = true
 				endGameScreenNode.get_node('PBParticles').emitting = true
 				
-				
-				
-				
-				
-				
-				
-				
-				# if PB is not best than already registered player with same name
-				if timeToFinishForSilentWolf <= playerScoreInLeaderboard:
-					doNotSaveFixAfterReset = true
-					print('yooo')
-	
-		# save score
-		Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired, timeToFinish)
-	
-		if currentLevel != 1:
-			
-#			print('basic one')
-#			print(scoreSavedAtStart)
-			
-			if isPlayerInLeaderboard:
-				if timeToFinishForSilentWolf > playerScoreInLeaderboard:
-					scoreSavedAtStart.remove(playerScoreInLeaderboardKey)
-					print('without')
+				# si le joueur etait inscirt au leaderboard
+				if isPlayerInLeaderboard:
+					# on check si il a fait un meilleur score
+					if timeToFinishForSilentWolf > playerScoreInLeaderboard:
 
-					print(scoreSavedAtStart)
+						#et on remove son ancien scrore dans le leaderboard
+						scoreSavedAtStart.remove(playerScoreInLeaderboardKey)
 
-			var ii = 0
-			var highScored = false
-			var keyToInsert = 0
-			for score in scoreSavedAtStart:
-#				print("timeToFinishForSilentWolf " + str(timeToFinishForSilentWolf) )
-#				print("score.score " + str(score.score) )
-				if timeToFinishForSilentWolf > score.score && !doNotSaveFixAfterReset:
-					keyToInsert = ii
-					highScored = true
-					endGameScreenNode.get_node('HSParticles').emitting = true
+
+				var i = 0
 					
-#					print("keyToInsert " + str(keyToInsert))
-					break
-				ii += 1
-			
-			if !doNotSaveFixAfterReset:
-				if highScored:
-					scoreSavedAtStart.insert(keyToInsert, {"name" : Global.playerName, "score" : timeToFinishForSilentWolf})
-				elif personalPB:
-					scoreSavedAtStart.push_back({"name" : Global.playerName, "score" : timeToFinishForSilentWolf})
+				# ensuite on check chaque score dans l'ordre et des qu'on a fait mieux on insert le nouveau avant
+				for score in scoreSavedAtStart:
+					if i < 5:
+						if timeToFinishForSilentWolf > score.score:
+							Global.needToReloadScore = true
+							highScore = true
+							scoreSavedAtStart.insert(i, {"name" : Global.playerName, "score" : timeToFinishForSilentWolf})
+							endGameScreenNode.get_node('HSParticles').emitting = true
+							highScoreRank = i
 
-			if !highScored && (scoreSavedAtStart.size() - 1) <= 5 && personalPB && !doNotSaveFixAfterReset:
-				newTimeToLB = true
-				keyToInsert = scoreSavedAtStart.size() - 1
-				endGameScreenNode.get_node('HSParticles').emitting = true
-				Global.needToReloadScore = true
-				
-			var i = 0
+							break
+					i += 1
 			
-#			print(scoreSavedAtStart)
-#			print("HS:" + str(highScored))
-#			print("newTimeToLB:" + str(newTimeToLB))
-#			print("keyToInsert:" + str(keyToInsert))
-#
+			
+			#enfin on ecrit tous les scores au bon endroit
+			var j = 0
+	
 			for score in scoreSavedAtStart:
-#				print("i:" + str(i) + "name" + str(score.name) + "score" + str(score.score))
-				if i < 5:
-					if newTimeToLB && keyToInsert == i && !doNotSaveFixAfterReset || highScored && keyToInsert == i && !doNotSaveFixAfterReset:
-						i += 1
-						endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = "[wave]" + str(score.name)
-
-						var invTimeBack = (10000 - score.score)
-						var LeaderboardSecs = fmod(invTimeBack, 60)
-						var LeaderboardMils = fmod(invTimeBack,1)*100
-						var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
-
-						endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = "[wave]" + str(LeaderboardTime)
-						Global.needToReloadScore = true
-					else: 
-						i += 1
-						endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.name)
-
-						var invTimeBack = (10000 - score.score)
-						var LeaderboardSecs = fmod(invTimeBack, 60)
-						var LeaderboardMils = fmod(invTimeBack,1)*100
-						var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
-
-						endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
+				j += 1
+				if j < 6:
+					
+					if j == highScoreRank + 1 :
+						endGameScreenNode.get_node('Name').get_node(str(j)).bbcode_text = "[wave]" + str(score.name)
+					else:
+						endGameScreenNode.get_node('Name').get_node(str(j)).bbcode_text = str(score.name)
+						
+					var invTimeBack = (10000 - score.score)
+					var LeaderboardSecs = fmod(invTimeBack, 60)
+					var LeaderboardMils = fmod(invTimeBack,1)*100
+					var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
+					
+					if j == highScoreRank + 1:
+						endGameScreenNode.get_node('Time').get_node(str(j)).bbcode_text = "[wave]" + str(LeaderboardTime)
+					else:
+						endGameScreenNode.get_node('Time').get_node(str(j)).bbcode_text = str(LeaderboardTime)
 			
+			
+	# save score
+	Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired, timeToFinish)
+	
 	Global.saveFullTimeRun()
 
 	Global.saveAllTimeTargets(targetShot)

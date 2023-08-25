@@ -19,7 +19,7 @@ func _ready():
 	noise.octaves = 2
 
 func add_trauma(amount):
-	trauma = min(trauma + amount, 1.0)
+	trauma = min(trauma + amount, Global.maxTrauma)
 	
 func _process(delta):
 	if target:

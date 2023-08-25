@@ -41,7 +41,8 @@ func _on_How_pressed():
 
 
 func _on_Settings_pressed():
-#	GlobalScene.get_node('shot').play()
+	get_tree().change_scene("res://UI/settingsScreen.tscn")
+	GlobalScene.get_node('shot').play()
 	GlobalScene.get_node('click').play()
 
 
@@ -65,8 +66,8 @@ func _on_How_mouse_entered():
 	pass
 	
 func _on_Settings_mouse_entered():
-#	$Settings/Label.modulate = Color(1,1,1,1)
-#	$Settings/Sprite.visible = true
+	$Settings/Label.modulate = Color(1,1,1,1)
+	$Settings/Sprite.visible = true
 	pass
 	
 func _on_Stats_mouse_entered():

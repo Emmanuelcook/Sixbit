@@ -327,6 +327,36 @@ bbcode_enabled = true
 bbcode_text = "___"
 text = "___"
 
+[node name="6" type="RichTextLabel" parent="Name"]
+margin_left = 279.333
+margin_top = 62.0
+margin_right = 343.333
+margin_bottom = 98.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "___"
+text = "___"
+
+[node name="7" type="RichTextLabel" parent="Name"]
+margin_left = 279.333
+margin_top = 62.0
+margin_right = 343.333
+margin_bottom = 98.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "___"
+text = "___"
+
+[node name="8" type="RichTextLabel" parent="Name"]
+margin_left = 279.333
+margin_top = 62.0
+margin_right = 343.333
+margin_bottom = 98.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "___"
+text = "___"
+
 [node name="Time" type="Node2D" parent="."]
 position = Vector2( 20.3333, 76.5 )
 
