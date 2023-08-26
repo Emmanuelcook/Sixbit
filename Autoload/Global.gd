@@ -82,19 +82,12 @@ func resetSave():
 		}
 	]
 	
-	var dir = Directory.new()
-	if !dir.dir_exists(SAVE_DIR):
-		dir.make_dir_recursive(SAVE_DIR)
-
-	var file = File.new()
-	var error = file.open_encrypted_with_pass(save_path, File.WRITE, "dontcheat")
-	if error == OK:
-		file.store_var(save)
-		file.close()
+	saveGame()
 	
 
 func _ready():
 
+	# CONFIGURE SILENT WOLF
 	var f=File.new()
 	f.open('res://apiKey.env',File.READ)
 	var apiKey=f.get_line()
@@ -107,13 +100,13 @@ func _ready():
 		"log_level": 0
 	})
 	
+	
 	loadSave()
+	
 
+	# FIX FOR THOSE WHO DIDNT PLAY SINCE 1.3
 	if save.size() < 3:
 		resetSave()
-	
-	saveFullTimeRun()
-	saveGame()
 
 
 #	print(save)
@@ -126,7 +119,7 @@ func _ready():
 func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, levelTimeSecs, levelTimeMils, bulletsFired, timeToFinish):
 	
 	var score = 10000 - timeToFinish
-	
+	print("PN: " + str(Global.playerName))
 	if Global.playerName != "" && currentLevel != 1:
 		SilentWolf.Scores.persist_score(Global.playerName, score, "level" + str(currentLevel))
 

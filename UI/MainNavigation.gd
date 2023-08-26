@@ -20,6 +20,7 @@ func _ready():
 	$Stats/Label.modulate = textColor
 
 func _on_Levels_pressed():
+
 	if Global.playerName == "" || Global.playerName == null:
 		get_tree().change_scene("res://UI/PlayerNameScreen.tscn")
 		Global.sceneAfterNaming = "res://UI/Levels.tscn"

@@ -59,7 +59,7 @@ func _process(delta):
 		
 		# On enlève une balle du cylindre
 		ballUsed += 1
-		get_node("../..").bulletsFired += 1 # Bullets fired for the level
+		get_node("../..").addOneBulletsFired() # Bullets fired for the level
 		
 		# Sinon on tire
 		$shot.play()
@@ -126,7 +126,7 @@ func _process(delta):
 					
 			# On enlève une balle du cylindre
 			ballUsed += 1
-			get_node("../..").bulletsFired += 1 # Bullets fired for the level
+			get_node("../..").addOneBulletsFired() # Bullets fired for the level
 			
 			# Drawing Shot
 			draw_shot()

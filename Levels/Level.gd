@@ -44,6 +44,7 @@ var newTimeToLB = false
 var personalPB = false
 var highScore = false
 var highScoreRank = 99
+var betterScoreThanLB = false 
 
 onready var player = $PlayerRoot/Player
 onready var endGameScreenNode = $CanvasLayer/EndGameScreen
@@ -192,7 +193,7 @@ func timer(onOrOff):
 
 
 func ending_level():
-	
+
 	# When level is finished
 	# pause the game
 #	get_tree().paused = true
@@ -224,6 +225,7 @@ func ending_level():
 			# Si on bat son score sur la save actuelle
 			if timeToFinishForSilentWolf > Global.save[0][currentLevel][8] :
 				#Personal PB && Effect for it
+				Global.saveFullTimeRun()
 				personalPB = true
 				endGameScreenNode.get_node('PBParticles').emitting = true
 				
@@ -231,25 +233,25 @@ func ending_level():
 				if isPlayerInLeaderboard:
 					# on check si il a fait un meilleur score
 					if timeToFinishForSilentWolf > playerScoreInLeaderboard:
-
+						betterScoreThanLB = true
 						#et on remove son ancien scrore dans le leaderboard
 						scoreSavedAtStart.remove(playerScoreInLeaderboardKey)
-
-
+						
 				var i = 0
 					
 				# ensuite on check chaque score dans l'ordre et des qu'on a fait mieux on insert le nouveau avant
-				for score in scoreSavedAtStart:
-					if i < 5:
-						if timeToFinishForSilentWolf > score.score:
-							Global.needToReloadScore = true
-							highScore = true
-							scoreSavedAtStart.insert(i, {"name" : Global.playerName, "score" : timeToFinishForSilentWolf})
-							endGameScreenNode.get_node('HSParticles').emitting = true
-							highScoreRank = i
+				if isPlayerInLeaderboard && betterScoreThanLB || !isPlayerInLeaderboard:
+					for score in scoreSavedAtStart:
+						if i < 5:
+							if timeToFinishForSilentWolf > score.score:
+								Global.needToReloadScore = true
+								highScore = true
+								scoreSavedAtStart.insert(i, {"name" : Global.playerName, "score" : timeToFinishForSilentWolf})
+								endGameScreenNode.get_node('HSParticles').emitting = true
+								highScoreRank = i
 
-							break
-					i += 1
+								break
+						i += 1
 			
 			
 			#enfin on ecrit tous les scores au bon endroit
@@ -275,15 +277,13 @@ func ending_level():
 						endGameScreenNode.get_node('Time').get_node(str(j)).bbcode_text = str(LeaderboardTime)
 			
 			
-	# save score
-	Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired, timeToFinish)
+		# save score
+		Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired, timeToFinish)
 	
-	Global.saveFullTimeRun()
-
 	Global.saveAllTimeTargets(targetShot)
 	# reset targetshot
 	targetShot = 0
-	Global.saveFullTimeRun()
+
 	
 func unlockNextLevel():
 	if !isLastLevel:
@@ -355,4 +355,6 @@ func get_results():
 	if levelSharp > 0:
 		$CanvasLayer/EndGameScreen/Bronze/Sprite.visible = true
 
-
+func addOneBulletsFired():
+	if !levelIsFinished:
+		bulletsFired += 1
