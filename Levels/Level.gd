@@ -202,8 +202,8 @@ func ending_level():
 	
 	
 	# Game is paused so play gunshot and targetshot
-	GlobalScene.get_node("shot").play()
-	GlobalScene.get_node("click").play()
+#	GlobalScene.playSound("shot")
+#	GlobalScene.playSound("metalHit")
 	
 	# stop timer
 	timer(false)

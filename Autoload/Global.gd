@@ -119,7 +119,7 @@ func _ready():
 func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, levelTimeSecs, levelTimeMils, bulletsFired, timeToFinish):
 	
 	var score = 10000 - timeToFinish
-	print("PN: " + str(Global.playerName))
+#	print("PN: " + str(Global.playerName))
 	if Global.playerName != "" && currentLevel != 1:
 		SilentWolf.Scores.persist_score(Global.playerName, score, "level" + str(currentLevel))
 

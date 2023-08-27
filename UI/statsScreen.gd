@@ -47,28 +47,28 @@ func _on_changeName_pressed():
 	Global.playerName = ""
 	get_tree().change_scene("res://UI/PlayerNameScreen.tscn")
 	GlobalScene.get_node("shot").play()
-	GlobalScene.get_node("click").play()
+	GlobalScene.playSound("metalHit")
 	Global.sceneAfterNaming = "res://UI/statsScreen.tscn"
 
 func _on_backMain_pressed():
 	get_tree().change_scene("res://UI/MainNavigation.tscn")
 	GlobalScene.get_node("shot").play()
-	GlobalScene.get_node("click").play()
+	GlobalScene.playSound("metalHit")
 
 func _on_resetSave_pressed():
 	$AreyouSure.visible = true
 	GlobalScene.get_node("shot").play()
-	GlobalScene.get_node("click").play()
+	GlobalScene.playSound("metalHit")
 	
 	
 func _on_NO_pressed():
 	$AreyouSure.visible = false
 	GlobalScene.get_node("shot").play()
-	GlobalScene.get_node("click").play()
+	GlobalScene.playSound("metalHit")
 	
 func _on_YES_pressed():
 	GlobalScene.get_node("shot").play()
-	GlobalScene.get_node("click").play()
+	GlobalScene.playSound("metalHit")
 	Global.resetSave()
 	$AreyouSure.visible = false
 	$resetParticles.emitting = true

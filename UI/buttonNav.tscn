@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Themes/UI.tres" type="Theme" id=1]
+[ext_resource path="res://assets/sprites/UI/targetOutline.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/player/target.png" type="Texture" id=3]
+[ext_resource path="res://UI/buttonNav.gd" type="Script" id=4]
+[ext_resource path="res://assets/sprites/player/targetnope.png" type="Texture" id=5]
+[ext_resource path="res://assets/sounds/targetshot2.wav" type="AudioStream" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[node name="ButtonNav" type="Button"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 543.0
+margin_top = 130.0
+margin_right = 585.0
+margin_bottom = 172.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.309804, 0.262745, 0.180392, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+align = 2
+script = ExtResource( 4 )
+textColor = Color( 0.301961, 0.258824, 0.180392, 1 )
+
+[node name="textLink" type="Label" parent="."]
+margin_left = -164.0
+margin_top = 6.0
+margin_right = -4.0
+margin_bottom = 38.0
+text = "LinkTo"
+align = 2
+
+[node name="TargetOutline" type="Sprite" parent="."]
+visible = false
+position = Vector2( 21, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+
+[node name="Target" type="Sprite" parent="."]
+position = Vector2( 21, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="notclickable" type="Sprite" parent="."]
+visible = false
+position = Vector2( 21, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+
+[node name="metalHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = 37.0
+margin_top = 18.0
+margin_right = 121.0
+margin_bottom = 26.0
+color = Color( 0.168627, 0.160784, 0.141176, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect2"]
+margin_left = 4.0
+margin_right = 84.0
+margin_bottom = 4.0
+color = Color( 0.223529, 0.203922, 0.172549, 1 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_ButtonNav_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_ButtonNav_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_ButtonNav_pressed"]

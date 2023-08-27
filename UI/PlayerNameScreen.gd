@@ -11,29 +11,31 @@ func _ready():
 	$Go/Label.modulate = textColor
 	
 
-func letterPressed(letter):
+func letterPressed(letter, letterNode):
 	if letter == "<":
 		if third.text != "":
 			third.text = ""
-			GlobalScene.get_node("shot").play()	
+			GlobalScene.playSound("shot")
 		elif second.text != "":
 			second.text = ""
-			GlobalScene.get_node("shot").play()	
+			GlobalScene.playSound("shot")	
 		elif first.text != "":
 			first.text = ""
-			GlobalScene.get_node("shot").play()	
+			GlobalScene.playSound("shot")	
 	else:	
 		if first.text == "":
 			first.text = letter
-			GlobalScene.get_node("shot").play()	
+			GlobalScene.playSound("shot")	
 		elif second.text == "":
 			second.text = letter
-			GlobalScene.get_node("shot").play()	
+			GlobalScene.playSound("shot")	
 		elif third.text == "":
 			third.text = letter
-			GlobalScene.get_node("shot").play()	
+			GlobalScene.playSound("shot")	
 
-	GlobalScene.get_node("click").play()
+	randomize()
+	letterNode.get_node("metalHit").pitch_scale = rand_range(0.85,1)
+	letterNode.get_node("metalHit").play()
 
 func _process(_delta):
 	if third.text != "":
@@ -49,9 +51,9 @@ func _on_Go_pressed():
 		Global.save[1].playerName = str(first.text) + str(second.text) + str(third.text)
 		Global.saveGame()
 		Global.playerName = Global.save[1].playerName 
-		get_tree().change_scene(str(Global.sceneAfterNaming))
-		GlobalScene.get_node('shot').play()
-		GlobalScene.get_node('click').play()
+		get_tree().change_scene_to(Global.sceneAfterNaming)
+		GlobalScene.playSound("shot")
+		GlobalScene.playSound("metalHit")
 
 
 func _on_Go_mouse_entered():

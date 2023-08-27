@@ -15,7 +15,7 @@
 [ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=13]
 [ext_resource path="res://UI/cylinder.gd" type="Script" id=14]
 [ext_resource path="res://Player/godGunBulletParticles.tscn" type="PackedScene" id=16]
-[ext_resource path="res://UI/EndGameScreen2.tscn" type="PackedScene" id=17]
+[ext_resource path="res://UI/EndGameScreen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=20]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=21]
 

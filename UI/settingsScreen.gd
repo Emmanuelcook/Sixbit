@@ -5,7 +5,7 @@ var textColor = Color(.3,.26,.18,1)
 func _on_backMain_pressed():
 	get_tree().change_scene("res://UI/MainNavigation.tscn")
 	GlobalScene.get_node("shot").play()
-	GlobalScene.get_node("click").play()
+	GlobalScene.playSound("metalHit")
 
 func _on_backMain_mouse_entered():
 	$backMain/Label.modulate = Color(1,1,1,1)

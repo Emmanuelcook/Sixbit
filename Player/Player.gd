@@ -2,6 +2,8 @@ extends RigidBody2D
 
 var Smoketrail = preload("res://Player/smokeTrail.tscn")
 var bulletParticle = preload("res://Player/bulletParticles.tscn")
+var AimCastRicochet = preload("res://Player/AimCastRicochet.tscn")
+var ricochetParticles = preload("res://Effects/ricochetParticles.tscn")
 
 onready var AimCast = $AimCast
 onready var timer = $Timer
@@ -25,6 +27,9 @@ var ballUsed = 0
 var is_reloading = false
 var onOil
 
+var ricochetVisible = false
+
+
 func _ready():
 	self.gravity_scale = 0
 	
@@ -32,6 +37,13 @@ func _ready():
 	$resetdamp.set_wait_time(0.2)
 
 func _process(delta):
+	if ricochetVisible:
+		# ici il faut faire plus tous les ricochets se desactive ou quoi
+		# ----------------------------------
+		# ATTENTION
+		get_parent().get_parent().get_node("Walls/Ricochet/ricochetFlash").visible = false
+		ricochetVisible = false
+	
 	if Global.godGun:
 		godgun()
 	
@@ -89,8 +101,25 @@ func _process(delta):
 		# On check avec quoi on collide, si c'est une target, on le got shot
 		if AimCast.is_colliding():
 			if AimCast.get_collider().is_in_group("target"):
+				#Info about first shot
+				var BulletStart = AimCast.global_transform.origin
+				var collisionPoint = AimCast.get_collision_point()
+				var incoming_direction = collisionPoint - BulletStart
+				
+				var eclat = ricochetParticles.instance()
+				get_parent().get_parent().add_child(eclat)
+				eclat.global_position = collisionPoint
+				eclat.rotation = (collisionPoint - BulletStart).angle()
+				eclat.emitting = true
+				
 				AimCast.get_collider().got_shot()
 		
+		if AimCast.is_colliding():
+			if AimCast.get_collider().is_in_group("ricochet"):
+				var collider = AimCast.get_collider()
+				ricochet(collider)
+				
+				
 		#Screen shake
 		get_parent().get_node("Anchor/Cam").add_trauma(0.3)
 		
@@ -139,6 +168,53 @@ func _process(delta):
 			godGunBullet.emit(false) 
 		
 
+func ricochet(collider):
+	GlobalScene.playSound("metalHit")
+
+	#Info about first shot
+	var BulletStart = AimCast.global_transform.origin
+	var collisionPoint = AimCast.get_collision_point()
+	var normal = AimCast.get_collision_normal()
+	var incoming_direction = collisionPoint - BulletStart
+	
+	var eclat = ricochetParticles.instance()
+	get_parent().get_parent().add_child(eclat)
+	eclat.global_position = collisionPoint
+	eclat.rotation = (collisionPoint - BulletStart).angle()
+	eclat.emitting = true
+	collider.get_node("ricochetFlash").visible = true
+	ricochetVisible = true
+	
+	# Info about ricochet
+	var outgoing_direction = incoming_direction.bounce(normal)
+	var outgoing_length = 50.0 # Arbitrary
+	
+	# Decalage de 1 pour que le raycast ne se prenne pas uen fois sur deux dans le collider ricochet
+	outgoing_direction.clamped(1)
+	var newPoint = collisionPoint + outgoing_direction
+
+	# Instance a new raycast
+	var newCast = AimCastRicochet.instance()
+	get_parent().get_parent().add_child(newCast)
+
+	# position of the new raycast
+	newCast.global_position = newPoint
+	newCast.set_cast_to(outgoing_direction * outgoing_length)
+	newCast.force_raycast_update()
+	
+	var ricochetCollider = outgoing_direction * outgoing_length
+	
+	if newCast.is_colliding():
+		ricochetCollider = newCast.get_collision_point()
+		
+		if newCast.get_collider().is_in_group("target"):
+			yield(get_tree().create_timer(0.1), "timeout")
+			newCast.get_collider().got_shot()
+
+	draw_ricochet(collisionPoint, ricochetCollider)
+	newCast.queue_free()
+
+	
 func godgun():
 	if !godGunActivated:
 		force = 150
@@ -166,6 +242,13 @@ func draw_shot():
 	
 	if AimCast.is_colliding():
 		to = AimCast.get_collision_point()
+		
+	var trail = Smoketrail.instance()
+	get_parent().get_parent().add_child(trail)
+	trail.add_point(from)
+	trail.add_point(to)
+
+func draw_ricochet(from, to):
 		
 	var trail = Smoketrail.instance()
 	get_parent().get_parent().add_child(trail)

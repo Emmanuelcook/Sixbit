@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://UI/HowToScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/UI/titleBG2testhowtoBG.png" type="Texture" id=2]
@@ -11,6 +11,11 @@
 [ext_resource path="res://Player/PlayerForHowTo.gd" type="Script" id=9]
 [ext_resource path="res://Levels/Targethowto.gd" type="Script" id=10]
 [ext_resource path="res://assets/sprites/UI/titleBG2testhowto.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/UI/bulletempty.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=14]
+[ext_resource path="res://UI/cylinder.gd" type="Script" id=15]
+[ext_resource path="res://Themes/ui16real.tres" type="Theme" id=16]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -33,6 +38,47 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 [sub_resource type="Gradient" id=9]
 offsets = PoolRealArray( 0, 0.421788, 0.815642 )
 colors = PoolColorArray( 1, 0, 0, 1, 1, 1, 1, 1, 1, 0.972656, 0, 1 )
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "reload"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 360, -0.25, 0, 1.4, -28.2307, 0, -1.4, 12.9939, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "shot"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 1.4, -28.2307, 60, -1, 12.994, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
 
 [node name="HowToScreen" type="Node2D"]
 script = ExtResource( 1 )
@@ -111,10 +157,10 @@ Left click to Shoot"
 align = 1
 
 [node name="bulletsTitle2" type="Label" parent="."]
-margin_left = 66.0
-margin_top = 60.0
-margin_right = 278.0
-margin_bottom = 200.0
+margin_left = 74.0
+margin_top = 99.0
+margin_right = 286.0
+margin_bottom = 239.0
 theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = -5
@@ -125,15 +171,25 @@ R - Retry
 Esc / P - Pause"
 
 [node name="SpeedRunTitle" type="Label" parent="."]
-margin_left = 451.0
-margin_top = 144.0
-margin_right = 687.0
-margin_bottom = 203.0
+margin_left = 445.0
+margin_top = 149.0
+margin_right = 681.0
+margin_bottom = 208.0
 theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = -8
 text = "Move wIth 
 The REcoIl"
+
+[node name="SpeedRunTitle2" type="Label" parent="."]
+margin_left = 445.0
+margin_top = 201.0
+margin_right = 681.0
+margin_bottom = 281.0
+theme = ExtResource( 16 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Every 6 shots, the gun 
+reloads automatically"
 
 [node name="backMain" type="Button" parent="."]
 anchor_left = 1.0
@@ -180,12 +236,12 @@ margin_bottom = 26.0
 color = Color( 0.309804, 0.262745, 0.180392, 1 )
 
 [node name="Start1" type="Sprite" parent="."]
-position = Vector2( 394, 176 )
+position = Vector2( 385, 189 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 
 [node name="howToPlayr" parent="." instance=ExtResource( 8 )]
-position = Vector2( 394, 176 )
+position = Vector2( 385, 189 )
 script = ExtResource( 9 )
 
 [node name="Timer2" type="Timer" parent="howToPlayr"]
@@ -198,7 +254,7 @@ collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
 position = Vector2( 33, 0 )
-polygon = PoolVector2Array( -355, 515, -7, 447, 241, 448, 322, 426, 367, 417, 405, 402, 486, 397, 513, 382, 534, 365, 557, 323, 574, 255, 577, 39, 36, 33, 15, 55, 0, 95, -10, 484, -34, 509, -81, 471, -165, 203, -289, -504, 1628, -522, 1783, 1020, 12, 1088 )
+polygon = PoolVector2Array( -355, 515, 50, 449, 241, 448, 322, 426, 367, 417, 405, 402, 486, 397, 513, 382, 534, 365, 557, 323, 574, 255, 577, 39, 36, 33, 15, 55, 0, 95, 3, 425, 37, 448, -10, 484, -34, 509, -81, 471, -165, 203, -289, -504, 1628, -522, 1783, 1020, 12, 1088 )
 
 [node name="Targets" type="Node2D" parent="."]
 position = Vector2( 0, 1 )
@@ -277,6 +333,73 @@ color_ramp = SubResource( 9 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="cylinder" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 44, 44 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 14 )
+script = ExtResource( 15 )
+
+[node name="Bullets" type="Node2D" parent="CanvasLayer/cylinder"]
+
+[node name="empty" type="Node2D" parent="CanvasLayer/cylinder/Bullets"]
+
+[node name="1" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 0, -6 )
+texture = ExtResource( 12 )
+
+[node name="2" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( -5, -3 )
+texture = ExtResource( 12 )
+
+[node name="3" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( -5, 3 )
+texture = ExtResource( 12 )
+
+[node name="4" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 0, 6 )
+texture = ExtResource( 12 )
+
+[node name="5" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 5, 3 )
+texture = ExtResource( 12 )
+
+[node name="6" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 5, -3 )
+texture = ExtResource( 12 )
+
+[node name="bullet" type="Node2D" parent="CanvasLayer/cylinder/Bullets"]
+
+[node name="1" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 0, -6 )
+texture = ExtResource( 13 )
+
+[node name="2" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( -5, -3 )
+texture = ExtResource( 13 )
+
+[node name="3" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( -5, 3 )
+texture = ExtResource( 13 )
+
+[node name="4" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 0, 6 )
+texture = ExtResource( 13 )
+
+[node name="5" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 5, 3 )
+texture = ExtResource( 13 )
+
+[node name="6" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 5, -3 )
+texture = ExtResource( 13 )
+
+[node name="AnimCylinder" type="AnimationPlayer" parent="CanvasLayer/cylinder/Bullets"]
+anims/RESET = SubResource( 10 )
+anims/reload = SubResource( 11 )
+anims/shot = SubResource( 12 )
 
 [connection signal="mouse_entered" from="backMain" to="." method="_on_backMain_mouse_entered"]
 [connection signal="mouse_exited" from="backMain" to="." method="_on_backMain_mouse_exited"]

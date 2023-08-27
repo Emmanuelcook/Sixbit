@@ -4,6 +4,8 @@ var Smoketrail = preload("res://Player/smokeTrail.tscn")
 var bulletParticle = preload("res://Player/bulletParticleshowto.tscn")
 
 onready var AimCast = $AimCast
+onready var cylinder = get_node("../CanvasLayer/cylinder")
+onready var timer = $Timer
 
 export var force = 1500
 export var gravityScale = 2
@@ -34,10 +36,20 @@ func _process(delta):
 	# Quand essaie de tirer
 	if Input.is_action_just_pressed("click"):
 
+
+		# Si on est en train de reload c'est non
+		if is_reloading: return true
+		
+		# On enlève une balle du cylindre
+		ballUsed += 1
+#		get_node("../..").addOneBulletsFired() # Bullets fired for the level
+		
+
 		# Sinon on tire
 		$shot.play()
 		$bulletout.play()
 		recoil()
+		cylinder.shot(ballUsed)
 
 		var bulletP = bulletParticle.instance()
 		get_parent().add_child(bulletP)
@@ -49,7 +61,7 @@ func _process(delta):
 		# On remet la gravité et on enleve les effets du rond au début
 		if !first_shot:
 			self.gravity_scale = gravityScale
-#			get_parent().get_node("Start1").visible = false
+			get_parent().get_node("Start1").visible = false
 			# start timer on Level Node
 			first_shot = true
 		
@@ -60,7 +72,11 @@ func _process(delta):
 		
 		# Drawing Shot
 		draw_shot()
+#		get_parent().get_node("Anchor/Cam").add_trauma(0.3)
 	
+		# Si on a plus de balles on reload
+		if ballUsed == 6:
+			reload()
 
 func draw_shot():
 	# always draw from the gun
@@ -74,6 +90,25 @@ func draw_shot():
 	get_parent().get_parent().add_child(trail)
 	trail.add_point(from)
 	trail.add_point(to)
+
+func reload():
+	
+	is_reloading = true
+	timer.connect("timeout", self, "end_reload")
+	timer.set_wait_time(2)
+	timer.start()
+	
+	cylinder.reload()
+	
+#	yield(get_tree().create_timer(.5), "timeout")
+	$spin.play()
+
+	
+func end_reload():
+	
+	ballUsed = 0
+	cylinder.end_reload()	
+	is_reloading = false
 
 func _integrate_forces(_state):
 	set_angular_velocity((get_angle_to(get_global_mouse_position())) * -((get_angle_to(get_global_mouse_position())) -3.14) * 5)

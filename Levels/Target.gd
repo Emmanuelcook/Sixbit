@@ -7,9 +7,11 @@ func got_shot():
 	randomize()
 	$shotSound.pitch_scale = rand_range(0.85,1)
 	$shotSound.play()
-	$Sprite.modulate = Color(0,0,0,1)
 	gotshot = true
 	get_node("../..").targetShot()
-	
-	
+	$hit.visible = true
+	$Timer.start()
 
+func _on_Timer_timeout():
+	$hit.visible = false
+	$Sprite.modulate = Color(0,0,0,1)

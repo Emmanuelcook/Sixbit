@@ -7,4 +7,4 @@ func _ready():
 
 func _on_Letter_pressed():
 	$AnimationPlayer.play("shot")
-	get_parent().letterPressed(letter)
+	get_parent().letterPressed(letter, self)

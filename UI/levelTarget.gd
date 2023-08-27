@@ -41,7 +41,7 @@ func _on_Button_pressed():
 		get_parent().goToLevel(level)
 		GlobalScene.get_node('shot').play()
 	else: 
-		GlobalScene.get_node('click').play()
+		GlobalScene.playSound("metalHit")
 		$hidden.modulate = Color(0,0,0,1)
 		yield(get_tree().create_timer(.1), "timeout")
 		$hidden.modulate = Color(1,1,1,1)
