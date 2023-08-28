@@ -14,4 +14,6 @@ func playSound(sound):
 		randomize()
 		$shot.pitch_scale = rand_range(0.85,1)
 		$shot.play()
+	if sound == "unlocked":
+		$unlocked.play()
 		

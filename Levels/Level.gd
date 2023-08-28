@@ -102,7 +102,7 @@ func _ready():
 					var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
 
 					endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
-		
+					
 	update_menu()
 
 func update_menu():
@@ -154,9 +154,6 @@ func _process(delta):
 		secs = fmod(timeToFinish, 60)
 		mins = fmod(timeToFinish, 60*60) / 60
 
-
-		
-		
 		if mins >= 1:
 			time_passed = "%02d:%02d:%02d" % [mins,secs,mils]
 			if !timerMoved:
@@ -195,23 +192,14 @@ func timer(onOrOff):
 func ending_level():
 
 	# When level is finished
-	# pause the game
-#	get_tree().paused = true
 	levelIsFinished = true
 	$PlayerRoot/Anchor.camPaused = true
-	
-	
-	# Game is paused so play gunshot and targetshot
-#	GlobalScene.playSound("shot")
-#	GlobalScene.playSound("metalHit")
 	
 	# stop timer
 	timer(false)
 	
 	# display results
 	get_results()
-	
-	
 	
 	# unlock next level in the levels menu
 	if !godGunWasUsed:
@@ -325,12 +313,19 @@ func get_results():
 		levelSpeed = 0
 		speedCustomMessage.bbcode_text = "[center]next: " + str(bronzeSpeedStar)
 
+
 	if levelSpeed > 2:
 		$CanvasLayer/EndGameScreen/Gold2/Sprite.visible = true
+	else:
+		$CanvasLayer/EndGameScreen/Gold2/Sprite.visible = false
 	if levelSpeed > 1:
 		$CanvasLayer/EndGameScreen/Silver2/Sprite.visible = true
+	else:
+		$CanvasLayer/EndGameScreen/Silver2/Sprite.visible = false
 	if levelSpeed > 0:
 		$CanvasLayer/EndGameScreen/Bronze2/Sprite.visible = true
+	else:
+		$CanvasLayer/EndGameScreen/Bronze2/Sprite.visible = false
 	
 	if bulletsFired <= goldSharpStar:
 		levelSharp = 3
@@ -350,10 +345,16 @@ func get_results():
 
 	if levelSharp > 2:
 		$CanvasLayer/EndGameScreen/Gold/Sprite.visible = true
+	else:
+		$CanvasLayer/EndGameScreen/Gold/Sprite.visible = false
 	if levelSharp > 1:
 		$CanvasLayer/EndGameScreen/Silver/Sprite.visible = true
+	else:
+		$CanvasLayer/EndGameScreen/Silver/Sprite.visible = false
 	if levelSharp > 0:
 		$CanvasLayer/EndGameScreen/Bronze/Sprite.visible = true
+	else:
+		$CanvasLayer/EndGameScreen/Bronze/Sprite.visible = false
 
 func addOneBulletsFired():
 	if !levelIsFinished:

@@ -25,9 +25,7 @@ func _on_ButtonNav_mouse_exited():
 
 
 func _on_ButtonNav_pressed():
-	randomize()
-	$metalHit.pitch_scale = rand_range(0.85,1)
-	$metalHit.play()
+	GlobalScene.playSound("metalHit")
 	
 	if isClickable:
 		GlobalScene.playSound("shot")
@@ -35,7 +33,7 @@ func _on_ButtonNav_pressed():
 		if needPlayerName:
 			
 			if Global.playerName == "" || Global.playerName == null:
-				get_tree().change_scene("res://UI/PlayerNameScreen.tscn")
+				get_tree().change_scene("res://UI/ChooseName/PlayerNameScreen.tscn")
 				Global.sceneAfterNaming = lienVers
 			else:
 				get_tree().change_scene_to(lienVers)

@@ -1,0 +1,403 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://UI/Howto/HowToScreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/UI/titleBG2testhowtoBG.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/player/start1.png" type="Texture" id=3]
+[ext_resource path="res://Levels/Props/Target.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Themes/UI.tres" type="Theme" id=5]
+[ext_resource path="res://assets/sprites/UI/targetOutline.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/player/target.png" type="Texture" id=7]
+[ext_resource path="res://UI/Howto/PlayerForHowTo.tscn" type="PackedScene" id=8]
+[ext_resource path="res://UI/Howto/PlayerForHowTo.gd" type="Script" id=9]
+[ext_resource path="res://UI/Howto/Targethowto.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/UI/titleBG2testhowto.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/UI/bulletempty.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=14]
+[ext_resource path="res://UI/inGame/cylinder.gd" type="Script" id=15]
+[ext_resource path="res://Themes/ui16real.tres" type="Theme" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="Curve" id=7]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, -360 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.421788, 0.815642 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 1, 1, 1, 1, 0.972656, 0, 1 )
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "reload"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 360, -0.25, 0, 1.4, -28.2307, 0, -1.4, 12.9939, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "shot"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 1.4, -28.2307, 60, -1, 12.994, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+
+[node name="HowToScreen" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 240.0 ],
+"_edit_vertical_guides_": [ 320.0 ]
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2( 4, 4 )
+
+[node name="TextureRect" type="TextureRect" parent="Node2D"]
+margin_right = 160.0
+margin_bottom = 120.0
+texture = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 160.0
+margin_bottom = 119.0
+color = Color( 1, 1, 1, 0.219608 )
+
+[node name="ColorRect2" type="ColorRect" parent="Node2D"]
+margin_left = 80.0
+margin_top = 96.0
+margin_right = 99.0
+margin_bottom = 98.0
+rect_rotation = 90.0
+color = Color( 0.309804, 0.262745, 0.180392, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="Node2D"]
+margin_left = 61.5
+margin_top = 96.0
+margin_right = 80.5
+margin_bottom = 98.0
+rect_rotation = 90.0
+color = Color( 0.309804, 0.262745, 0.180392, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="Node2D"]
+margin_left = 98.5
+margin_top = 96.0
+margin_right = 117.5
+margin_bottom = 98.0
+rect_rotation = 90.0
+color = Color( 0.309804, 0.262745, 0.180392, 1 )
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+position = Vector2( 80, 60 )
+texture = ExtResource( 11 )
+
+[node name="fulleRunTitle" type="Label" parent="."]
+margin_left = 98.0
+margin_top = 298.0
+margin_right = 522.0
+margin_bottom = 378.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -8
+text = "shot all the targets
+ to finish the level
+"
+align = 1
+
+[node name="bulletsTitle" type="Label" parent="."]
+visible = false
+margin_left = 214.0
+margin_top = 72.0
+margin_right = 426.0
+margin_bottom = 131.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -5
+text = "Aim with the mouse
+Left click to Shoot"
+align = 1
+
+[node name="bulletsTitle2" type="Label" parent="."]
+margin_left = 74.0
+margin_top = 99.0
+margin_right = 286.0
+margin_bottom = 239.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -5
+text = "Controls:
+Aim with the mouse
+Left click to Shoot
+R - Retry
+Esc / P - Pause"
+
+[node name="SpeedRunTitle" type="Label" parent="."]
+margin_left = 445.0
+margin_top = 149.0
+margin_right = 681.0
+margin_bottom = 208.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -8
+text = "Move wIth 
+The REcoIl"
+
+[node name="SpeedRunTitle2" type="Label" parent="."]
+margin_left = 445.0
+margin_top = 201.0
+margin_right = 681.0
+margin_bottom = 281.0
+theme = ExtResource( 16 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Every 6 shots, the gun 
+reloads automatically"
+
+[node name="backMain" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 566.0
+margin_top = 412.0
+margin_right = 608.0
+margin_bottom = 454.0
+rect_pivot_offset = Vector2( -82, -254 )
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0.309804, 0.262745, 0.180392, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+align = 2
+
+[node name="Label" type="Label" parent="backMain"]
+margin_left = -212.0
+margin_top = 6.0
+margin_right = -4.0
+margin_bottom = 38.0
+text = "Main menu"
+align = 2
+
+[node name="Sprite" type="Sprite" parent="backMain"]
+visible = false
+position = Vector2( 21, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="backMain"]
+position = Vector2( 21, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 7 )
+
+[node name="ColorRect" type="ColorRect" parent="backMain"]
+margin_left = 37.0
+margin_top = 19.0
+margin_right = 74.0
+margin_bottom = 26.0
+color = Color( 0.309804, 0.262745, 0.180392, 1 )
+
+[node name="Start1" type="Sprite" parent="."]
+position = Vector2( 385, 189 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="howToPlayr" parent="." instance=ExtResource( 8 )]
+position = Vector2( 385, 189 )
+script = ExtResource( 9 )
+
+[node name="Timer2" type="Timer" parent="howToPlayr"]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Walls" type="StaticBody2D" parent="Walls"]
+collision_layer = 257
+collision_mask = 257
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
+position = Vector2( 33, 0 )
+polygon = PoolVector2Array( -355, 515, 50, 449, 241, 448, 322, 426, 367, 417, 405, 402, 486, 397, 513, 382, 534, 365, 557, 323, 574, 255, 577, 39, 36, 33, 15, 55, 0, 95, 3, 425, 37, 448, -10, 484, -34, 509, -81, 471, -165, 203, -289, -504, 1628, -522, 1783, 1020, 12, 1088 )
+
+[node name="Targets" type="Node2D" parent="."]
+position = Vector2( 0, 1 )
+
+[node name="Target" parent="Targets" instance=ExtResource( 4 )]
+position = Vector2( 244, 379 )
+script = ExtResource( 10 )
+
+[node name="Target2" parent="Targets" instance=ExtResource( 4 )]
+position = Vector2( 392, 379 )
+script = ExtResource( 10 )
+
+[node name="Target3" parent="Targets" instance=ExtResource( 4 )]
+position = Vector2( 316, 379 )
+script = ExtResource( 10 )
+
+[node name="howtoParticles" type="CPUParticles2D" parent="."]
+position = Vector2( 245, 379 )
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 273.4
+initial_velocity_random = 0.25
+angle_curve = SubResource( 7 )
+scale_amount = 16.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 9 )
+
+[node name="howtoParticles2" type="CPUParticles2D" parent="."]
+position = Vector2( 316, 379 )
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 273.4
+initial_velocity_random = 0.25
+angle_curve = SubResource( 7 )
+scale_amount = 16.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 9 )
+
+[node name="howtoParticles3" type="CPUParticles2D" parent="."]
+position = Vector2( 392, 380 )
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 273.4
+initial_velocity_random = 0.25
+angle_curve = SubResource( 7 )
+scale_amount = 16.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 8 )
+color_ramp = SubResource( 9 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="cylinder" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 44, 44 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 14 )
+script = ExtResource( 15 )
+
+[node name="Bullets" type="Node2D" parent="CanvasLayer/cylinder"]
+
+[node name="empty" type="Node2D" parent="CanvasLayer/cylinder/Bullets"]
+
+[node name="1" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 0, -6 )
+texture = ExtResource( 12 )
+
+[node name="2" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( -5, -3 )
+texture = ExtResource( 12 )
+
+[node name="3" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( -5, 3 )
+texture = ExtResource( 12 )
+
+[node name="4" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 0, 6 )
+texture = ExtResource( 12 )
+
+[node name="5" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 5, 3 )
+texture = ExtResource( 12 )
+
+[node name="6" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 5, -3 )
+texture = ExtResource( 12 )
+
+[node name="bullet" type="Node2D" parent="CanvasLayer/cylinder/Bullets"]
+
+[node name="1" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 0, -6 )
+texture = ExtResource( 13 )
+
+[node name="2" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( -5, -3 )
+texture = ExtResource( 13 )
+
+[node name="3" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( -5, 3 )
+texture = ExtResource( 13 )
+
+[node name="4" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 0, 6 )
+texture = ExtResource( 13 )
+
+[node name="5" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 5, 3 )
+texture = ExtResource( 13 )
+
+[node name="6" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 5, -3 )
+texture = ExtResource( 13 )
+
+[node name="AnimCylinder" type="AnimationPlayer" parent="CanvasLayer/cylinder/Bullets"]
+anims/RESET = SubResource( 10 )
+anims/reload = SubResource( 11 )
+anims/shot = SubResource( 12 )
+
+[connection signal="mouse_entered" from="backMain" to="." method="_on_backMain_mouse_entered"]
+[connection signal="mouse_exited" from="backMain" to="." method="_on_backMain_mouse_exited"]
+[connection signal="pressed" from="backMain" to="." method="_on_backMain_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="howToPlayr"]

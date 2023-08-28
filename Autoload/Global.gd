@@ -230,7 +230,7 @@ func cheat_entry(key: int):
 			save[0][7][7] = true
 			save[0][8][7] = true
 			save[0][9][7] = true
-			GlobalScene.get_node("unlocked").play()
+			GlobalScene.playSound('unlocked')
 			
 		1:  # "CHEAT2"
 			if godGun:

@@ -1,9 +1,9 @@
 extends RigidBody2D
 
-var Smoketrail = preload("res://Player/smokeTrail.tscn")
-var bulletParticle = preload("res://Player/bulletParticles.tscn")
+var Smoketrail = preload("res://Player/Effects/smokeTrail.tscn")
+var bulletParticle = preload("res://Player/Effects/bulletParticles.tscn")
 var AimCastRicochet = preload("res://Player/AimCastRicochet.tscn")
-var ricochetParticles = preload("res://Effects/ricochetParticles.tscn")
+var ricochetParticles = preload("res://Player/Effects/ricochetParticles.tscn")
 
 onready var AimCast = $AimCast
 onready var timer = $Timer
@@ -28,7 +28,7 @@ var is_reloading = false
 var onOil
 
 var ricochetVisible = false
-
+var finishLevelNextFrame = false
 
 func _ready():
 	self.gravity_scale = 0
@@ -69,9 +69,14 @@ func _process(delta):
 		# Si on est en train de reload c'est non
 		if is_reloading: return true
 		
+		if finishLevelNextFrame: return true
+		if get_parent().get_parent().levelIsFinished: finishLevelNextFrame = true
+		
+		
 		# On enlève une balle du cylindre
 		ballUsed += 1
 		get_node("../..").addOneBulletsFired() # Bullets fired for the level
+		
 		
 		# Sinon on tire
 		$shot.play()

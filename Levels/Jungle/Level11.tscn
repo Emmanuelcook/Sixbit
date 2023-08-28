@@ -1,0 +1,354 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Effects/bulletParticles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=3]
+[ext_resource path="res://Levels/Props/Target.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Cam/Anchor.gd" type="Script" id=5]
+[ext_resource path="res://assets/sprites/levels/jungle/level11.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/levels/jungle/BG.png" type="Texture" id=7]
+[ext_resource path="res://Player/Cam/Cam.gd" type="Script" id=8]
+[ext_resource path="res://Themes/UI16.tres" type="Theme" id=9]
+[ext_resource path="res://assets/sprites/player/start1.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/UI/bulletempty.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=13]
+[ext_resource path="res://UI/inGame/cylinder.gd" type="Script" id=14]
+[ext_resource path="res://Player/Effects/godGunBulletParticles.tscn" type="PackedScene" id=16]
+[ext_resource path="res://UI/inGame/EndGameScreen.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Themes/ui16real.tres" type="Theme" id=20]
+[ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=21]
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 20, 116.5 )
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "reload"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 360, -0.25, 0, 1.4, -28.2307, 0, -1.4, 12.9939, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "shot"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 1.4, -28.2307, 60, -1, 12.994, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+
+[sub_resource type="DynamicFont" id=15]
+size = 64
+font_data = ExtResource( 21 )
+
+[node name="Level 11" type="Node2D"]
+script = ExtResource( 3 )
+bronzeSpeedStar = 2
+silverSpeedStar = 1
+bronzeSharpStar = 3
+silverSharpStar = 2
+goldSharpStar = 1
+
+[node name="colorAround" type="Node2D" parent="."]
+
+[node name="Top" type="ColorRect" parent="colorAround"]
+margin_left = -82.0
+margin_top = -320.0
+margin_right = 699.0
+margin_bottom = 3.0
+color = Color( 0.156863, 0.184314, 0.180392, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Right" type="ColorRect" parent="colorAround"]
+margin_left = 467.0
+margin_top = -252.0
+margin_right = 883.0
+margin_bottom = 866.0
+color = Color( 0.156863, 0.184314, 0.180392, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Bottom" type="ColorRect" parent="colorAround"]
+margin_left = -158.0
+margin_top = 478.0
+margin_right = 842.0
+margin_bottom = 720.0
+color = Color( 0.156863, 0.184314, 0.180392, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="ColorRect" parent="colorAround"]
+margin_left = -403.0
+margin_top = -302.0
+margin_right = 13.0
+margin_bottom = 816.0
+color = Color( 0.156863, 0.184314, 0.180392, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 132.0
+margin_bottom = 126.0
+rect_scale = Vector2( 4, 4 )
+texture = ExtResource( 6 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.7, 0.7 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 356, 288 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 7 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Walls" type="StaticBody2D" parent="Walls"]
+collision_layer = 257
+collision_mask = 257
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
+position = Vector2( 33, 0 )
+polygon = PoolVector2Array( 415, 244, 415, 325, 412, 370, 415, 424, 410, 429, 390, 431, 381, 439, 370, 442, 326, 441, 326, 431, 318, 428, 302, 425, 269, 425, 232, 443, 215, 447, 195, 449, 177, 445, 156, 442, 126, 436, 114, 415, 113, 402, 108, 388, 92, 373, 76, 361, 58, 359, 47, 354, 37, 328, 31, 315, 21, 306, 20, 300, 23, 218, 17, 186, 10, 162, -1, 146, -2, 86, 14, 63, 19, 46, 48, 36, 145, 32, 248, 36, 304, 35, 352, 31, 387, 32, 401, 48, 412, 48, 413, 54, 414, 145, 374, 158, 340, 166, 310, 175, 289, 198, 281, 209, 278, 218, 283, 227, 295, 228, 304, 225, 330, 224, 372, 224, 381, 221, 395, 225, 408, 235, 566, 201, 569, -104, -129, -104, -137, 532, -120, 579, 576, 572, 602, 226, 581, 209, 396, 212 )
+
+[node name="Ricochet" type="StaticBody2D" parent="Walls" groups=["ricochet"]]
+collision_layer = 257
+collision_mask = 257
+
+[node name="ricochetFlash" type="Polygon2D" parent="Walls/Ricochet"]
+visible = false
+polygon = PoolVector2Array( 76, 152, 80, 152, 80, 148, 112, 148, 112, 152, 116, 152, 116, 364, 112, 364, 112, 368, 100, 368, 100, 372, 88, 372, 88, 364, 84, 364, 84, 360, 80, 360, 80, 352, 76, 352 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Ricochet"]
+position = Vector2( 96, 264.5 )
+shape = SubResource( 16 )
+
+[node name="Targets" type="Node2D" parent="."]
+
+[node name="Target" parent="Targets" instance=ExtResource( 4 )]
+position = Vector2( 388, 128 )
+
+[node name="Target2" parent="Targets" instance=ExtResource( 4 )]
+position = Vector2( 384, 404 )
+
+[node name="PlayerRoot" type="Node2D" parent="."]
+position = Vector2( 135, -151 )
+
+[node name="Player" parent="PlayerRoot" instance=ExtResource( 1 )]
+position = Vector2( 242, 461 )
+
+[node name="Anchor" type="Position2D" parent="PlayerRoot"]
+position = Vector2( 243, 464 )
+script = ExtResource( 5 )
+
+[node name="Cam" type="Camera2D" parent="PlayerRoot/Anchor"]
+current = true
+limit_left = -28
+limit_top = -17
+limit_right = 564
+limit_bottom = 486
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+script = ExtResource( 8 )
+
+[node name="Start1" type="Sprite" parent="PlayerRoot"]
+position = Vector2( 243, 466 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 10 )
+
+[node name="Start2" type="RichTextLabel" parent="PlayerRoot"]
+visible = false
+margin_left = 182.0
+margin_top = 399.0
+margin_right = 304.0
+margin_bottom = 431.0
+rect_pivot_offset = Vector2( 93, 26 )
+theme = ExtResource( 20 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_constants/line_separation = -3
+bbcode_enabled = true
+
+[node name="bullet" parent="." instance=ExtResource( 2 )]
+
+[node name="godGunBullet" parent="." instance=ExtResource( 16 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="cylinder" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 44, 44 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 13 )
+script = ExtResource( 14 )
+
+[node name="Bullets" type="Node2D" parent="CanvasLayer/cylinder"]
+
+[node name="empty" type="Node2D" parent="CanvasLayer/cylinder/Bullets"]
+
+[node name="1" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 0, -6 )
+texture = ExtResource( 11 )
+
+[node name="2" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( -5, -3 )
+texture = ExtResource( 11 )
+
+[node name="3" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( -5, 3 )
+texture = ExtResource( 11 )
+
+[node name="4" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 0, 6 )
+texture = ExtResource( 11 )
+
+[node name="5" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 5, 3 )
+texture = ExtResource( 11 )
+
+[node name="6" type="Sprite" parent="CanvasLayer/cylinder/Bullets/empty"]
+position = Vector2( 5, -3 )
+texture = ExtResource( 11 )
+
+[node name="bullet" type="Node2D" parent="CanvasLayer/cylinder/Bullets"]
+
+[node name="1" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 0, -6 )
+texture = ExtResource( 12 )
+
+[node name="2" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( -5, -3 )
+texture = ExtResource( 12 )
+
+[node name="3" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( -5, 3 )
+texture = ExtResource( 12 )
+
+[node name="4" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 0, 6 )
+texture = ExtResource( 12 )
+
+[node name="5" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 5, 3 )
+texture = ExtResource( 12 )
+
+[node name="6" type="Sprite" parent="CanvasLayer/cylinder/Bullets/bullet"]
+position = Vector2( 5, -3 )
+texture = ExtResource( 12 )
+
+[node name="AnimCylinder" type="AnimationPlayer" parent="CanvasLayer/cylinder/Bullets"]
+anims/RESET = SubResource( 1 )
+anims/reload = SubResource( 2 )
+anims/shot = SubResource( 3 )
+
+[node name="Timer" type="Node2D" parent="CanvasLayer"]
+position = Vector2( 235, 401 )
+z_index = 12
+
+[node name="gameTime" type="Label" parent="CanvasLayer/Timer"]
+margin_left = 282.0
+margin_top = 17.0
+margin_right = 391.0
+margin_bottom = 68.0
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 15 )
+
+[node name="EndGameScreen" parent="CanvasLayer" instance=ExtResource( 17 )]
+
+[node name="BG scoreboard" parent="CanvasLayer/EndGameScreen" index="1"]
+visible = false
+
+[node name="BG shots" parent="CanvasLayer/EndGameScreen" index="2"]
+margin_left = -79.0
+margin_right = 29.0
+
+[node name="BG Time2" parent="CanvasLayer/EndGameScreen" index="3"]
+margin_left = -79.0
+margin_right = 29.0
+
+[node name="Bullets shot" parent="CanvasLayer/EndGameScreen" index="4"]
+margin_left = -56.5
+margin_right = -26.5
+
+[node name="Bullets shot2" parent="CanvasLayer/EndGameScreen" index="5"]
+visible = false
+
+[node name="sharp_results" parent="CanvasLayer/EndGameScreen" index="6"]
+margin_left = -79.0
+margin_right = 29.0
+
+[node name="sharp_nextOrBest" parent="CanvasLayer/EndGameScreen" index="7"]
+margin_left = -79.0
+margin_right = 29.0
+
+[node name="Bronze2" parent="CanvasLayer/EndGameScreen" index="8"]
+position = Vector2( -16.5, 116 )
+
+[node name="Silver2" parent="CanvasLayer/EndGameScreen" index="9"]
+position = Vector2( -6.6667, 116 )
+
+[node name="Gold2" parent="CanvasLayer/EndGameScreen" index="10"]
+position = Vector2( 3.1667, 116 )
+
+[node name="Bronze" parent="CanvasLayer/EndGameScreen" index="11"]
+position = Vector2( -16.5, 60.5 )
+
+[node name="Silver" parent="CanvasLayer/EndGameScreen" index="12"]
+position = Vector2( -6.6667, 60.5 )
+
+[node name="Gold" parent="CanvasLayer/EndGameScreen" index="13"]
+position = Vector2( 3.1667, 60.5 )
+
+[node name="speed" parent="CanvasLayer/EndGameScreen" index="14"]
+margin_left = -53.5
+margin_right = -26.5
+
+[node name="speed_results" parent="CanvasLayer/EndGameScreen" index="15"]
+margin_left = -79.0
+margin_right = 29.0
+
+[node name="speed_nextOrBest" parent="CanvasLayer/EndGameScreen" index="16"]
+margin_left = -79.0
+margin_right = 29.0
+
+[node name="Rank" parent="CanvasLayer/EndGameScreen" index="18"]
+visible = false
+
+[node name="Name" parent="CanvasLayer/EndGameScreen" index="19"]
+visible = false
+
+[node name="Time" parent="CanvasLayer/EndGameScreen" index="20"]
+visible = false
+
+[editable path="CanvasLayer/EndGameScreen"]

@@ -16,12 +16,12 @@ bus = "Music"
 
 [node name="shot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -6.0
+volume_db = -10.333
 bus = "SFX"
 
 [node name="metalHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -6.0
+volume_db = -10.952
 bus = "SFX"
 
 [node name="unlocked" type="AudioStreamPlayer" parent="."]
