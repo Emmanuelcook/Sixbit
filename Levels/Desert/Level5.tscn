@@ -173,23 +173,15 @@ polygon = PoolVector2Array( 525.2, 433, 486.2, 452, 455.2, 460, 433.2, 463, 409.
 
 [node name="Target" parent="Targets" instance=ExtResource( 15 )]
 position = Vector2( 452, 376 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target2" parent="Targets" instance=ExtResource( 15 )]
 position = Vector2( 452, 616 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target4" parent="Targets" instance=ExtResource( 15 )]
 position = Vector2( 96, 432 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target5" parent="Targets" instance=ExtResource( 15 )]
 position = Vector2( 812, 781 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="PlayerRoot" type="Node2D" parent="."]
 position = Vector2( 374, -215 )

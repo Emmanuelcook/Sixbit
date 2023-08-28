@@ -65,11 +65,8 @@ tracks/0/keys = {
 size = 64
 font_data = ExtResource( 21 )
 
-[node name="Level 11" type="Node2D"]
+[node name="Level 12" type="Node2D"]
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 545.0 ]
-}
 bronzeSpeedStar = 2
 silverSpeedStar = 1
 bronzeSharpStar = 3
@@ -120,6 +117,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 margin_right = 132.0
 margin_bottom = 126.0
 rect_scale = Vector2( 4, 4 )
@@ -148,29 +146,29 @@ polygon = PoolVector2Array( -1496, -1054, -1477, 1249, 2267, 1520, 2000, -1101, 
 [node name="Targets" type="Node2D" parent="."]
 
 [node name="Target" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 565, 434 )
-
-[node name="Target2" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 132, 72 )
+position = Vector2( 128, 361 )
 
 [node name="Ricochets" type="Node2D" parent="."]
 position = Vector2( 576, 419 )
 rotation = 1.5708
 
 [node name="Ricochet" parent="Ricochets" instance=ExtResource( 15 )]
-position = Vector2( -118.001, -207 )
+position = Vector2( -188.999, 305.001 )
+rotation = 0.0
 
-[node name="Sprite" parent="Ricochets/Ricochet" index="0"]
-visible = false
+[node name="Ricochet2" parent="Ricochets" instance=ExtResource( 15 )]
+position = Vector2( -352.999, 177.001 )
+rotation = 0.0
 
-[node name="CollisionShape2D" parent="Ricochets/Ricochet" index="1"]
-position = Vector2( 0, -3.05176e-05 )
+[node name="Ricochet4" parent="Ricochets" instance=ExtResource( 15 )]
+position = Vector2( -8.99945, 152 )
+rotation = 0.0
 
-[node name="ricochetFlash" parent="Ricochets/Ricochet" index="2"]
-polygon = PoolVector2Array( 76, 197, 78.9998, 197, 78.9997, 189, 82.9997, 189, 82.9997, 185, 86.9997, 185, 86.9997, 181, 98.9997, 181, 98.9997, 185, 116, 185, 116, 364, 116, 384, 112, 384, 112, 388, 80, 388, 80, 384, 76, 384, 76, 352 )
+[node name="Ricochet3" parent="Ricochets" instance=ExtResource( 15 )]
+position = Vector2( -151, 13.0005 )
 
 [node name="PlayerRoot" type="Node2D" parent="."]
-position = Vector2( 321, -283 )
+position = Vector2( -122, -348 )
 
 [node name="Player" parent="PlayerRoot" instance=ExtResource( 1 )]
 position = Vector2( 242, 461 )
@@ -182,6 +180,7 @@ script = ExtResource( 5 )
 [node name="Cam" type="Camera2D" parent="PlayerRoot/Anchor"]
 current = true
 zoom = Vector2( 1.05, 1.05 )
+limit_left = 0
 limit_top = 0
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -355,5 +354,4 @@ visible = false
 [node name="Time" parent="CanvasLayer/EndGameScreen" index="20"]
 visible = false
 
-[editable path="Ricochets/Ricochet"]
 [editable path="CanvasLayer/EndGameScreen"]

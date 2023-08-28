@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/levels/props/ricochet.png" type="Texture" id=1]
+[ext_resource path="res://assets/sounds/targetshot2.wav" type="AudioStream" id=2]
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 20, 120 )
+
+[node name="Ricochet" type="StaticBody2D" groups=["ricochet"]]
+position = Vector2( 576, 419 )
+rotation = 1.5708
+collision_layer = 257
+collision_mask = 257
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 3.05176e-05, -3.05176e-05 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -3.05176e-05 )
+shape = SubResource( 16 )
+
+[node name="ricochetFlash" type="Polygon2D" parent="."]
+visible = false
+position = Vector2( -96, -268 )
+polygon = PoolVector2Array( 76, 152, 80, 152, 80, 148, 112, 148, 112, 152, 116, 152, 116, 364, 116, 384, 112, 384, 112, 388, 80, 388, 80, 384, 76, 384, 76, 352 )
+
+[node name="metalHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -6.0

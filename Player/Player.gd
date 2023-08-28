@@ -7,9 +7,10 @@ var ricochetParticles = preload("res://Player/Effects/ricochetParticles.tscn")
 
 onready var AimCast = $AimCast
 onready var timer = $Timer
-onready var cylinder = get_node("../../CanvasLayer/cylinder")
-onready var bullet = get_node("../../bullet")
-onready var godGunBullet = get_node("../../godGunBullet")
+onready var level = self.get_parent().get_parent()
+onready var cylinder = level.get_node("CanvasLayer/cylinder")
+onready var bullet = level.get_node("bullet")
+onready var godGunBullet = level.get_node("godGunBullet")
 export var godGunFireRate = 5
 var godGunCanShoot = true
 var godGunActivated = false
@@ -41,8 +42,8 @@ func _process(delta):
 		# ici il faut faire plus tous les ricochets se desactive ou quoi
 		# ----------------------------------
 		# ATTENTION
-		get_parent().get_parent().get_node("Walls/Ricochet/ricochetFlash").visible = false
-		ricochetVisible = false
+		for ricochet in level.get_node("Ricochets").get_children():
+			ricochet.get_node('ricochetFlash').visible = false
 	
 	if Global.godGun:
 		godgun()
@@ -106,23 +107,15 @@ func _process(delta):
 		# On check avec quoi on collide, si c'est une target, on le got shot
 		if AimCast.is_colliding():
 			if AimCast.get_collider().is_in_group("target"):
-				#Info about first shot
-				var BulletStart = AimCast.global_transform.origin
-				var collisionPoint = AimCast.get_collision_point()
-				var incoming_direction = collisionPoint - BulletStart
 				
-				var eclat = ricochetParticles.instance()
-				get_parent().get_parent().add_child(eclat)
-				eclat.global_position = collisionPoint
-				eclat.rotation = (collisionPoint - BulletStart).angle()
-				eclat.emitting = true
-				
+				eclat(AimCast, AimCast.global_transform.origin, AimCast.get_collision_point())
 				AimCast.get_collider().got_shot()
 		
 		if AimCast.is_colliding():
 			if AimCast.get_collider().is_in_group("ricochet"):
 				var collider = AimCast.get_collider()
-				ricochet(collider)
+				eclat(AimCast, AimCast.global_transform.origin, AimCast.get_collision_point())
+				ricochet(AimCast, collider)
 				
 				
 		#Screen shake
@@ -172,22 +165,24 @@ func _process(delta):
 		if Global.godGun:
 			godGunBullet.emit(false) 
 		
-
-func ricochet(collider):
-	GlobalScene.playSound("metalHit")
-
-	#Info about first shot
-	var BulletStart = AimCast.global_transform.origin
-	var collisionPoint = AimCast.get_collision_point()
-	var normal = AimCast.get_collision_normal()
-	var incoming_direction = collisionPoint - BulletStart
-	
+func eclat(raycast, startingPoint, collisionPoint):
 	var eclat = ricochetParticles.instance()
 	get_parent().get_parent().add_child(eclat)
 	eclat.global_position = collisionPoint
-	eclat.rotation = (collisionPoint - BulletStart).angle()
+	eclat.rotation = (collisionPoint - startingPoint).angle()
 	eclat.emitting = true
+	
+func ricochet(raycast, collider):
+	collider.get_node("metalHit").play()
+
+	#Info about first shot
+	var BulletStart = raycast.global_transform.origin
+	var collisionPoint = raycast.get_collision_point()
+	var normal = raycast.get_collision_normal()
+	var incoming_direction = collisionPoint - BulletStart
+
 	collider.get_node("ricochetFlash").visible = true
+
 	ricochetVisible = true
 	
 	# Info about ricochet
@@ -195,8 +190,8 @@ func ricochet(collider):
 	var outgoing_length = 50.0 # Arbitrary
 	
 	# Decalage de 1 pour que le raycast ne se prenne pas uen fois sur deux dans le collider ricochet
-	outgoing_direction.clamped(1)
-	var newPoint = collisionPoint + outgoing_direction
+
+	var newPoint = collisionPoint + outgoing_direction.clamped(1)
 
 	# Instance a new raycast
 	var newCast = AimCastRicochet.instance()
@@ -214,9 +209,19 @@ func ricochet(collider):
 		
 		if newCast.get_collider().is_in_group("target"):
 			yield(get_tree().create_timer(0.1), "timeout")
+			eclat(newCast, newCast.global_transform.origin, newCast.get_collision_point())
 			newCast.get_collider().got_shot()
+		
+		if newCast.is_colliding():
+			if newCast.get_collider().is_in_group("ricochet"):
+				yield(get_tree().create_timer(0.1), "timeout")
+				
+				var collider2 = newCast.get_collider()
+				eclat(newCast, newCast.global_transform.origin, newCast.get_collision_point())
+				ricochet(newCast, collider2)
 
-	draw_ricochet(collisionPoint, ricochetCollider)
+	draw_ricochet(newPoint, ricochetCollider)
+#	get_tree().paused = true
 	newCast.queue_free()
 
 	
