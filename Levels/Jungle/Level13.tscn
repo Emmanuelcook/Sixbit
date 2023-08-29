@@ -5,7 +5,7 @@
 [ext_resource path="res://Levels/Level.gd" type="Script" id=3]
 [ext_resource path="res://Levels/Props/Target.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Cam/Anchor.gd" type="Script" id=5]
-[ext_resource path="res://assets/sprites/levels/jungle/level11.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/levels/jungle/level13.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/levels/jungle/BG.png" type="Texture" id=7]
 [ext_resource path="res://Player/Cam/Cam.gd" type="Script" id=8]
 [ext_resource path="res://Themes/UI16.tres" type="Theme" id=9]
@@ -77,12 +77,11 @@ silverSharpStar = 2
 goldSharpStar = 1
 
 [node name="colorAround" type="Node2D" parent="."]
-visible = false
 
 [node name="Top" type="ColorRect" parent="colorAround"]
 margin_left = -82.0
 margin_top = -320.0
-margin_right = 699.0
+margin_right = 2055.0
 margin_bottom = 3.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
@@ -90,9 +89,9 @@ __meta__ = {
 }
 
 [node name="Right" type="ColorRect" parent="colorAround"]
-margin_left = 467.0
+margin_left = 1916.0
 margin_top = -252.0
-margin_right = 883.0
+margin_right = 2332.0
 margin_bottom = 866.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
@@ -101,9 +100,9 @@ __meta__ = {
 
 [node name="Bottom" type="ColorRect" parent="colorAround"]
 margin_left = -158.0
-margin_top = 478.0
-margin_right = 842.0
-margin_bottom = 720.0
+margin_top = 632.0
+margin_right = 2074.0
+margin_bottom = 940.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -120,7 +119,6 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 margin_right = 132.0
 margin_bottom = 126.0
 rect_scale = Vector2( 4, 4 )
@@ -139,7 +137,7 @@ texture = ExtResource( 7 )
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="OIL" type="RigidBody2D" parent="Walls" groups=["slippy"]]
-position = Vector2( 14, 5 )
+position = Vector2( -36, 5 )
 mode = 1
 physics_material_override = SubResource( 16 )
 
@@ -159,26 +157,40 @@ polygon = PoolVector2Array( -1496, -1054, -1477, 1249, 2267, 1520, 2000, -1101, 
 [node name="Targets" type="Node2D" parent="."]
 
 [node name="Target1" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 323, 435 )
+position = Vector2( 273, 435 )
 
 [node name="Target2" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 1324, 481 )
+position = Vector2( 1274, 481 )
 
 [node name="Target3" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 1762, 220 )
+position = Vector2( 1712, 220 )
 
 [node name="Ricochets" type="Node2D" parent="."]
 position = Vector2( 576, 419 )
 rotation = 1.5708
 
 [node name="Ricochet1" parent="Ricochets" instance=ExtResource( 15 )]
-position = Vector2( -58.9984, 445 )
+position = Vector2( -58.9982, 495 )
+bipLeft = false
+
+[node name="Sprite" parent="Ricochets/Ricochet1" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="Ricochets/Ricochet1" index="1"]
+position = Vector2( 1, -3.05176e-05 )
+
+[node name="ricochetFlash" parent="Ricochets/Ricochet1" index="2"]
+position = Vector2( -95, -268 )
+polygon = PoolVector2Array( 76, 172, 80, 172, 79.9995, 176, 95.9995, 176, 95.9996, 180, 108, 180, 108, 192, 116, 192, 116, 364, 116, 384, 112, 384, 112, 388, 80, 388, 80, 384, 76, 384, 76, 352 )
+
+[node name="cligno" parent="Ricochets/Ricochet1" index="5"]
+position = Vector2( -3, 3.05176e-05 )
 
 [node name="Ricochet3" parent="Ricochets" instance=ExtResource( 15 )]
-position = Vector2( -17.0049, -1306 )
+position = Vector2( -17.0048, -1256 )
 
 [node name="PlayerRoot" type="Node2D" parent="."]
-position = Vector2( 321, 167 )
+position = Vector2( 271, 167 )
 
 [node name="Player" parent="PlayerRoot" instance=ExtResource( 1 )]
 position = Vector2( -1, 3 )
@@ -363,4 +375,5 @@ visible = false
 [node name="Time" parent="CanvasLayer/EndGameScreen" index="20"]
 visible = false
 
+[editable path="Ricochets/Ricochet1"]
 [editable path="CanvasLayer/EndGameScreen"]
