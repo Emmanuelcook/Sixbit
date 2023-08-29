@@ -77,12 +77,11 @@ silverSharpStar = 2
 goldSharpStar = 1
 
 [node name="colorAround" type="Node2D" parent="."]
-visible = false
 
 [node name="Top" type="ColorRect" parent="colorAround"]
-margin_left = -82.0
+margin_left = -9.0
 margin_top = -320.0
-margin_right = 699.0
+margin_right = 1087.0
 margin_bottom = 3.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
@@ -90,9 +89,9 @@ __meta__ = {
 }
 
 [node name="Right" type="ColorRect" parent="colorAround"]
-margin_left = 467.0
+margin_left = 946.0
 margin_top = -252.0
-margin_right = 883.0
+margin_right = 1362.0
 margin_bottom = 866.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
@@ -100,10 +99,10 @@ __meta__ = {
 }
 
 [node name="Bottom" type="ColorRect" parent="colorAround"]
-margin_left = -158.0
-margin_top = 478.0
-margin_right = 842.0
-margin_bottom = 720.0
+margin_left = -25.0
+margin_top = 537.0
+margin_right = 975.0
+margin_bottom = 779.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -136,6 +135,7 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
 
 [node name="Walls" type="Node2D" parent="."]
+visible = false
 
 [node name="Walls" type="StaticBody2D" parent="Walls"]
 collision_layer = 257
@@ -143,12 +143,12 @@ collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
 position = Vector2( 33, 0 )
-polygon = PoolVector2Array( -1496, -1054, -1477, 1249, 2267, 1520, 2000, -1101, -1391, -1097, -2576, -1706, 3380, -1789, 3482, 1945, -3211, 1856, -2404, -1732 )
+polygon = PoolVector2Array( 203, 372, 265, 372, 275, 366, 285, 343, 297, 330, 307, 325, 334, 324, 339, 320, 346, 313, 358, 313, 362, 308, 382, 309, 393, 316, 407, 308, 413, 297, 426, 294, 432, 284, 467, 284, 468, 281, 496, 282, 507, 284, 539, 284, 576, 280, 590, 273, 600, 268, 650, 268, 655, 273, 655, 279, 633, 299, 622, 300, 607, 316, 588, 323, 577, 328, 535, 328, 501, 336, 490, 359, 474, 378, 479, 445, 511, 460, 530, 469, 553, 475, 580, 477, 653, 477, 693, 453, 704, 445, 728, 417, 742, 400, 774, 370, 778, 354, 793, 341, 793, 249, 803, 198, 815, 181, 814, 121, 804, 96, 795, 81, 771, 68, 691, 67, 633, 49, 599, 38, 528, 34, 467, 33, 393, 31, 331, 36, 295, 44, 266, 68, 236, 90, 214, 114, 196, 126, 188, 127, 177, 121, 157, 90, 149, 69, 132, 51, 114, 43, 102, 40, 83, 39, 70, 50, 40, 83, 28, 115, 27, 201, 27, 268, 28, 290, 43, 304, 93, 316, 124, 336, 146, 353, 178, 368, 203, 372, 208, 639, -153, 628, -141, -232, 1023, -141, 1049, 641, 187, 656 )
 
 [node name="Targets" type="Node2D" parent="."]
 
 [node name="Target" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 565, 434 )
+position = Vector2( 568, 436 )
 
 [node name="Target2" parent="Targets" instance=ExtResource( 4 )]
 position = Vector2( 132, 72 )
@@ -158,13 +158,11 @@ position = Vector2( 576, 419 )
 rotation = 1.5708
 
 [node name="Ricochet" parent="Ricochets" instance=ExtResource( 15 )]
-position = Vector2( -118.001, -207 )
+position = Vector2( -119.001, -208 )
+bipLeft = false
 
 [node name="Sprite" parent="Ricochets/Ricochet" index="0"]
 visible = false
-
-[node name="CollisionShape2D" parent="Ricochets/Ricochet" index="1"]
-position = Vector2( 0, -3.05176e-05 )
 
 [node name="ricochetFlash" parent="Ricochets/Ricochet" index="2"]
 polygon = PoolVector2Array( 76, 197, 78.9998, 197, 78.9997, 189, 82.9997, 189, 82.9997, 185, 86.9997, 185, 86.9997, 181, 98.9997, 181, 98.9997, 185, 116, 185, 116, 364, 116, 384, 112, 384, 112, 388, 80, 388, 80, 384, 76, 384, 76, 352 )
@@ -174,6 +172,7 @@ position = Vector2( 321, -283 )
 
 [node name="Player" parent="PlayerRoot" instance=ExtResource( 1 )]
 position = Vector2( 242, 461 )
+collision_layer = 524801
 
 [node name="Anchor" type="Position2D" parent="PlayerRoot"]
 position = Vector2( 243, 464 )
