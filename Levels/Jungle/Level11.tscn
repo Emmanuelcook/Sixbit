@@ -68,13 +68,15 @@ font_data = ExtResource( 21 )
 [node name="Level 11" type="Node2D"]
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 545.0 ]
+"_edit_horizontal_guides_": [ 545.0 ],
+"_edit_vertical_guides_": [ 899.0 ]
 }
-bronzeSpeedStar = 2
-silverSpeedStar = 1
-bronzeSharpStar = 3
-silverSharpStar = 2
-goldSharpStar = 1
+bronzeSpeedStar = 3
+silverSpeedStar = 2
+goldSpeedStar = 1
+bronzeSharpStar = 4
+silverSharpStar = 3
+goldSharpStar = 2
 
 [node name="colorAround" type="Node2D" parent="."]
 
@@ -181,7 +183,10 @@ script = ExtResource( 5 )
 [node name="Cam" type="Camera2D" parent="PlayerRoot/Anchor"]
 current = true
 zoom = Vector2( 1.05, 1.05 )
+limit_left = 0
 limit_top = 0
+limit_right = 900
+limit_bottom = 580
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 script = ExtResource( 8 )

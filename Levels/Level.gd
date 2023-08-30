@@ -359,3 +359,4 @@ func get_results():
 func addOneBulletsFired():
 	if !levelIsFinished:
 		bulletsFired += 1
+

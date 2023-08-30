@@ -67,8 +67,12 @@ font_data = ExtResource( 21 )
 
 [node name="Level 12" type="Node2D"]
 script = ExtResource( 3 )
-bronzeSpeedStar = 2
-silverSpeedStar = 1
+__meta__ = {
+"_edit_vertical_guides_": [ 675.0 ]
+}
+bronzeSpeedStar = 3
+silverSpeedStar = 2
+goldSpeedStar = 1
 bronzeSharpStar = 3
 silverSharpStar = 2
 goldSharpStar = 1
@@ -236,6 +240,8 @@ current = true
 zoom = Vector2( 1.05, 1.05 )
 limit_left = 0
 limit_top = 0
+limit_right = 675
+limit_bottom = 505
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 script = ExtResource( 8 )
