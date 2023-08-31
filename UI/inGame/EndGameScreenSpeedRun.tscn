@@ -1,0 +1,467 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://assets/sprites/UI/bgScoreboard.png" type="Texture" id=4]
+[ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Themes/ui16real.tres" type="Theme" id=6]
+[ext_resource path="res://Themes/UI.tres" type="Theme" id=7]
+[ext_resource path="res://UI/inGame/EndGameScreenSpeedRun.gd" type="Script" id=8]
+[ext_resource path="res://assets/sprites/UI/bgTime.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/UI/bgShots.png" type="Texture" id=10]
+[ext_resource path="res://Themes/UI16.tres" type="Theme" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="DynamicFont" id=15]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[node name="EndGameScreen" type="Node2D"]
+pause_mode = 2
+position = Vector2( 366, 11 )
+scale = Vector2( 2, 2 )
+z_index = 30
+script = ExtResource( 8 )
+
+[node name="BG" type="Node2D" parent="."]
+
+[node name="BG" type="ColorRect" parent="BG"]
+margin_left = -182.0
+margin_top = -5.0
+margin_right = 138.0
+margin_bottom = 235.0
+rect_pivot_offset = Vector2( 527, 297.333 )
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="BG scoreboard2" type="TextureRect" parent="BG"]
+margin_left = -128.5
+margin_top = 86.5
+margin_right = -20.5
+margin_bottom = 194.5
+rect_pivot_offset = Vector2( -46, 31 )
+texture = ExtResource( 4 )
+
+[node name="BG scoreboard" type="TextureRect" parent="BG"]
+margin_left = -128.5
+margin_top = 34.5
+margin_right = -20.5
+margin_bottom = 142.5
+rect_pivot_offset = Vector2( -46, 31 )
+texture = ExtResource( 4 )
+
+[node name="fullBad" type="Node2D" parent="BG"]
+position = Vector2( 5, -13.5 )
+
+[node name="BG2" type="TextureRect" parent="BG/fullBad"]
+margin_left = -18.5
+margin_top = 48.0
+margin_right = 89.5
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( -46, 31 )
+texture = ExtResource( 9 )
+
+[node name="fullGood" type="Node2D" parent="BG"]
+position = Vector2( 5, -13.5 )
+
+[node name="BG2" type="TextureRect" parent="BG/fullGood"]
+margin_left = -18.5
+margin_top = 48.0
+margin_right = 89.5
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( -46, 31 )
+texture = ExtResource( 10 )
+
+[node name="levelBad" type="Node2D" parent="BG"]
+visible = false
+
+[node name="BG" type="TextureRect" parent="BG/levelBad"]
+margin_left = -130.5
+margin_top = 48.0
+margin_right = -22.5
+margin_bottom = 100.0
+rect_scale = Vector2( 0.8, 1 )
+texture = ExtResource( 9 )
+
+[node name="levelGood" type="Node2D" parent="BG"]
+visible = false
+
+[node name="BG" type="TextureRect" parent="BG/levelGood"]
+margin_left = -130.5
+margin_top = 48.0
+margin_right = -22.5
+margin_bottom = 100.0
+rect_scale = Vector2( 0.8, 1 )
+texture = ExtResource( 10 )
+
+[node name="sharpTitle" type="RichTextLabel" parent="."]
+visible = false
+margin_left = -131.0
+margin_top = 47.0
+margin_right = -45.0
+margin_bottom = 60.0
+theme = ExtResource( 6 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_constants/line_separation = -5
+bbcode_enabled = true
+bbcode_text = "[center]Level Time"
+text = "Level Time"
+
+[node name="sharp_results" type="RichTextLabel" parent="."]
+visible = false
+margin_left = -131.0
+margin_top = 60.0
+margin_right = -45.0
+margin_bottom = 89.0
+theme = ExtResource( 7 )
+bbcode_enabled = true
+bbcode_text = "[center]00:00"
+text = "00:00"
+scroll_active = false
+
+[node name="speedTitle" type="RichTextLabel" parent="."]
+margin_left = -14.0
+margin_top = 33.0
+margin_right = 94.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( -262, -14 )
+theme = ExtResource( 6 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_constants/line_separation = -5
+bbcode_enabled = true
+bbcode_text = "[center]Full TIme"
+text = "Full TIme"
+
+[node name="speed_results" type="RichTextLabel" parent="."]
+margin_left = -14.0
+margin_top = 46.5
+margin_right = 94.0
+margin_bottom = 81.5
+theme = ExtResource( 7 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]00:00:00"
+text = "00:00:00"
+
+[node name="speedBest" type="RichTextLabel" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.588235 )
+margin_left = -131.0
+margin_top = 81.5
+margin_right = -45.0
+margin_bottom = 98.5
+theme = ExtResource( 6 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]-0.21"
+text = "-0.21"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="speedBestFull" type="RichTextLabel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.588235 )
+margin_left = -14.0
+margin_top = 68.5
+margin_right = 94.0
+margin_bottom = 85.5
+theme = ExtResource( 6 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]+2.88"
+text = "+2.88"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Biome" type="RichTextLabel" parent="."]
+margin_left = -127.5
+margin_top = 33.5
+margin_right = -19.5
+margin_bottom = 46.5
+rect_pivot_offset = Vector2( 2, 8 )
+theme = ExtResource( 6 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_constants/line_separation = -5
+bbcode_enabled = true
+bbcode_text = "[center]Desert"
+text = "Desert"
+
+[node name="Rank" type="Node2D" parent="."]
+position = Vector2( -104.5, 115 )
+
+[node name="01" type="RichTextLabel" parent="Rank"]
+margin_left = -2.0
+margin_top = -59.0
+margin_right = 36.0
+margin_bottom = -25.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "1."
+text = "1."
+
+[node name="02" type="RichTextLabel" parent="Rank"]
+margin_left = -2.0
+margin_top = -44.8333
+margin_right = 36.0
+margin_bottom = -10.8333
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "2."
+text = "2."
+
+[node name="03" type="RichTextLabel" parent="Rank"]
+margin_left = -2.0
+margin_top = -30.6667
+margin_right = 36.0
+margin_bottom = 3.3333
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "3."
+text = "3."
+
+[node name="04" type="RichTextLabel" parent="Rank"]
+margin_left = -2.0
+margin_top = -16.5
+margin_right = 36.0
+margin_bottom = 17.5
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "4."
+text = "4."
+
+[node name="05" type="RichTextLabel" parent="Rank"]
+margin_left = -2.0
+margin_top = -2.3333
+margin_right = 36.0
+margin_bottom = 31.6667
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "5."
+text = "5."
+
+[node name="06" type="RichTextLabel" parent="Rank"]
+margin_left = -2.0
+margin_top = 11.8333
+margin_right = 36.0
+margin_bottom = 45.8333
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "6."
+text = "6."
+
+[node name="07" type="RichTextLabel" parent="Rank"]
+margin_left = -2.0
+margin_top = 28.0
+margin_right = 36.0
+margin_bottom = 62.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "7."
+text = "7."
+
+[node name="08" type="RichTextLabel" parent="Rank"]
+margin_left = -2.0
+margin_top = 42.1667
+margin_right = 36.0
+margin_bottom = 76.1667
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "8."
+text = "8."
+
+[node name="09" type="RichTextLabel" parent="Rank"]
+margin_left = -2.0
+margin_top = 56.3333
+margin_right = 36.0
+margin_bottom = 90.3333
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "9."
+text = "9."
+
+[node name="Time" type="Node2D" parent="."]
+position = Vector2( -115.5, 115 )
+
+[node name="1" type="RichTextLabel" parent="Time"]
+margin_left = 25.6667
+margin_top = -60.0
+margin_right = 95.6667
+margin_bottom = -27.0
+rect_pivot_offset = Vector2( -14.1667, -15 )
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="2" type="RichTextLabel" parent="Time"]
+margin_left = 25.6667
+margin_top = -45.8333
+margin_right = 95.6667
+margin_bottom = -12.8333
+rect_pivot_offset = Vector2( -14.1667, -29.1667 )
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="3" type="RichTextLabel" parent="Time"]
+margin_left = 26.0
+margin_top = -32.3333
+margin_right = 96.0
+margin_bottom = 3.6667
+rect_pivot_offset = Vector2( -14.5, -42.6667 )
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="4" type="RichTextLabel" parent="Time"]
+margin_left = 26.0
+margin_top = -18.0
+margin_right = 96.0
+margin_bottom = 15.0
+rect_pivot_offset = Vector2( -14.5, -57 )
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="5" type="RichTextLabel" parent="Time"]
+margin_left = 26.0
+margin_top = -3.8333
+margin_right = 96.0
+margin_bottom = 29.1667
+rect_pivot_offset = Vector2( -14.5, -71.1667 )
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="6" type="RichTextLabel" parent="Time"]
+margin_left = 26.3333
+margin_top = 9.6667
+margin_right = 96.3333
+margin_bottom = 45.6667
+rect_pivot_offset = Vector2( -14.8333, -84.6667 )
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="7" type="RichTextLabel" parent="Time"]
+margin_left = 26.0
+margin_top = 27.0
+margin_right = 96.0
+margin_bottom = 60.0
+rect_pivot_offset = Vector2( -14.5, -102 )
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="8" type="RichTextLabel" parent="Time"]
+margin_left = 26.0
+margin_top = 41.1667
+margin_right = 96.0
+margin_bottom = 74.1667
+rect_pivot_offset = Vector2( -14.5, -116.167 )
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="9" type="RichTextLabel" parent="Time"]
+margin_left = 26.3333
+margin_top = 54.0
+margin_right = 96.3333
+margin_bottom = 90.0
+rect_pivot_offset = Vector2( -14.8333, -129 )
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="RetryRunButton" type="Button" parent="."]
+margin_left = -129.5
+margin_top = 191.0
+margin_right = -76.5
+margin_bottom = 217.0
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.878431, 0.670588, 0.298039, 1 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "Retry Run"
+
+[node name="mainButton" type="Button" parent="."]
+margin_left = 40.0
+margin_top = 191.0
+margin_right = 94.0
+margin_bottom = 217.0
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.878431, 0.670588, 0.298039, 1 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "Main Menu"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -13.5
+margin_top = 93.0
+margin_right = 94.5
+margin_bottom = 195.0
+color = Color( 0, 0, 0, 0.458824 )
+
+[node name="nextLevelButton" type="Button" parent="."]
+margin_left = -13.5
+margin_top = 93.0
+margin_right = 94.5
+margin_bottom = 195.0
+theme = ExtResource( 11 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.878431, 0.670588, 0.298039, 1 )
+custom_fonts/font = SubResource( 15 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "Next"
+icon_align = 1
+
+[node name="Label" type="Label" parent="nextLevelButton"]
+margin_left = 2.0
+margin_top = 28.5
+margin_right = 108.0
+margin_bottom = 41.5
+text = "Hit space for"
+align = 1
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="RetryRunButton" to="." method="_on_RetryRunButton_pressed"]
+[connection signal="pressed" from="mainButton" to="." method="_on_mainButton_pressed"]
+[connection signal="pressed" from="nextLevelButton" to="." method="_on_nextLevelButton_pressed"]

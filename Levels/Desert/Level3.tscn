@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Effects/bulletParticles.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=13]
 [ext_resource path="res://UI/inGame/cylinder.gd" type="Script" id=14]
+[ext_resource path="res://Themes/UI.tres" type="Theme" id=15]
 [ext_resource path="res://Player/Effects/godGunBulletParticles.tscn" type="PackedScene" id=16]
 [ext_resource path="res://UI/inGame/EndGameScreen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=20]
@@ -61,6 +62,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="DynamicFont" id=15]
+size = 64
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=16]
 size = 64
 font_data = ExtResource( 21 )
 
@@ -146,23 +151,15 @@ polygon = PoolVector2Array( 77, 30, 54, 42, 39, 60, 31, 77, 32, 126, 57, 139, 91
 
 [node name="Target" parent="Targets" instance=ExtResource( 4 )]
 position = Vector2( 396, 643 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target2" parent="Targets" instance=ExtResource( 4 )]
 position = Vector2( 231, 467 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target3" parent="Targets" instance=ExtResource( 4 )]
 position = Vector2( 424, 314 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target4" parent="Targets" instance=ExtResource( 4 )]
 position = Vector2( 68, 160 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="PlayerRoot" type="Node2D" parent="."]
 position = Vector2( 120, 49 )
@@ -286,3 +283,12 @@ theme = ExtResource( 9 )
 custom_fonts/font = SubResource( 15 )
 
 [node name="EndGameScreen" parent="CanvasLayer" instance=ExtResource( 17 )]
+
+[node name="SRTime" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = 19.0
+margin_top = 418.0
+margin_right = 247.0
+margin_bottom = 469.0
+theme = ExtResource( 15 )
+custom_fonts/font = SubResource( 16 )

@@ -70,6 +70,7 @@ font_data = ExtResource( 21 )
 
 [node name="Level 13" type="Node2D"]
 script = ExtResource( 3 )
+currentLevel = 13
 bronzeSpeedStar = 8
 silverSpeedStar = 6
 goldSpeedStar = 5

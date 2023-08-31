@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Autoload/GlobalScene.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/music/Slinger Swagger (loop).wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/sounds/targetshot2.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/shotComp.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/unlocked.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/Monkey Sound Effect (mp3cut.net).wav" type="AudioStream" id=6]
 
 [node name="Global" type="Node2D"]
 pause_mode = 2
@@ -29,5 +30,9 @@ stream = ExtResource( 5 )
 bus = "SFX"
 
 [node name="leaderboard" type="HTTPRequest" parent="."]
+
+[node name="monkey" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 854, 113 )
+stream = ExtResource( 6 )
 
 [connection signal="request_completed" from="leaderboard" to="." method="_on_Leaderboard_request_completed"]

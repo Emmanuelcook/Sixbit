@@ -2,6 +2,15 @@ extends Node
 
 const SAVE_DIR = "user://saves/"
 
+#Settings
+var musicVol = 0
+var sfxVol = 0
+var maxTrauma = .6
+
+#BIOME
+enum Biomes {DESERT, JUNGLE}
+var _biome : int = Biomes.DESERT
+
 var currentLevel = 1
 var cheat_code: Array
 var godGun = false
@@ -11,7 +20,21 @@ var needToReloadScore = true
 
 var playerName = ""
 
-var maxTrauma = .6
+
+
+#SPEEDRUN
+var speedRunActive = false
+var SRtimeSpeedRun = 0
+var SRbullet = 0
+# Time for the level
+var SRtimeToFinish = 0
+var SRtimerState = false
+var SRtime_passed = '00:00:00'
+var SRmils = 1
+var SRsecs = 0
+var SRmins = 0
+var speedRunFinished = false
+var fullResetInput = 0
 
 var save_path = SAVE_DIR + "save.dat"
 
@@ -37,7 +60,16 @@ var save = [
 		6 : [0,0,"99",99,99,99,99,false, 0],
 		7 : [0,0,"99",99,99,99,99,false, 0],
 		8 : [0,0,"99",99,99,99,99,false, 0],
-		9 : [0,0,"99",99,99,99,99,false, 0]
+		9 : [0,0,"99",99,99,99,99,false, 0],
+		11 : [0,0,"99",99,99,99,99,true, 0],
+		12 : [0,0,"99",99,99,99,99,false, 0],
+		13 : [0,0,"99",99,99,99,99,false, 0],
+		14 : [0,0,"99",99,99,99,99,false, 0],
+		15 : [0,0,"99",99,99,99,99,false, 0],
+		16 : [0,0,"99",99,99,99,99,false, 0],
+		17 : [0,0,"99",99,99,99,99,false, 0],
+		18 : [0,0,"99",99,99,99,99,false, 0],
+		19 : [0,0,"99",99,99,99,99,false, 0]
 	},
 	{
 		"playerName" : "",
@@ -57,15 +89,24 @@ var save = [
 func resetSave():
 	save = [
 		{
-			1 : [0,0,"99",099,99,99,99,true,0],
-			2 : [0,0,"99",99,99,99,99,false,0],
-			3 : [0,0,"99",99,99,99,99,false,0],
-			4 : [0,0,"99",99,99,99,99,false,0],
-			5 : [0,0,"99",99,99,99,99,false,0],
-			6 : [0,0,"99",99,99,99,99,false,0],
-			7 : [0,0,"99",99,99,99,99,false,0],
-			8 : [0,0,"99",99,99,99,99,false,0],
-			9 : [0,0,"99",99,99,99,99,false,0]
+			1 : [0,0,"99",99,99,99,99,true, 0],
+			2 : [0,0,"99",99,99,99,99,false, 0],
+			3 : [0,0,"99",99,99,99,99,false, 0],
+			4 : [0,0,"99",99,99,99,99,false, 0],
+			5 : [0,0,"99",99,99,99,99,false, 0],
+			6 : [0,0,"99",99,99,99,99,false, 0],
+			7 : [0,0,"99",99,99,99,99,false, 0],
+			8 : [0,0,"99",99,99,99,99,false, 0],
+			9 : [0,0,"99",99,99,99,99,false, 0],
+			11 : [0,0,"99",99,99,99,99,true, 0],
+			12 : [0,0,"99",99,99,99,99,false, 0],
+			13 : [0,0,"99",99,99,99,99,false, 0],
+			14 : [0,0,"99",99,99,99,99,false, 0],
+			15 : [0,0,"99",99,99,99,99,false, 0],
+			16 : [0,0,"99",99,99,99,99,false, 0],
+			17 : [0,0,"99",99,99,99,99,false, 0],
+			18 : [0,0,"99",99,99,99,99,false, 0],
+			19 : [0,0,"99",99,99,99,99,false, 0]
 		},
 		{
 			"playerName" : "",
@@ -107,13 +148,35 @@ func _ready():
 	# FIX FOR THOSE WHO DIDNT PLAY SINCE 1.3
 	if save.size() < 3:
 		resetSave()
+		
+
+	
+	if save[0].size() < 11:
+		print('remerged')
+		var addSave = [
+			{
+				11 : [0,0,"99",99,99,99,99,true, 0],
+				12 : [0,0,"99",99,99,99,99,false, 0],
+				13 : [0,0,"99",99,99,99,99,false, 0],
+				14 : [0,0,"99",99,99,99,99,false, 0],
+				15 : [0,0,"99",99,99,99,99,false, 0],
+				16 : [0,0,"99",99,99,99,99,false, 0],
+				17 : [0,0,"99",99,99,99,99,false, 0],
+				18 : [0,0,"99",99,99,99,99,false, 0],
+				19 : [0,0,"99",99,99,99,99,false, 0]
+			}
+		]
+		save[0].merge(addSave[0])
+	
+
 
 
 #	print(save)
 	# for example, "cheat1" and "cheat2" for codes
-	cheat_code.resize(2)
+	cheat_code.resize(3)
 	cheat_code[0] = [int(0), KEY_U, KEY_N, KEY_L, KEY_O, KEY_C, KEY_K]
 	cheat_code[1] = [int(0), KEY_G, KEY_O, KEY_D, KEY_G, KEY_U, KEY_N]
+	cheat_code[2] = [int(0), KEY_J, KEY_U, KEY_N, KEY_G, KEY_L, KEY_E]
 
 
 func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, levelTimeSecs, levelTimeMils, bulletsFired, timeToFinish):
@@ -236,7 +299,12 @@ func cheat_entry(key: int):
 			if godGun:
 				godGun = false
 			else:
-				godGun = true
+				if !speedRunActive:
+					godGun = true
+		2:  # "CHEAT3"
+			GlobalScene.playSound('monkey')
+			_biome = Biomes.JUNGLE
+			get_tree().change_scene("res://Levels/Jungle/Level11.tscn")
 
 # STATS
 
@@ -260,3 +328,32 @@ func saveAllTimeBulletsFired(bulletNumberToAdd):
 func saveAllTimeTargets(targetNumberToAdd):
 	save[2]["AllTimetargetHits"] += targetNumberToAdd
 	saveGame()
+
+func updateSRtimer(delta):
+	# update the timer if it's on
+	if SRtimerState :
+		SRtimeToFinish += delta
+		SRmils = fmod(SRtimeToFinish,1)*100
+		SRsecs = fmod(SRtimeToFinish, 60)
+		SRmins = fmod(SRtimeToFinish, 60*60) / 60
+		SRtime_passed = "%02d:%02d:%02d" % [SRmins,SRsecs,SRmils]
+
+func resetSR():
+	speedRunActive = false
+	SRtimeSpeedRun = 0
+	SRbullet = 0
+	# Time for the level
+	SRtimeToFinish = 0
+	SRtimerState = false
+	SRtime_passed = '00:00:00'
+	SRmils = 1
+	SRsecs = 0
+	SRmins = 0
+	
+func saveSRTime():
+	speedRunFinished = true
+	var SRtimeToFinishInv = 100000 - SRtimeToFinish
+	print(SRtimeToFinish)
+	print(SRtimeToFinishInv)
+	SilentWolf.Scores.persist_score(Global.playerName, SRtimeToFinishInv, "speedrun")
+	resetSR()

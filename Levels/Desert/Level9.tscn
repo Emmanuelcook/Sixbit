@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/sprites/UI/bullet.png" type="Texture" id=1]
 [ext_resource path="res://UI/inGame/EndGameScreen.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/sprites/UI/cylinder.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/UI/bulletempty.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/levels/bg.png" type="Texture" id=7]
+[ext_resource path="res://Themes/UI.tres" type="Theme" id=8]
 [ext_resource path="res://Player/Effects/godGunBulletParticles.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Player/Cam/Cam.gd" type="Script" id=10]
 [ext_resource path="res://UI/inGame/cylinder.gd" type="Script" id=11]
@@ -67,6 +68,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="DynamicFont" id=15]
+size = 64
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=18]
 size = 64
 font_data = ExtResource( 18 )
 
@@ -189,33 +194,21 @@ position = Vector2( 65, 0 )
 
 [node name="Target" parent="Targets" instance=ExtResource( 15 )]
 position = Vector2( 1003, 622 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target6" parent="Targets" instance=ExtResource( 15 )]
 position = Vector2( 1167, 720 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target2" parent="Targets" instance=ExtResource( 15 )]
 position = Vector2( 671, 89 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target3" parent="Targets" instance=ExtResource( 15 )]
 position = Vector2( 479, 900 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target4" parent="Targets" instance=ExtResource( 15 )]
 position = Vector2( 587, 1000 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="Target7" parent="Targets" instance=ExtResource( 15 )]
 position = Vector2( 343, 1120 )
-collision_layer = 257
-collision_mask = 257
 
 [node name="PlayerRoot" type="Node2D" parent="."]
 position = Vector2( 1065, 543 )
@@ -340,5 +333,14 @@ custom_fonts/font = SubResource( 15 )
 [node name="nextLevelButton" parent="CanvasLayer/EndGameScreen" index="23"]
 visible = false
 text = "The End"
+
+[node name="SRTime" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = 19.0
+margin_top = 418.0
+margin_right = 247.0
+margin_bottom = 469.0
+theme = ExtResource( 8 )
+custom_fonts/font = SubResource( 18 )
 
 [editable path="CanvasLayer/EndGameScreen"]

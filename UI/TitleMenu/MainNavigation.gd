@@ -25,3 +25,7 @@ func _on_playerName_mouse_exited():
 
 func _on_playerName_pressed():
 	get_tree().change_scene("res://UI/ChooseName/PlayerNameScreen.tscn")
+
+
+func _on_Speedrun_pressed():
+	Global.speedRunActive = true

@@ -16,4 +16,8 @@ func playSound(sound):
 		$shot.play()
 	if sound == "unlocked":
 		$unlocked.play()
+	if sound == "monkey":
+		$monkey.play()
 		
+
+

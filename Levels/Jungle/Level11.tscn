@@ -71,6 +71,7 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 545.0 ],
 "_edit_vertical_guides_": [ 899.0 ]
 }
+currentLevel = 11
 bronzeSpeedStar = 3
 silverSpeedStar = 2
 goldSpeedStar = 1

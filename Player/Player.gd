@@ -96,6 +96,11 @@ func _process(delta):
 		# Si c'est la premiere fois
 		# On remet la gravité et on enleve les effets du rond au début
 		if !first_shot:
+			Global.fullResetInput = 0
+			
+			if Global.currentLevel == 1:
+				Global.SRtimerState = true
+				
 			self.gravity_scale = gravityScale
 			get_parent().get_node("Start1").visible = false
 			get_parent().get_node("Start2").visible = false

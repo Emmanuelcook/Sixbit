@@ -70,6 +70,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_vertical_guides_": [ 675.0 ]
 }
+currentLevel = 12
 bronzeSpeedStar = 3
 silverSpeedStar = 2
 goldSpeedStar = 1

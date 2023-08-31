@@ -52,7 +52,32 @@ onready var speedCustomMessage = $CanvasLayer/EndGameScreen/speed_nextOrBest
 onready var sharpCustomMessage = $CanvasLayer/EndGameScreen/sharp_nextOrBest
 
 func _ready():
-
+	
+	print(Global.fullResetInput)
+	
+	if Global.fullResetInput >= 2:
+		Global.saveAllTimeTargets(targetShot)	
+		Global.saveAllTimeBulletsFired(bulletsFired - 1)	 # moins 1 pour enlever celle ou on appuie sur le menu c'est tout.
+		Global.resetSR()	
+		Global.speedRunActive = true
+		Global.speedRunFinished = false
+		Global.fullResetInput = 0
+		get_tree().change_scene("res://Levels/Desert/Level1.tscn")
+	
+	Global.fullResetInput += 1
+	
+	
+	if Global.speedRunActive:
+		$CanvasLayer/SRTime.visible = true
+		endGameScreenNode.get_node("SRRetryButton").visible = true
+		endGameScreenNode.get_node("SRStopSR").visible = true
+	
+	Global.currentLevel = currentLevel
+	
+	# If speedrun desactive GodGun
+	if Global.speedRunActive:
+		Global.godGun = false
+	
 	nextLevel = currentLevel + 1 # update nextlevel number
 	get_tree().paused = false # unpaused if coming from menu
 
@@ -72,38 +97,39 @@ func _ready():
 		$PlayerRoot/Start2.visible = true
 	
 	# Get scoreBoard
-	if currentLevel != 1:
-		if Global.needToReloadScore:
-			yield(SilentWolf.Scores.get_high_scores(0, "level" + str(currentLevel)), "sw_scores_received")
-			Global.needToReloadScore = false
 		
-		var i = 0
-
-		for score in SilentWolf.Scores.scores:
-			scoreSavedAtStart.push_back({"name" : score.player_name, "score" : score.score})
-			if score.player_name == Global.playerName:
-				isPlayerInLeaderboard = true
-				playerScoreInLeaderboard = score.score
-				playerScoreInLeaderboardKey = i
-			i += 1
-		
-		i = 0
-		
-		#UPLOAD LEADERBOARD
 		if currentLevel != 1:
-			for score in scoreSavedAtStart:
-				if i < 5:
-					i += 1
-					endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.name)
+			if Global.needToReloadScore:
+				yield(SilentWolf.Scores.get_high_scores(0, "level" + str(currentLevel)), "sw_scores_received")
+				Global.needToReloadScore = false
+			
+			var i = 0
 
-					var invTimeBack = (10000 - score.score)
-					var LeaderboardSecs = fmod(invTimeBack, 60)
-					var LeaderboardMils = fmod(invTimeBack,1)*100
-					var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
+			for score in SilentWolf.Scores.scores:
+				scoreSavedAtStart.push_back({"name" : score.player_name, "score" : score.score})
+				if score.player_name == Global.playerName:
+					isPlayerInLeaderboard = true
+					playerScoreInLeaderboard = score.score
+					playerScoreInLeaderboardKey = i
+				i += 1
+			
+			i = 0
+			
+			#UPLOAD LEADERBOARD
+			if currentLevel != 1:
+				for score in scoreSavedAtStart:
+					if i < 5:
+						i += 1
+						endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.name)
 
-					endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
-					
-	update_menu()
+						var invTimeBack = (10000 - score.score)
+						var LeaderboardSecs = fmod(invTimeBack, 60)
+						var LeaderboardMils = fmod(invTimeBack,1)*100
+						var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
+
+						endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
+						
+		update_menu()
 
 func update_menu():
 	endGameScreenNode.get_node("sharp_results").bbcode_text = "[center]-"
@@ -130,7 +156,6 @@ func update_menu():
 	if Global.save[0][currentLevel][0] > 0:
 		$CanvasLayer/EndGameScreen/Bronze2/Sprite.visible = true
 	
-
 func _process(delta):
 	
 	if Global.godGun:
@@ -145,7 +170,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("reset"):
 		Global.saveAllTimeBulletsFired(bulletsFired)	
 		Global.saveAllTimeTargets(targetShot)
+			
 		get_tree().reload_current_scene()
+	
+	if Input.is_action_just_pressed("next"):
+		if levelIsFinished:
+			endGameScreenNode._on_nextLevelButton_pressed()
 
 	# update the timer if it's on
 	if timerState :
@@ -161,6 +191,10 @@ func _process(delta):
 				$CanvasLayer/Timer/gameTime.margin_left -= 60
 		else:
 			time_passed = "%02d:%02d" % [secs,mils]
+	
+	if Global.speedRunActive && !Global.speedRunFinished:
+		Global.updateSRtimer(delta)
+		$CanvasLayer/SRTime.text = Global.SRtime_passed
 	
 	# display result of the time
 	# Anti cheat System
@@ -198,8 +232,25 @@ func ending_level():
 	# stop timer
 	timer(false)
 	
+	if isLastLevel && Global.speedRunActive:
+		Global.SRtime_passed
+		endGameScreenNode.get_node("LevelsButton").visible = false
+		endGameScreenNode.get_node("retryButton").visible = false
+		endGameScreenNode.get_node("nextLevelButton").visible = false
+		endGameScreenNode.get_node("SRRetryButton").visible = false
+		endGameScreenNode.get_node("SRStopSR").visible = false
+		
+		endGameScreenNode.get_node("SRSubmit").visible = true
+		endGameScreenNode.get_node("SRSubmit/score").text = Global.SRtime_passed
+		Global.saveSRTime()
+		
 	# display results
 	get_results()
+	
+		
+	if Global.speedRunActive:
+		endGameScreenNode.get_node('nextLevelButton').visible = true
+		endGameScreenNode.get_node('SRRetryButton').visible = false
 	
 	# unlock next level in the levels menu
 	if !godGunWasUsed:
