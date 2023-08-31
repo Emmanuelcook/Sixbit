@@ -145,7 +145,7 @@ func _ready():
 	loadSave()
 	
 	
-	
+
 
 	# FIX FOR THOSE WHO DIDNT PLAY SINCE 1.3
 	if save.size() < 3:

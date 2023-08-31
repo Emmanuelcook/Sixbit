@@ -31,6 +31,7 @@ polygon = PoolVector2Array( 76, 152, 80, 152, 80, 148, 112, 148, 112, 152, 116, 
 [node name="metalHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
 volume_db = -6.0
+bus = "SFX"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
