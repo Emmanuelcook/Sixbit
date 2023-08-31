@@ -14,6 +14,9 @@ func _ready():
 		$playerName/Name.modulate = textColor
 		$playerName/Name.modulate = textColor
 		$playerName/Name.text = Global.playerName
+		
+	
+	
 
 func _on_playerName_mouse_entered():
 	$playerName/Title.modulate = Color(1,1,1,1)
@@ -29,3 +32,4 @@ func _on_playerName_pressed():
 
 func _on_Speedrun_pressed():
 	Global.speedRunActive = true
+

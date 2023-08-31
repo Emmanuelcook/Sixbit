@@ -53,41 +53,38 @@ onready var sharpCustomMessage = $CanvasLayer/EndGameScreen/sharp_nextOrBest
 
 func _ready():
 	
-	print(Global.fullResetInput)
-	
-	if Global.fullResetInput >= 2:
-		Global.saveAllTimeTargets(targetShot)	
-		Global.saveAllTimeBulletsFired(bulletsFired - 1)	 # moins 1 pour enlever celle ou on appuie sur le menu c'est tout.
-		Global.resetSR()	
-		Global.speedRunActive = true
-		Global.speedRunFinished = false
-		Global.fullResetInput = 0
-		get_tree().change_scene("res://Levels/Desert/Level1.tscn")
-	
-	Global.fullResetInput += 1
-	
-	
-	if Global.speedRunActive:
-		$CanvasLayer/SRTime.visible = true
-		endGameScreenNode.get_node("SRRetryButton").visible = true
-		endGameScreenNode.get_node("SRStopSR").visible = true
-	
 	Global.currentLevel = currentLevel
-	
-	# If speedrun desactive GodGun
-	if Global.speedRunActive:
-		Global.godGun = false
-	
 	nextLevel = currentLevel + 1 # update nextlevel number
 	get_tree().paused = false # unpaused if coming from menu
-
+	
 	# Display UI but the endscreen game
 	$CanvasLayer.visible = true
 	endGameScreenNode.visible = false
-
-	#Update the number of targets in the level
+	
+		#Update the number of targets in the level
 	for i in $Targets.get_children():
 		targetNumber += 1
+	
+	if Global.speedRunActive:
+		
+		Global.godGun = false
+		
+		$CanvasLayer/SRTime.visible = true
+		endGameScreenNode.get_node("SRRetryButton").visible = true
+		endGameScreenNode.get_node("SRStopSR").visible = true
+		
+		if Global.fullResetInput >= 2:
+			Global.saveAllTimeTargets(targetShot)	
+			Global.saveAllTimeBulletsFired(bulletsFired - 1)	 # moins 1 pour enlever celle ou on appuie sur le menu c'est tout.
+			Global.resetSR()	
+			Global.speedRunActive = true
+			Global.speedRunFinished = false
+			Global.fullResetInput = 0
+			get_tree().change_scene("res://Levels/Desert/Level1.tscn")
+		
+		Global.fullResetInput += 1
+
+
 
 	# If a score is saved, display above the gun
 	if Global.save[0][currentLevel][4] != 99:
@@ -98,36 +95,36 @@ func _ready():
 	
 	# Get scoreBoard
 		
+	if currentLevel != 1:
+		if Global.needToReloadScore:
+			yield(SilentWolf.Scores.get_high_scores(0, "level" + str(currentLevel)), "sw_scores_received")
+			Global.needToReloadScore = false
+		
+		var i = 0
+
+		for score in SilentWolf.Scores.scores:
+			scoreSavedAtStart.push_back({"name" : score.player_name, "score" : score.score})
+			if score.player_name == Global.playerName:
+				isPlayerInLeaderboard = true
+				playerScoreInLeaderboard = score.score
+				playerScoreInLeaderboardKey = i
+			i += 1
+		
+		i = 0
+		
+		#UPLOAD LEADERBOARD
 		if currentLevel != 1:
-			if Global.needToReloadScore:
-				yield(SilentWolf.Scores.get_high_scores(0, "level" + str(currentLevel)), "sw_scores_received")
-				Global.needToReloadScore = false
-			
-			var i = 0
+			for score in scoreSavedAtStart:
+				if i < 5:
+					i += 1
+					endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.name)
 
-			for score in SilentWolf.Scores.scores:
-				scoreSavedAtStart.push_back({"name" : score.player_name, "score" : score.score})
-				if score.player_name == Global.playerName:
-					isPlayerInLeaderboard = true
-					playerScoreInLeaderboard = score.score
-					playerScoreInLeaderboardKey = i
-				i += 1
-			
-			i = 0
-			
-			#UPLOAD LEADERBOARD
-			if currentLevel != 1:
-				for score in scoreSavedAtStart:
-					if i < 5:
-						i += 1
-						endGameScreenNode.get_node('Name').get_node(str(i)).bbcode_text = str(score.name)
+					var invTimeBack = (10000 - score.score)
+					var LeaderboardSecs = fmod(invTimeBack, 60)
+					var LeaderboardMils = fmod(invTimeBack,1)*100
+					var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
 
-						var invTimeBack = (10000 - score.score)
-						var LeaderboardSecs = fmod(invTimeBack, 60)
-						var LeaderboardMils = fmod(invTimeBack,1)*100
-						var LeaderboardTime = "%02d:%02d" % [LeaderboardSecs,LeaderboardMils]
-
-						endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
+					endGameScreenNode.get_node('Time').get_node(str(i)).bbcode_text = str(LeaderboardTime)
 						
 		update_menu()
 
@@ -264,7 +261,6 @@ func ending_level():
 			# Si on bat son score sur la save actuelle
 			if timeToFinishForSilentWolf > Global.save[0][currentLevel][8] :
 				#Personal PB && Effect for it
-				Global.saveFullTimeRun()
 				personalPB = true
 				endGameScreenNode.get_node('PBParticles').emitting = true
 				
@@ -318,7 +314,8 @@ func ending_level():
 			
 		# save score
 		Global.saveScore(currentLevel, levelSpeed, levelSharp, time_passed, mins, secs, mils, bulletsFired, timeToFinish)
-	
+		Global.saveFullTimeRun()
+		
 	Global.saveAllTimeTargets(targetShot)
 	# reset targetshot
 	targetShot = 0

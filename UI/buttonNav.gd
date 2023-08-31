@@ -1,6 +1,6 @@
 extends Button
 
-export(PackedScene) var lienVers
+export var lienVers = ""
 export var linkText = "linkTo"
 export(Color) var textColor = Color(.3,.26,.18,1)
 export var isClickable = true
@@ -35,7 +35,8 @@ func _on_ButtonNav_pressed():
 			if Global.playerName == "" || Global.playerName == null:
 				get_tree().change_scene("res://UI/ChooseName/PlayerNameScreen.tscn")
 				Global.sceneAfterNaming = lienVers
+				print(Global.sceneAfterNaming)
 			else:
-				get_tree().change_scene_to(lienVers)
+				get_tree().change_scene(lienVers)
 		else :
-			get_tree().change_scene_to(lienVers)
+			get_tree().change_scene(lienVers)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://UI/Stats/statsScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/UI/titleBG2test2.png" type="Texture" id=2]
@@ -8,13 +8,11 @@
 [ext_resource path="res://assets/sprites/UI/targetOutline.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/player/target.png" type="Texture" id=7]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://UI/Stats/changeName.gd" type="Script" id=9]
+[ext_resource path="res://UI/Settings/settingsScreen.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=15]
 size = 64
-font_data = ExtResource( 8 )
-
-[sub_resource type="DynamicFont" id=16]
-size = 32
 font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=17]
@@ -88,6 +86,18 @@ custom_fonts/font = SubResource( 15 )
 text = "--:--"
 align = 1
 
+[node name="speedRunStat" type="Label" parent="."]
+margin_left = 352.0
+margin_top = 119.0
+margin_right = 519.0
+margin_bottom = 170.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -5
+custom_fonts/font = SubResource( 15 )
+text = "--:--"
+align = 1
+
 [node name="SpeedRunTitle" type="Label" parent="."]
 margin_left = 355.0
 margin_top = 64.0
@@ -98,19 +108,6 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = -8
 text = "SpeedrRun
 Time"
-align = 1
-
-[node name="speedRunStat" type="Label" parent="."]
-self_modulate = Color( 1, 1, 1, 0.552941 )
-margin_left = 356.0
-margin_top = 133.0
-margin_right = 523.0
-margin_bottom = 184.0
-theme = ExtResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_constants/line_spacing = -5
-custom_fonts/font = SubResource( 16 )
-text = "coming Soon"
 align = 1
 
 [node name="bulletsTitle" type="Label" parent="."]
@@ -198,6 +195,8 @@ custom_styles/focus = SubResource( 4 )
 custom_styles/disabled = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 align = 2
+script = ExtResource( 9 )
+statScreen = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="changeName"]
 margin_left = -21.0

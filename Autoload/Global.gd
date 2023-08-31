@@ -138,11 +138,13 @@ func _ready():
 		"api_key": apiKey,
 		"game_id": "sixbit",
 		"game_version": "1.4",
-		"log_level": 0
+		"log_level": 1
 	})
 	
 	
 	loadSave()
+	
+	
 	
 
 	# FIX FOR THOSE WHO DIDNT PLAY SINCE 1.3
@@ -169,7 +171,7 @@ func _ready():
 		save[0].merge(addSave[0])
 	
 
-
+	print(save)
 
 #	print(save)
 	# for example, "cheat1" and "cheat2" for codes
@@ -178,6 +180,7 @@ func _ready():
 	cheat_code[1] = [int(0), KEY_G, KEY_O, KEY_D, KEY_G, KEY_U, KEY_N]
 	cheat_code[2] = [int(0), KEY_J, KEY_U, KEY_N, KEY_G, KEY_L, KEY_E]
 
+	
 
 func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, levelTimeSecs, levelTimeMils, bulletsFired, timeToFinish):
 	
@@ -353,7 +356,7 @@ func resetSR():
 func saveSRTime():
 	speedRunFinished = true
 	var SRtimeToFinishInv = 100000 - SRtimeToFinish
-	print(SRtimeToFinish)
-	print(SRtimeToFinishInv)
 	SilentWolf.Scores.persist_score(Global.playerName, SRtimeToFinishInv, "speedrun")
+	save[2]["speedRunTime"] = SRtimeToFinish
+
 	resetSR()

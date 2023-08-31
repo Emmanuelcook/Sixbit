@@ -145,5 +145,6 @@ anims/shot = SubResource( 8 )
 [node name="metalHit" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 26, 25 )
 stream = ExtResource( 5 )
+bus = "SFX"
 
 [connection signal="pressed" from="." to="." method="_on_Letter_pressed"]

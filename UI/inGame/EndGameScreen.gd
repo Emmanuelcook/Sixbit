@@ -31,8 +31,8 @@ func _process(delta):
 	
 	
 func _on_retryButton_pressed():
-	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
-	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired - 1)	 # moins 1 pour enlever celle ou on appuie sur le menu c'est tout.
+	saveGlobalStats()
+
 	if get_tree().paused:
 		GlobalScene.playSound('shot')
 	get_tree().reload_current_scene()
@@ -41,8 +41,7 @@ func _on_LevelsButton_pressed():
 
 	Global.resetSR()
 	
-	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired - 1)	
-	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
+	saveGlobalStats()
 	
 	if get_tree().paused:
 		GlobalScene.playSound('shot')
@@ -50,8 +49,7 @@ func _on_LevelsButton_pressed():
 	get_tree().change_scene("res://UI/Levels/Levels.tscn")
 
 func _on_nextLevelButton_pressed():
-	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
-	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired - 1)	
+	saveGlobalStats()
 	GlobalScene.playSound('shot')
 	Global.needToReloadScore = true
 	var nextLevel = get_parent().get_parent().nextLevel
@@ -66,20 +64,17 @@ func _on_nextLevelButton_pressed():
 
 
 func _on_SRStopSR_pressed():
-	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
-	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired - 1)	 # moins 1 pour enlever celle ou on appuie sur le menu c'est tout.
+	saveGlobalStats()	
 	Global.resetSR()
 	get_tree().change_scene("res://UI/TitleMenu/MainNavigation.tscn")
 
 func _on_SRRetryButton_pressed():
-	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
-	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired - 1)	 # moins 1 pour enlever celle ou on appuie sur le menu c'est tout.
+	saveGlobalStats()
 	get_tree().reload_current_scene()
 
 
 func _on_Main_pressed():
-	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
-	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired - 1)	 # moins 1 pour enlever celle ou on appuie sur le menu c'est tout.
+	saveGlobalStats()
 	Global.resetSR()
 	Global.speedRunFinished = false
 	get_tree().change_scene("res://UI/TitleMenu/MainNavigation.tscn")
@@ -91,9 +86,13 @@ func _on_SeeSRLB_pressed():
 
 
 func _on_RetrySpeedRun_pressed():
-	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
-	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired - 1)	 # moins 1 pour enlever celle ou on appuie sur le menu c'est tout.
 	Global.resetSR()	
 	Global.speedRunActive = true
 	Global.speedRunFinished = false
 	get_tree().change_scene("res://Levels/Desert/Level1.tscn")
+
+
+func saveGlobalStats():
+	Global.saveAllTimeTargets(get_parent().get_parent().targetShot)	
+	Global.saveAllTimeBulletsFired(get_parent().get_parent().bulletsFired)	 # moins 1 pour enlever celle ou on appuie sur le menu c'est tout.
+	

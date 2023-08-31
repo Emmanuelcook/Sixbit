@@ -54,7 +54,13 @@ func _on_Go_pressed():
 		Global.save[1].playerName = str(first.text) + str(second.text) + str(third.text)
 		Global.saveGame()
 		Global.playerName = Global.save[1].playerName 
-		get_tree().change_scene(Global.sceneAfterNaming)
+		
+		if Global.sceneAfterNaming != "":
+			get_tree().change_scene(Global.sceneAfterNaming)
+		else:
+			get_tree().change_scene("res://UI/Stats/statsScreen.tscn")
+		
+		Global.sceneAfterNaming = ""
 		GlobalScene.playSound("shot")
 		GlobalScene.playSound("metalHit")
 

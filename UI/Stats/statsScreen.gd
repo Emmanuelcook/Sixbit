@@ -21,7 +21,22 @@ func _ready():
 		else:
 			fullTime = "%02d:%02d" % [secs,mils]
 		
-		$fullRunStat.text = str(stepify(Global.save[2]["fullRunTime"], 0.01))
+		$fullRunStat.text = fullTime
+	
+	if Global.save[2]["speedRunTime"] != 0:
+		
+		var mils = fmod(Global.save[2]["speedRunTime"],1)*100
+		var secs = fmod(Global.save[2]["speedRunTime"], 60)
+		var mins = fmod(Global.save[2]["speedRunTime"], 60*60) / 60
+
+		var fullTime
+		
+		if mins >= 1:
+			fullTime = "%02d:%02d:%02d" % [mins,secs,mils]
+		else:
+			fullTime = "%02d:%02d" % [secs,mils]
+		
+		$speedRunStat.text = fullTime
 		
 	
 	if Global.save[2]["allTimebulletsShot"] == 0:
@@ -38,15 +53,16 @@ func _ready():
 	
 func _on_changeName_pressed():
 	Global.playerName = ""
-	get_tree().change_scene("res://UI/ChooseName/PlayerNameScreen.tscn")
 	GlobalScene.playSound('shot')
 	GlobalScene.playSound("metalHit")
-	Global.sceneAfterNaming = "res://UI/Stats/statsScreen.tscn"
+	get_tree().change_scene("res://UI/ChooseName/PlayerNameScreen.tscn")
+	
 
 func _on_backMain_pressed():
-	get_tree().change_scene("res://UI/TitleMenu/MainNavigation.tscn")
 	GlobalScene.playSound('shot')	
 	GlobalScene.playSound("metalHit")
+	get_tree().change_scene("res://UI/TitleMenu/MainNavigation.tscn")
+	
 
 func _on_resetSave_pressed():
 	$AreyouSure.visible = true
