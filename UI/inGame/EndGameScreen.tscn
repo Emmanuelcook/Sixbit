@@ -47,7 +47,6 @@ font_data = ExtResource( 5 )
 default_font = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=22]
-size = 32
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=21]

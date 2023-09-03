@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Effects/bulletParticles.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Levels/Props/Ricochet.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Player/Effects/godGunBulletParticles.tscn" type="PackedScene" id=16]
 [ext_resource path="res://UI/inGame/EndGameScreen.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Levels/Desert/EffectTarget.gd" type="Script" id=18]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=20]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=21]
 
@@ -71,6 +72,7 @@ font_data = ExtResource( 21 )
 [node name="Level 11" type="Node2D"]
 script = ExtResource( 3 )
 currentLevel = 14
+Biome = 1
 bronzeSpeedStar = 8
 silverSpeedStar = 5
 goldSpeedStar = 3
@@ -405,6 +407,9 @@ visible = false
 
 [node name="Time" parent="CanvasLayer/EndGameScreen" index="20"]
 visible = false
+
+[node name="EffectTarget" type="Node2D" parent="CanvasLayer"]
+script = ExtResource( 18 )
 
 [editable path="Ricochets/Ricochet"]
 [editable path="Ricochets/Ricochet2"]

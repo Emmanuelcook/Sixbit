@@ -1,6 +1,8 @@
 extends Node2D
 
 export var currentLevel = 1
+export(int, "Desert", "Jungle") var Biome
+
 export var isLastLevel = false
 var nextLevel
 var levelIsFinished
@@ -52,6 +54,13 @@ onready var speedCustomMessage = $CanvasLayer/EndGameScreen/speed_nextOrBest
 onready var sharpCustomMessage = $CanvasLayer/EndGameScreen/sharp_nextOrBest
 
 func _ready():
+	
+	if Biome == 0:
+		Global._biome = Global.Biomes.DESERT
+	if Biome == 1:
+		Global._biome = Global.Biomes.JUNGLE
+	
+	$CanvasLayer/EffectTarget.changeBiome()
 	
 	Global.currentLevel = currentLevel
 	nextLevel = currentLevel + 1 # update nextlevel number
@@ -154,7 +163,7 @@ func update_menu():
 		$CanvasLayer/EndGameScreen/Bronze2/Sprite.visible = true
 	
 func _process(delta):
-	
+	update()
 	if Global.godGun:
 		godGunWasUsed = true
 	
@@ -163,6 +172,7 @@ func _process(delta):
 	if $PlayerRoot/Start1.visible:
 		$PlayerRoot/Start1.rotation_degrees += 1
 
+	# Can reset the level with R
 	# Can reset the level with R
 	if Input.is_action_just_pressed("reset"):
 		Global.saveAllTimeBulletsFired(bulletsFired)	
@@ -230,7 +240,6 @@ func ending_level():
 	timer(false)
 	
 	if isLastLevel && Global.speedRunActive:
-		Global.SRtime_passed
 		endGameScreenNode.get_node("LevelsButton").visible = false
 		endGameScreenNode.get_node("retryButton").visible = false
 		endGameScreenNode.get_node("nextLevelButton").visible = false

@@ -19,4 +19,4 @@ func _process(delta):
 		target_pos_x = int(lerp(global_position.x, target.x, dampingX))
 		target_pos_y = int(lerp(global_position.y, target.y, dampingY))
 		global_position = Vector2(target_pos_x, target_pos_y)
-	
+

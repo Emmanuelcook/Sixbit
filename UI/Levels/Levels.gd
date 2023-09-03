@@ -9,3 +9,4 @@ func _on_Button_pressed():
 
 func goToLevel(level):
 	get_tree().change_scene("res://Levels/Desert/Level" + str(level) +".tscn")
+	

@@ -35,7 +35,7 @@ var SRsecs = 0
 var SRmins = 0
 var speedRunFinished = false
 var fullResetInput = 0
-
+var saveForLeaderBoardDisplay = ""
 var save_path = SAVE_DIR + "save.dat"
 
 var save = [
@@ -145,16 +145,12 @@ func _ready():
 	loadSave()
 	
 	
-
-
 	# FIX FOR THOSE WHO DIDNT PLAY SINCE 1.3
 	if save.size() < 3:
 		resetSave()
 		
-
-	
 	if save[0].size() < 11:
-		print('remerged')
+
 		var addSave = [
 			{
 				11 : [0,0,"99",99,99,99,99,true, 0],
@@ -169,11 +165,7 @@ func _ready():
 			}
 		]
 		save[0].merge(addSave[0])
-	
 
-	print(save)
-
-#	print(save)
 	# for example, "cheat1" and "cheat2" for codes
 	cheat_code.resize(3)
 	cheat_code[0] = [int(0), KEY_U, KEY_N, KEY_L, KEY_O, KEY_C, KEY_K]
@@ -358,5 +350,5 @@ func saveSRTime():
 	var SRtimeToFinishInv = 100000 - SRtimeToFinish
 	SilentWolf.Scores.persist_score(Global.playerName, SRtimeToFinishInv, "speedrun")
 	save[2]["speedRunTime"] = SRtimeToFinish
-
+	saveForLeaderBoardDisplay = SRtime_passed
 	resetSR()

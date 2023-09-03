@@ -81,8 +81,11 @@ func _on_Main_pressed():
 
 
 func _on_SeeSRLB_pressed():
-	# Go to leaderboard
-	pass # Replace with function body.
+	saveGlobalStats()
+#	Global.resetSR()
+#	Global.speedRunFinished = false
+	get_tree().change_scene("res://UI/inGame/speedRunLeaderboard.tscn")
+
 
 
 func _on_RetrySpeedRun_pressed():

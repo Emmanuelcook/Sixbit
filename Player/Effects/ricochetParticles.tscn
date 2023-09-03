@@ -6,14 +6,14 @@ colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [node name="ricochet" type="CPUParticles2D"]
 emitting = false
-amount = 30
-lifetime = 0.1
+amount = 10
+lifetime = 0.15
 one_shot = true
-explosiveness = 0.72
-randomness = 0.21
-spread = 17.03
+explosiveness = 1.0
+randomness = 1.0
+spread = 30.41
 initial_velocity = 600.0
 initial_velocity_random = 0.5
 angular_velocity_random = 1.0
-scale_amount = 4.0
+scale_amount = 12.0
 color_ramp = SubResource( 1 )

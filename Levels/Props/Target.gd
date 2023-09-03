@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 var gotshot = false
+export var isOnScreen = false
 
 func got_shot():
 	if gotshot: return true
@@ -15,3 +16,11 @@ func got_shot():
 func _on_Timer_timeout():
 	$hit.visible = false
 	$Sprite.modulate = Color(0,0,0,1)
+
+
+func _on_VisibilityNotifier2D_screen_entered():
+	isOnScreen = true
+
+func _on_VisibilityNotifier2D_screen_exited():
+	isOnScreen = false
+

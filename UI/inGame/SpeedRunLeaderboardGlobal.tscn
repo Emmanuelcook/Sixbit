@@ -1,0 +1,318 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://UI/inGame/SpeedRunLeaderboardGlobal.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/UI/titleBG2test2.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/UI/bgScoreboard.png" type="Texture" id=4]
+[ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Themes/ui16real.tres" type="Theme" id=6]
+
+[sub_resource type="DynamicFont" id=19]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=20]
+default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=22]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="DynamicFont" id=21]
+font_data = ExtResource( 5 )
+
+[sub_resource type="Curve" id=16]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, -360 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=17]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=18]
+offsets = PoolRealArray( 0, 0.421788, 0.815642 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 1, 1, 1, 1, 0.972656, 0, 1 )
+
+[node name="SpeedRunLeaderboard" type="Node2D"]
+pause_mode = 2
+scale = Vector2( 2, 2 )
+z_index = 30
+script = ExtResource( 1 )
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2( 2, 2 )
+
+[node name="TextureRect" type="TextureRect" parent="Node2D"]
+texture = ExtResource( 2 )
+
+[node name="BG" type="ColorRect" parent="."]
+margin_left = -23.5
+margin_top = -15.5
+margin_right = 351.5
+margin_bottom = 255.5
+rect_pivot_offset = Vector2( 527, 297.333 )
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="BG scoreboard" type="TextureRect" parent="."]
+margin_left = 82.5
+margin_top = 68.0
+margin_right = 190.5
+margin_bottom = 176.0
+rect_scale = Vector2( 1.237, 1 )
+rect_pivot_offset = Vector2( -46, 31 )
+texture = ExtResource( 4 )
+
+[node name="Rank" type="Node2D" parent="."]
+position = Vector2( 111, 91.5 )
+
+[node name="01" type="RichTextLabel" parent="Rank"]
+margin_right = 38.0
+margin_bottom = 34.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "1."
+text = "1."
+
+[node name="02" type="RichTextLabel" parent="Rank"]
+margin_top = 14.1667
+margin_right = 38.0
+margin_bottom = 48.1667
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "2."
+text = "2."
+
+[node name="03" type="RichTextLabel" parent="Rank"]
+margin_top = 28.3333
+margin_right = 38.0
+margin_bottom = 62.3333
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "3."
+text = "3."
+
+[node name="04" type="RichTextLabel" parent="Rank"]
+margin_top = 42.0
+margin_right = 38.0
+margin_bottom = 76.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "4."
+text = "4."
+
+[node name="05" type="RichTextLabel" parent="Rank"]
+margin_top = 57.1667
+margin_right = 38.0
+margin_bottom = 91.1667
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "5."
+text = "5."
+
+[node name="Name" type="Node2D" parent="."]
+position = Vector2( 123.667, 91.5 )
+
+[node name="1" type="RichTextLabel" parent="Name"]
+margin_left = 7.00002
+margin_right = 71.0
+margin_bottom = 33.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "___"
+text = "___"
+
+[node name="2" type="RichTextLabel" parent="Name"]
+margin_left = 7.00002
+margin_top = 14.1667
+margin_right = 71.0
+margin_bottom = 47.1667
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "___"
+text = "___"
+
+[node name="3" type="RichTextLabel" parent="Name"]
+margin_left = 7.0
+margin_top = 27.6667
+margin_right = 71.0
+margin_bottom = 61.6667
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "___"
+text = "___"
+
+[node name="4" type="RichTextLabel" parent="Name"]
+margin_left = 7.00002
+margin_top = 42.0
+margin_right = 71.0
+margin_bottom = 75.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "___"
+text = "___"
+
+[node name="5" type="RichTextLabel" parent="Name"]
+margin_left = 7.0
+margin_top = 57.0
+margin_right = 71.0
+margin_bottom = 93.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "___"
+text = "___"
+
+[node name="Time" type="Node2D" parent="."]
+position = Vector2( 136.333, 91.5 )
+
+[node name="1" type="RichTextLabel" parent="Time"]
+margin_left = 25.6667
+margin_right = 95.6667
+margin_bottom = 33.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="2" type="RichTextLabel" parent="Time"]
+margin_left = 25.6667
+margin_top = 14.1667
+margin_right = 95.6667
+margin_bottom = 47.1667
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="3" type="RichTextLabel" parent="Time"]
+margin_left = 26.0
+margin_top = 27.6667
+margin_right = 96.0
+margin_bottom = 63.6667
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="4" type="RichTextLabel" parent="Time"]
+margin_left = 25.6667
+margin_top = 42.0
+margin_right = 95.6667
+margin_bottom = 75.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="5" type="RichTextLabel" parent="Time"]
+margin_left = 26.0
+margin_top = 57.0
+margin_right = 96.0
+margin_bottom = 95.0
+theme = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "__:__:__"
+text = "__:__:__"
+
+[node name="Leaderboard" type="RichTextLabel" parent="."]
+margin_left = 52.5
+margin_top = 67.0
+margin_right = 273.5
+margin_bottom = 80.0
+theme = ExtResource( 6 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_constants/line_separation = -5
+bbcode_enabled = true
+bbcode_text = "[center]LeaderBoard"
+text = "LeaderBoard"
+
+[node name="SRSubmit" type="Node2D" parent="."]
+position = Vector2( 234, -2.5 )
+
+[node name="title" type="Label" parent="SRSubmit"]
+margin_left = -184.0
+margin_top = 31.5
+margin_right = 38.0
+margin_bottom = 45.5
+theme = ExtResource( 6 )
+text = "Speedrun"
+align = 1
+
+[node name="score" type="Label" parent="SRSubmit"]
+margin_left = -184.0
+margin_top = 38.5
+margin_right = 39.0
+margin_bottom = 89.5
+theme = ExtResource( 6 )
+custom_fonts/font = SubResource( 19 )
+text = "YOU READY ?"
+align = 1
+
+[node name="SeeSRLB" type="Button" parent="SRSubmit"]
+margin_left = -138.5
+margin_top = 179.5
+margin_right = -6.5
+margin_bottom = 205.5
+theme = SubResource( 20 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.878431, 0.670588, 0.298039, 1 )
+custom_fonts/font = SubResource( 22 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "GO !"
+icon_align = 1
+
+[node name="Main" type="Button" parent="SRSubmit"]
+margin_left = 9.0
+margin_top = 2.0
+margin_right = 78.0
+margin_bottom = 28.0
+theme = SubResource( 20 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.878431, 0.670588, 0.298039, 1 )
+custom_fonts/font = SubResource( 21 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "Back to main"
+align = 0
+icon_align = 1
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="HSParticles" type="CPUParticles2D" parent="."]
+position = Vector2( 33.5, 108.5 )
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 273.4
+initial_velocity_random = 0.25
+angle_curve = SubResource( 16 )
+scale_amount = 16.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 17 )
+color_ramp = SubResource( 18 )
+
+[connection signal="pressed" from="SRSubmit/SeeSRLB" to="." method="_on_SeeSRLB_pressed"]
+[connection signal="pressed" from="SRSubmit/Main" to="." method="_on_Main_pressed"]

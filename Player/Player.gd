@@ -31,6 +31,8 @@ var onOil
 var ricochetVisible = false
 var finishLevelNextFrame = false
 
+var effectTarget = false
+
 func _ready():
 	self.gravity_scale = 0
 	
@@ -38,6 +40,9 @@ func _ready():
 	$resetdamp.set_wait_time(0.2)
 
 func _process(delta):
+	
+
+		
 	if ricochetVisible:
 		# ici il faut faire plus tous les ricochets se desactive ou quoi
 		# ----------------------------------
@@ -112,8 +117,14 @@ func _process(delta):
 		# On check avec quoi on collide, si c'est une target, on le got shot
 		if AimCast.is_colliding():
 			if AimCast.get_collider().is_in_group("target"):
-				
-				eclat(AimCast, AimCast.global_transform.origin, AimCast.get_collision_point())
+
+				var target = AimCast.get_collider()
+				if !target.gotshot:
+					get_parent().get_parent().get_node("CanvasLayer/EffectTarget").targetShot()
+					eclat(AimCast, AimCast.global_transform.origin, AimCast.get_collision_point())
+
+					
+					
 				AimCast.get_collider().got_shot()
 		
 		if AimCast.is_colliding():
@@ -169,7 +180,106 @@ func _process(delta):
 	else:
 		if Global.godGun:
 			godGunBullet.emit(false) 
-		
+
+
+func _get_camera_center():
+	var vtrans = get_canvas_transform()
+	var top_left = -vtrans.get_origin() / vtrans.get_scale()
+	var vsize = get_viewport_rect().size
+	return top_left + 0.5*vsize/vtrans.get_scale()
+
+	
+func eclatFromOutside(raycast, collider):
+	pass
+#
+#	# L'enfer sur terre pour display des particules sur le bord de l'écran.
+#	# Et encore c'est pas parfait mais bon.
+#	# Et ca va pas marcher pour la jungle d'ailleurs vu qu'on a dezoom non ?
+##	print(self.position)
+##	print(collider.global_position - self.global_position)
+#	var top = false
+#	var right = false
+#	var bottom = false
+#	var left = false
+#	var screen = Vector2((640*get_parent().get_node("Anchor/Cam").zoom.x), (480*get_parent().get_node("Anchor/Cam").zoom.y))
+#	var colliderCoord = collider.global_position - self.global_position
+#	if colliderCoord.x == 0: return true
+#
+#	if colliderCoord.y < (-screen.y/2):
+#		top = true
+#	if colliderCoord.y > (screen.y/2):
+#		bottom = true
+#	if colliderCoord.x > (screen.x/2):
+#		right = true
+#	if colliderCoord.x < (-screen.x/2):
+#		left = true
+##	print("colliderCoord : " + str(colliderCoord))
+##	print("top: " + str(top), " - right: " + str(right)," - bottom: " + str(bottom)," - left: " + str(left))
+#
+#	var slope = colliderCoord.y/colliderCoord.x
+#	var centerOfScreen = _get_camera_center()
+#	var y
+#	var x
+#	var eclat = ricochetParticles.instance()
+#	get_parent().get_parent().add_child(eclat)
+#
+#	if top:
+#		x = (screen.y/2) / slope
+##		print("slope" + str(slope))
+##		print("x" + str(x))
+#
+#		if x < (-screen.x / 2):
+#			y = slope * (screen.x/2)
+#
+#			eclat.global_position.x = centerOfScreen.x + screen.x/2
+#			eclat.global_position.y = centerOfScreen.y + y
+#		elif x > (screen.x / 2):
+#			y = slope * (screen.x/2)
+#
+#			eclat.global_position.x = centerOfScreen.x - screen.x/2
+#			eclat.global_position.y = centerOfScreen.y - y
+#
+#
+#		else:
+#			eclat.global_position.x = centerOfScreen.x - x
+#			eclat.global_position.y = centerOfScreen.y - screen.y/2
+#
+#	elif bottom:
+#		x = (screen.y/2) / slope
+##		print("slope" + str(slope))
+##		print("x" + str(x))
+#
+#		if x < (-screen.x / 2):
+#			y = slope * (screen.x/2)
+#
+#			eclat.global_position.x = centerOfScreen.x - screen.x/2
+#			eclat.global_position.y = centerOfScreen.y - y
+#		elif x > (screen.x / 2):
+#			y = slope * (screen.x/2)
+#
+#			eclat.global_position.x = centerOfScreen.x + screen.x/2
+#			eclat.global_position.y = centerOfScreen.y + y
+#		else:
+#			eclat.global_position.x = centerOfScreen.x + x
+#			eclat.global_position.y = centerOfScreen.y + screen.y/2	
+#
+#	elif right:
+#		y = slope * (screen.x/2)
+#		eclat.global_position.x = centerOfScreen.x + screen.x/2
+#		eclat.global_position.y = centerOfScreen.y + y
+#		print(self.global_position.x)
+#		print(colliderCoord.x)
+#
+#	elif left:
+#		y = slope * (screen.x/2)
+#
+#		eclat.global_position.x = centerOfScreen.x - screen.x/2
+#		eclat.global_position.y = centerOfScreen.y - y
+#
+#
+#	eclat.rotation = (raycast.global_transform.origin - raycast.get_collision_point()).angle()
+#	eclat.emitting = true
+	
 func eclat(raycast, startingPoint, collisionPoint):
 	var eclat = ricochetParticles.instance()
 	get_parent().get_parent().add_child(eclat)
@@ -214,7 +324,11 @@ func ricochet(raycast, collider):
 		
 		if newCast.get_collider().is_in_group("target"):
 			yield(get_tree().create_timer(0.1), "timeout")
-			eclat(newCast, newCast.global_transform.origin, newCast.get_collision_point())
+			var target = newCast.get_collider()
+			if !target.gotshot:
+				get_parent().get_parent().get_node("CanvasLayer/EffectTarget").targetShot()
+				eclat(newCast, newCast.global_transform.origin, newCast.get_collision_point())
+
 			newCast.get_collider().got_shot()
 		
 		if newCast.is_colliding():
@@ -283,7 +397,6 @@ func reload():
 	$spin.play()
 	
 func end_reload():
-	
 	ballUsed = 0
 	cylinder.end_reload()	
 	is_reloading = false
@@ -317,8 +430,6 @@ func _on_OilDetect_body_entered(body):
 		if !Global.godGun:
 			if self.linear_damp == 8:
 				self.linear_damp = 6
-
-
 
 
 func _on_OilDetect_body_exited(body):

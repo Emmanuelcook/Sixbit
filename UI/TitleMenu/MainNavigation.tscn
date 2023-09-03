@@ -38,7 +38,7 @@ needPlayerName = true
 [node name="Speedrun" parent="." instance=ExtResource( 7 )]
 margin_top = 174.0
 margin_bottom = 216.0
-lienVers = "res://Levels/Desert/Level1.tscn"
+lienVers = "res://UI/inGame/SpeedRunLeaderboardGlobal.tscn"
 linkText = "Speedrun"
 needPlayerName = true
 
