@@ -80,12 +80,21 @@ func _process(delta):
 		
 		
 		# On enlève une balle du cylindre
+		$AnimationPlayer.play('shot')
+		if $shotParticles.emitting:
+			$shotParticles.restart()
+		$shotParticles.emitting = true
+		
 		ballUsed += 1
 		get_node("../..").addOneBulletsFired() # Bullets fired for the level
 		
 		
 		# Sinon on tire
+		randomize()
+		$shot.pitch_scale = rand_range(0.9,1.1)
 		$shot.play()
+		randomize()
+		$bulletout.pitch_scale = rand_range(0.9,1.1)
 		$bulletout.play()
 		recoil()
 		cylinder.shot(ballUsed)
