@@ -335,6 +335,8 @@ custom_fonts/font = SubResource( 15 )
 [node name="EffectTarget" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 19 )
 
+[node name="TargetsIndicators" type="Node2D" parent="CanvasLayer"]
+
 [connection signal="animation_finished" from="Electrics/ElectricPole/AnimatedSprite" to="Electrics/ElectricPole" method="_on_AnimatedSprite_animation_finished"]
 
 [editable path="Ricochets/Ricochet"]

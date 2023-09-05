@@ -299,4 +299,6 @@ custom_fonts/font = SubResource( 15 )
 [node name="EffectTarget" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 18 )
 
+[node name="TargetsIndicators" type="Node2D" parent="CanvasLayer"]
+
 [editable path="Ricochets/Ricochet"]

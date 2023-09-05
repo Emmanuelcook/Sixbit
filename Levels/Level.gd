@@ -3,6 +3,8 @@ extends Node2D
 export var currentLevel = 1
 export(int, "Desert", "Jungle") var Biome
 
+var targetIndScene = preload("res://Levels/Props/Targetindicator.tscn")
+
 export var isLastLevel = false
 var nextLevel
 var levelIsFinished
@@ -34,6 +36,7 @@ var timerMoved = false
 
 # Number of targets in the level / Number of targets shots
 var targetNumber = 0
+var targetIndex = 0
 var targetShot = 0
 
 
@@ -72,7 +75,13 @@ func _ready():
 	
 		#Update the number of targets in the level
 	for i in $Targets.get_children():
+		var targetInd = targetIndScene.instance()
+		$CanvasLayer/TargetsIndicators.add_child(targetInd)
+		targetInd.global_position = Vector2(43, 482)
+		targetInd.global_position.y -= 24 * targetNumber
+		targetIndex += 1
 		targetNumber += 1
+		
 	
 	if Global.speedRunActive:
 		
@@ -223,6 +232,10 @@ func targetShot():
 	# check numbers of target shots, 
 	# if it matches the number of target in the level. End level.
 	targetShot += 1
+	targetIndex -= 1
+	$CanvasLayer/TargetsIndicators.get_child(targetIndex).gotShot()
+		
+	
 	if targetShot == targetNumber:
 		ending_level()
 

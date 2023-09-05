@@ -204,7 +204,6 @@ bbcode_enabled = true
 [node name="godGunBullet" parent="." instance=ExtResource( 16 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="cylinder" type="Sprite" parent="CanvasLayer"]
 position = Vector2( 44, 44 )
@@ -296,3 +295,5 @@ custom_fonts/font = SubResource( 16 )
 
 [node name="EffectTarget" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 18 )
+
+[node name="TargetsIndicators" type="Node2D" parent="CanvasLayer"]
