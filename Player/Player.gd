@@ -96,7 +96,7 @@ func _process(delta):
 		randomize()
 		$bulletout.pitch_scale = rand_range(0.9,1.1)
 		$bulletout.play()
-		recoil()
+		recoil(force)
 		cylinder.shot(ballUsed)
 		
 		# particle bullet
@@ -142,7 +142,15 @@ func _process(delta):
 				eclat(AimCast, AimCast.global_transform.origin, AimCast.get_collision_point())
 				ricochet(AimCast, collider)
 				
+		
+		# On check avec quoi on collide, si c'est une target, on le got shot
+		if AimCast.is_colliding():
+			if AimCast.get_collider().is_in_group("electric"):
+				AimCast.get_collider().gotShot()
+				recoil(force/2)
 				
+				pass
+			
 		#Screen shake
 		get_parent().get_node("Anchor/Cam").add_trauma(0.3)
 		
@@ -183,7 +191,7 @@ func _process(delta):
 			# Drawing Shot
 			draw_shot()
 			$shot.play()
-			recoil()
+			recoil(force)
 			godGunBullet.emit(true) 
 			get_parent().get_node("Anchor/Cam").add_trauma(0.1)
 	else:
@@ -413,11 +421,11 @@ func end_reload():
 func _integrate_forces(_state):
 	set_angular_velocity((get_angle_to(get_global_mouse_position())) * -((get_angle_to(get_global_mouse_position())) -3.14) * 5)
 
-func recoil():
+func recoil(forceToApply):
 	direction = self.global_position.direction_to(get_global_mouse_position())
 	
 	currentDirection = direction
-	var impulse = -direction * force
+	var impulse = -direction * forceToApply
 	apply_central_impulse(impulse)
 
 	# Effet de recul adoucit qu'on remet rapidement
