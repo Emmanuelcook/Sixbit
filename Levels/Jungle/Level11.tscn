@@ -73,6 +73,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 899.0 ]
 }
 currentLevel = 11
+Biome = 1
 bronzeSpeedStar = 3
 silverSpeedStar = 2
 goldSpeedStar = 1

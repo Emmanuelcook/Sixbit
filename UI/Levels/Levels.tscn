@@ -76,9 +76,9 @@ texture = ExtResource( 6 )
 
 [node name="Button" type="Button" parent="Back"]
 margin_left = 224.0
-margin_top = 390.0
+margin_top = 387.0
 margin_right = 418.0
-margin_bottom = 426.0
+margin_bottom = 423.0
 theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0.87451, 0.788235, 0.635294, 1 )
 custom_colors/font_color_hover = Color( 0.827451, 0.658824, 0.2, 1 )

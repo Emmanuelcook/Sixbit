@@ -146,12 +146,12 @@ collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
 position = Vector2( 33, 0 )
-polygon = PoolVector2Array( 19, 135, 19, 93, 27, 84, 27, 80, 35, 72, 35, 68, 43, 60, 67, 49, 76, 44, 122, 46, 214, 46, 235, 36, 283, 36, 315, 44, 463, 45, 478, 84, 509, 101, 527, 125, 531, 136, 531, 149, 553, 160, 556, 356, 511.833, 390.389, 491, 439, 271, 435, 272, 405, 248, 403, 196, 403, 136, 424, 110, 429, 93, 433, 71, 432, 49, 413, 34, 399, 23, 374, 16, 322, 12, 302, 17, 288, 35, 275, 55, 263, 71, 257, 105, 252, 120, 249, 121, 209, 102, 195, 86, 189, 46, 182, 18, 169, 19, 135, -194, 140, -201, 587, 694, 575, 708, -66, -195, -74, -198, 140 )
+polygon = PoolVector2Array( 19, 135, 19, 93, 27, 84, 27, 80, 35, 72, 35, 68, 43, 60, 67, 49, 76, 44, 122, 46, 214, 46, 235, 36, 283, 36, 315, 44, 463, 45, 478, 84, 509, 101, 527, 125, 531, 136, 531, 149, 553, 160, 556, 356, 511.833, 390.389, 491, 439, 271, 435, 272, 405, 259, 386, 232, 359, 210, 345, 188, 326, 178, 324, 174, 331, 175, 362, 175, 393, 157, 410, 137, 417, 111, 424, 93, 433, 71, 432, 49, 413, 34, 399, 23, 374, 16, 322, 12, 302, 17, 288, 35, 275, 55, 263, 71, 257, 105, 252, 120, 249, 121, 209, 102, 195, 86, 189, 46, 182, 18, 169, 19, 135, -194, 140, -201, 587, 694, 575, 708, -66, -195, -74, -198, 140 )
 
 [node name="Targets" type="Node2D" parent="."]
 
 [node name="Target" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 128, 361 )
+position = Vector2( 128, 360 )
 
 [node name="Ricochets" type="Node2D" parent="."]
 position = Vector2( 576, 419 )
@@ -350,80 +350,14 @@ margin_bottom = 68.0
 theme = ExtResource( 9 )
 custom_fonts/font = SubResource( 15 )
 
-[node name="EndGameScreen" parent="CanvasLayer" instance=ExtResource( 17 )]
-
-[node name="BG scoreboard" parent="CanvasLayer/EndGameScreen" index="1"]
-visible = false
-
-[node name="BG shots" parent="CanvasLayer/EndGameScreen" index="2"]
-margin_left = -79.0
-margin_right = 29.0
-
-[node name="BG Time2" parent="CanvasLayer/EndGameScreen" index="3"]
-margin_left = -79.0
-margin_right = 29.0
-
-[node name="Bullets shot" parent="CanvasLayer/EndGameScreen" index="4"]
-margin_left = -56.5
-margin_right = -26.5
-
-[node name="Bullets shot2" parent="CanvasLayer/EndGameScreen" index="5"]
-visible = false
-
-[node name="sharp_results" parent="CanvasLayer/EndGameScreen" index="6"]
-margin_left = -79.0
-margin_right = 29.0
-
-[node name="sharp_nextOrBest" parent="CanvasLayer/EndGameScreen" index="7"]
-margin_left = -79.0
-margin_right = 29.0
-
-[node name="Bronze2" parent="CanvasLayer/EndGameScreen" index="8"]
-position = Vector2( -16.5, 116 )
-
-[node name="Silver2" parent="CanvasLayer/EndGameScreen" index="9"]
-position = Vector2( -6.6667, 116 )
-
-[node name="Gold2" parent="CanvasLayer/EndGameScreen" index="10"]
-position = Vector2( 3.1667, 116 )
-
-[node name="Bronze" parent="CanvasLayer/EndGameScreen" index="11"]
-position = Vector2( -16.5, 60.5 )
-
-[node name="Silver" parent="CanvasLayer/EndGameScreen" index="12"]
-position = Vector2( -6.6667, 60.5 )
-
-[node name="Gold" parent="CanvasLayer/EndGameScreen" index="13"]
-position = Vector2( 3.1667, 60.5 )
-
-[node name="speed" parent="CanvasLayer/EndGameScreen" index="14"]
-margin_left = -53.5
-margin_right = -26.5
-
-[node name="speed_results" parent="CanvasLayer/EndGameScreen" index="15"]
-margin_left = -79.0
-margin_right = 29.0
-
-[node name="speed_nextOrBest" parent="CanvasLayer/EndGameScreen" index="16"]
-margin_left = -79.0
-margin_right = 29.0
-
-[node name="Rank" parent="CanvasLayer/EndGameScreen" index="18"]
-visible = false
-
-[node name="Name" parent="CanvasLayer/EndGameScreen" index="19"]
-visible = false
-
-[node name="Time" parent="CanvasLayer/EndGameScreen" index="20"]
-visible = false
-
 [node name="EffectTarget" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 18 )
 
 [node name="TargetsIndicators" type="Node2D" parent="CanvasLayer"]
 
+[node name="EndGameScreen" parent="CanvasLayer" instance=ExtResource( 17 )]
+
 [editable path="Ricochets/Ricochet"]
 [editable path="Ricochets/Ricochet2"]
 [editable path="Ricochets/Ricochet3"]
 [editable path="Ricochets/Ricochet4"]
-[editable path="CanvasLayer/EndGameScreen"]

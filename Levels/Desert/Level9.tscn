@@ -167,8 +167,8 @@ polygon = PoolVector2Array( 1164.2, 944, 1187.2, 932, 1202.2, 893, 1205.2, 853, 
 
 [node name="OIL2" type="RigidBody2D" parent="Walls" groups=["slippy"]]
 position = Vector2( 65, 0 )
-collision_layer = 524288
-collision_mask = 524288
+collision_layer = 524545
+collision_mask = 524545
 mode = 1
 physics_material_override = SubResource( 16 )
 contacts_reported = 1
@@ -180,8 +180,8 @@ polygon = PoolVector2Array( 146.705, 756, 125.705, 748, 127.705, 737, 142.705, 7
 
 [node name="OIL3" type="RigidBody2D" parent="Walls" groups=["slippy"]]
 position = Vector2( 151, 667 )
-collision_layer = 524288
-collision_mask = 524288
+collision_layer = 524545
+collision_mask = 524545
 mode = 1
 physics_material_override = SubResource( 17 )
 
