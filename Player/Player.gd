@@ -143,13 +143,13 @@ func _process(delta):
 				ricochet(AimCast, collider)
 				
 		
-		# On check avec quoi on collide, si c'est une target, on le got shot
-		if AimCast.is_colliding():
-			if AimCast.get_collider().is_in_group("electric"):
-				AimCast.get_collider().gotShot()
-				recoil(force/2)
-				
-				pass
+#		# On check avec quoi on collide, si c'est une target, on le got shot
+#		if AimCast.is_colliding():
+#			if AimCast.get_collider().is_in_group("electric"):
+#				AimCast.get_collider().gotShot(self)
+#				recoil(force/2)
+#
+#				pass
 			
 		#Screen shake
 		get_parent().get_node("Anchor/Cam").add_trauma(0.3)
