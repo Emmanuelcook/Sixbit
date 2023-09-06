@@ -7,7 +7,7 @@ width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 1 )
 limited_lifetime = true
-wildness = 10.0
+wildness = 0.0
 
 [node name="Decay" type="Tween" parent="."]
 

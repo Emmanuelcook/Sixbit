@@ -355,10 +355,11 @@ func ricochet(raycast, collider):
 				var collider2 = newCast.get_collider()
 				eclat(newCast, newCast.global_transform.origin, newCast.get_collision_point())
 				ricochet(newCast, collider2)
-
+				
+	newCast.queue_free()
+	
 	draw_ricochet(newPoint, ricochetCollider)
 #	get_tree().paused = true
-	newCast.queue_free()
 
 	
 func godgun():
