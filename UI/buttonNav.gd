@@ -7,6 +7,11 @@ export var isClickable = true
 export var needPlayerName = false
 
 func _ready():
+	if Global._biome == Global.Biomes.JUNGLE:
+#		$Target.visible = false
+#		$TargetJungle.visible = true
+		textColor = Color(1,1,1,1)
+		
 	$textLink.modulate = textColor
 	$textLink.text = linkText
 	
@@ -16,7 +21,11 @@ func _ready():
 
 func _on_ButtonNav_mouse_entered():
 	if isClickable:
-		$textLink.modulate = Color(1,1,1,1)
+		if Global._biome == Global.Biomes.JUNGLE:
+			$textLink.modulate = Color(1,1,1,.5)
+		else:
+			$textLink.modulate = Color(1,1,1,1)
+			
 		$TargetOutline.visible = true
 
 func _on_ButtonNav_mouse_exited():

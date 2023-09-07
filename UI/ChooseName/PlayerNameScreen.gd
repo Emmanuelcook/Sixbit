@@ -7,6 +7,15 @@ var textColor = Color(.3,.26,.18,1)
 
 func _ready():
 	get_tree().paused = false
+	if Global._biome == Global.Biomes.JUNGLE:
+		$Label.set("custom_colors/font_color", Color(1,1,1))
+		$first/label.set("custom_colors/font_color", Color(1,1,1))
+		$second/label.set("custom_colors/font_color", Color(1,1,1))
+		$third/label.set("custom_colors/font_color", Color(1,1,1))
+#		$Go/bgDesert.visible = false
+#		$Go/bgJungle.visible = true
+		textColor = Color(1,1,1,1)
+		
 	$Go.visible = false
 	$Go/Label.modulate = textColor
 	

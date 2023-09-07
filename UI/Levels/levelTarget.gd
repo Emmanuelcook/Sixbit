@@ -4,9 +4,11 @@ export var level = 1
 export var unlockedLevel = true
 
 
+
 func _ready():
 	
-	$Button/Label.text = str(level)
+	$Button/Label.text = str(fmod(level, 10))
+	
 	# check if level is unlocked
 	unlockedLevel = Global.save[0][level][7]
 	

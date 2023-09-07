@@ -6,6 +6,19 @@ var targetShot = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	if Global._biome == Global.Biomes.JUNGLE:
+		$BG/bgDesert.visible = false
+		$BG/bgJungle.visible = true
+		$BG/SpriteDesert.visible = false
+		$BG/SpriteJungle.visible = true
+		textColor = Color(1,1,1,1)
+		$fulleRunTitle.set("custom_colors/font_color", Color(1,1,1))
+		$bulletsTitle.set("custom_colors/font_color", Color(1,1,1))
+		$bulletsTitle2.set("custom_colors/font_color", Color(1,1,1))
+		$SpeedRunTitle.set("custom_colors/font_color", Color(1,1,1))
+		$SpeedRunTitle2.set("custom_colors/font_color", Color(1,1,1))
+		
 	playerStartPosY = $howToPlayr.global_position.y
 	pass # Replace with function body.
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://UI/ChooseName/PlayerNameScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Themes/UI.tres" type="Theme" id=5]
 [ext_resource path="res://assets/sprites/UI/targetOutline.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/player/target.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/UI/titleBGJungle2.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/levels/props/targetJungle.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -28,10 +30,15 @@ script = ExtResource( 1 )
 [node name="Node2D" type="Node2D" parent="."]
 scale = Vector2( 4, 4 )
 
-[node name="TextureRect" type="TextureRect" parent="Node2D"]
+[node name="bgDesert" type="TextureRect" parent="Node2D"]
 margin_right = 160.0
 margin_bottom = 120.0
 texture = ExtResource( 3 )
+
+[node name="bgJungle" type="TextureRect" parent="Node2D"]
+margin_right = 160.0
+margin_bottom = 120.0
+texture = ExtResource( 8 )
 
 [node name="A" parent="." instance=ExtResource( 4 )]
 margin_left = 134.0
@@ -313,10 +320,16 @@ position = Vector2( 21, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 
-[node name="Sprite2" type="Sprite" parent="Go"]
+[node name="bgDesert" type="Sprite" parent="Go"]
 position = Vector2( 21, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
+
+[node name="bgJungle" type="Sprite" parent="Go"]
+visible = false
+position = Vector2( 21, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 9 )
 
 [node name="ColorRect" type="ColorRect" parent="Go"]
 margin_left = 37.0

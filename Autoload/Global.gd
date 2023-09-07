@@ -127,7 +127,8 @@ func resetSave():
 	
 
 func _ready():
-
+	Global._biome = Global.Biomes.JUNGLE
+	
 	# CONFIGURE SILENT WOLF
 	var f=File.new()
 	f.open('res://apiKey.env',File.READ)

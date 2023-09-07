@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Themes/UI.tres" type="Theme" id=1]
 [ext_resource path="res://assets/sprites/UI/targetOutline.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/player/target.png" type="Texture" id=3]
 [ext_resource path="res://UI/buttonNav.gd" type="Script" id=4]
 [ext_resource path="res://assets/sprites/player/targetnope.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/levels/props/targetJungle.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -54,6 +55,12 @@ texture = ExtResource( 2 )
 position = Vector2( 21, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
+
+[node name="TargetJungle" type="Sprite" parent="."]
+visible = false
+position = Vector2( 21, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 6 )
 
 [node name="notclickable" type="Sprite" parent="."]
 visible = false

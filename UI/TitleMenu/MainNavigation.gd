@@ -4,6 +4,13 @@ var textColor = Color(.3,.26,.18,1)
 
 func _ready():
 	get_tree().paused = false
+
+	if Global._biome == Global.Biomes.JUNGLE:
+		textColor = Color(1,1,1,1)
+		$BG/bgJungle.visible = true
+		$BG/bgDesert.visible = false
+		
+		
 	
 	#Below only code for displaying your name if you have one
 	Global.playerName = Global.save[1].playerName 

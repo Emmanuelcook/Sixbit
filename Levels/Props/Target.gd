@@ -3,6 +3,12 @@ extends StaticBody2D
 var gotshot = false
 export var isOnScreen = false
 
+func _ready():
+#	if Global._biome == Global.Biomes.JUNGLE:
+#		$Sprite.visible = false
+#		$SpriteJungle.visible = true
+	pass
+
 func got_shot():
 	if gotshot: return true
 	randomize()
@@ -16,6 +22,7 @@ func got_shot():
 func _on_Timer_timeout():
 	$hit.visible = false
 	$Sprite.modulate = Color(0,0,0,1)
+	$SpriteJungle.modulate = Color(0,0,0,1)
 
 
 func _on_VisibilityNotifier2D_screen_entered():

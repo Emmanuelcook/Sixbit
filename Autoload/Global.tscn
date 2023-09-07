@@ -34,5 +34,6 @@ bus = "SFX"
 [node name="monkey" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 854, 113 )
 stream = ExtResource( 6 )
+bus = "SFX"
 
 [connection signal="request_completed" from="leaderboard" to="." method="_on_Leaderboard_request_completed"]

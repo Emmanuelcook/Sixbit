@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://UI/Stats/statsScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/UI/titleBG2test2.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://UI/Stats/changeName.gd" type="Script" id=9]
 [ext_resource path="res://UI/Settings/settingsScreen.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/sprites/UI/titleBGJungle2.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/levels/props/targetJungle.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=15]
 size = 64
@@ -54,13 +56,19 @@ colors = PoolColorArray( 1, 0, 0, 1, 1, 1, 1, 1, 1, 0.972656, 0, 1 )
 [node name="statsScreen" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="BG" type="Node2D" parent="."]
 scale = Vector2( 4, 4 )
 
-[node name="TextureRect" type="TextureRect" parent="Node2D"]
+[node name="bgDesert" type="TextureRect" parent="BG"]
 margin_right = 160.0
 margin_bottom = 120.0
 texture = ExtResource( 2 )
+
+[node name="bgJungle" type="TextureRect" parent="BG"]
+visible = false
+margin_right = 160.0
+margin_bottom = 120.0
+texture = ExtResource( 11 )
 
 [node name="fulleRunTitle" type="Label" parent="."]
 margin_left = 141.0
@@ -212,10 +220,16 @@ position = Vector2( 19, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 
-[node name="Sprite2" type="Sprite" parent="changeName"]
+[node name="SpriteDesert" type="Sprite" parent="changeName"]
 position = Vector2( 19, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
+
+[node name="SpriteJungle" type="Sprite" parent="changeName"]
+visible = false
+position = Vector2( 19, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 12 )
 
 [node name="ColorRect" type="ColorRect" parent="changeName"]
 margin_left = -32.0
@@ -255,10 +269,16 @@ position = Vector2( 21, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 
-[node name="Sprite2" type="Sprite" parent="backMain"]
+[node name="SpriteDesert" type="Sprite" parent="backMain"]
 position = Vector2( 21, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
+
+[node name="SpriteJungle" type="Sprite" parent="backMain"]
+visible = false
+position = Vector2( 21, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 12 )
 
 [node name="ColorRect" type="ColorRect" parent="backMain"]
 margin_left = 37.0
@@ -298,10 +318,16 @@ position = Vector2( 19, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 
-[node name="Sprite2" type="Sprite" parent="resetSave"]
+[node name="SpriteDesert" type="Sprite" parent="resetSave"]
 position = Vector2( 19, 22 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
+
+[node name="SpriteJungle" type="Sprite" parent="resetSave"]
+visible = false
+position = Vector2( 19, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 12 )
 
 [node name="ColorRect" type="ColorRect" parent="resetSave"]
 margin_left = -32.0

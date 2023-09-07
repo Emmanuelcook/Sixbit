@@ -4,6 +4,33 @@ var textColor = Color(.3,.26,.18,1)
 
 func _ready():
 	get_tree().paused = false
+	
+	if Global._biome == Global.Biomes.JUNGLE:
+		$BG/bgDesert.visible = false
+		$BG/bgJungle.visible = true
+		textColor = Color(1,1,1,1)
+		
+#		$backMain/SpriteDesert.visible = false
+#		$backMain/SpriteJungle.visible = true
+#		$resetSave/SpriteDesert.visible = false
+#		$resetSave/SpriteJungle.visible = true
+#		$changeName/SpriteDesert.visible = false
+#		$changeName/SpriteJungle.visible = true
+		
+		$fulleRunTitle.set("custom_colors/font_color", Color(1,1,1))
+		$fullRunStat.set("custom_colors/font_color", Color(1,1,1))
+		$speedRunStat.set("custom_colors/font_color", Color(1,1,1))
+		$SpeedRunTitle.set("custom_colors/font_color", Color(1,1,1))
+		$bulletsTitle.set("custom_colors/font_color", Color(1,1,1))
+		$targetsTitle.set("custom_colors/font_color", Color(1,1,1))
+		$accuracyTitle.set("custom_colors/font_color", Color(1,1,1))
+		$bulletsStat.set("custom_colors/font_color", Color(1,1,1))
+		$targetsStat.set("custom_colors/font_color", Color(1,1,1))
+		$accuracyStat.set("custom_colors/font_color", Color(1,1,1))
+		
+		
+		
+		
 	$changeName/Label.modulate = textColor
 	$backMain/Label.modulate = textColor
 	$resetSave/Label.modulate = textColor
