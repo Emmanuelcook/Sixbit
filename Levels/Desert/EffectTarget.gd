@@ -8,7 +8,7 @@ func changeBiome():
 	if Global._biome == 0:
 		effectSize = 10
 	elif Global._biome == 1:
-		effectSize = 3
+		effectSize = 6
 	
 func targetShot():
 	currentSize += effectSize
