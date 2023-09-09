@@ -10,7 +10,10 @@ func _ready():
 	else: 
 		$SRRetryButton.visible = false
 		$SRStopSR.visible = false
-
+	
+func unlockNext():
+	$nextLevelButton.visible = true
+	
 func _process(delta):
 	# Can reload with R
 #	if Input.is_action_just_pressed("reset"):
@@ -55,13 +58,26 @@ func _on_nextLevelButton_pressed():
 	var nextLevel = get_parent().get_parent().nextLevel
 	var isLastLevel = get_parent().get_parent().isLastLevel
 	
+	
+	
+	if get_parent().get_parent().currentLevel == 9:
+		if Global.speedRunActive:
+			get_tree().change_scene("res://Levels/Jungle/Level11.tscn")
+		elif !Global.save[0][12][7]:
+			get_tree().change_scene("res://UI/Levels/Levels.tscn")
+		else:
+			Global._biome = Global.Biomes.JUNGLE
+			get_tree().change_scene("res://Levels/Jungle/Level11.tscn")
+			
 	# Go to next level or thank you page if it was the last
 	if !isLastLevel:
-		if Global._biome == Global.Biomes.DESERT:
-			get_tree().change_scene("res://Levels/Desert/Level" + str(nextLevel) +".tscn")
-		if Global._biome == Global.Biomes.JUNGLE:
-			get_tree().change_scene("res://Levels/Jungle/Level" + str(nextLevel) +".tscn")
-
+		if get_parent().get_parent().currentLevel != 9:
+			if Global._biome == Global.Biomes.DESERT:
+				get_tree().change_scene("res://Levels/Desert/Level" + str(nextLevel) +".tscn")
+			if Global._biome == Global.Biomes.JUNGLE:
+				get_tree().change_scene("res://Levels/Jungle/Level" + str(nextLevel) +".tscn")
+	
+	
 
 func _on_SRStopSR_pressed():
 	saveGlobalStats()	

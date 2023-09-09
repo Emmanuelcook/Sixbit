@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Effects/bulletParticles.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/sprites/levels/jungle/level16.png" type="Texture" id=19]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=20]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://Themes/UI.tres" type="Theme" id=22]
 
 [sub_resource type="PhysicsMaterial" id=16]
 friction = 0.0
@@ -70,6 +71,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="DynamicFont" id=15]
+size = 64
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=18]
 size = 64
 font_data = ExtResource( 21 )
 
@@ -155,6 +160,7 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
 
 [node name="Walls" type="Node2D" parent="."]
+visible = false
 
 [node name="Walls" type="StaticBody2D" parent="Walls"]
 position = Vector2( 760, 0 )
@@ -162,7 +168,7 @@ collision_layer = 257
 collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
-polygon = PoolVector2Array( -383, 409, -407, 424, -435, 430, -464, 439, -499, 439, -519, 446, -529, 512, -621, 513, -637, 503, -649, 488, -657, 459, -660, 444, -666, 438, -691, 423, -704, 414, -712, 396, -723, 370, -718, 312, -746, 208, -752, 105, -733, 41, -701, 21, -651, 11, -612, 3, -600.595, 14.7847, -545, -10, -490, 3, -436, -10, -410, 70, -387, 76, -363, 75, -361, 64, -324, 11, -55, 17, -75, 252, -151, 278, -166, 286, -191, 290, -202, 288, -239, 289, -240, 308, -240, 335, -235, 348, -219, 360, -197, 370, -159, 370, -134, 363, -106, 356, -74, 359, -59, 387, -58, 422, -65, 454, -83, 473, -105, 489, -146, 563, -234, 547, -291, 562, -360, 320, -365, 304, -367, 297, -375, 290, -407, 286, -408, 199, -415, 199, -436, 214, -462, 203, -501, 207, -528, 204, -552, 213, -567, 199, -586, 201, -605, 214, -612, 233, -609, 256, -600, 283, -589, 297, -573, 303, -552, 301, -423, 300, -400, 308, -389, 313, -351, 333, -307, 643, 49, 644, 61, -107, -838, -93, -902, 669, -317, 655, -346, 419 )
+polygon = PoolVector2Array( -383, 409, -407, 424, -435, 430, -464, 439, -499, 439, -519, 446, -529, 512, -621, 513, -637, 503, -649, 488, -657, 459, -660, 444, -666, 438, -691, 423, -704, 414, -712, 396, -723, 370, -718, 312, -746, 208, -752, 105, -733, 41, -701, 21, -651, 11, -612, 3, -600.595, 14.7847, -545, -10, -490, 3, -436, -10, -410, 70, -387, 76, -363, 75, -361, 64, -324, 11, -55, 17, -75, 252, -151, 278, -166, 286, -191, 290, -202, 288, -239, 289, -240, 308, -240, 335, -235, 348, -219, 360, -197, 370, -159, 370, -134, 363, -106, 356, -74, 359, -59, 387, -58, 422, -65, 454, -83, 473, -105, 489, -146, 563, -234, 547, -291, 562, -360, 320, -365, 304, -367, 297, -375, 290, -407, 286, -408, 204, -414, 202, -438, 201, -462, 203, -501, 207, -528, 204, -552, 213, -567, 199, -586, 201, -605, 214, -612, 233, -609, 256, -600, 283, -589, 297, -573, 303, -552, 301, -423, 300, -400, 308, -389, 313, -351, 333, -307, 643, 49, 644, 61, -107, -838, -93, -902, 669, -317, 655, -346, 419 )
 
 [node name="OIL" type="RigidBody2D" parent="Walls" groups=["slippy"]]
 position = Vector2( -36, 5 )
@@ -186,7 +192,7 @@ physics_material_override = SubResource( 16 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/OIL2"]
 position = Vector2( 528.8, 220 )
 scale = Vector2( 1, -1 )
-polygon = PoolVector2Array( -140.8, 26, -126.8, -1, -113.8, -23, -97.8, -49, -78.8, -86, -66.8, -132, -48.8, -207, -34.8, -231, -21.8, -247, -1.79999, -260, 26.2, -269, 70.2, -274, 117.2, -269, 153.2, -266, 165.2, -263, 180.2, -305, 148.2, -338, 58.2, -349, -36.8, -341, -52.8, -251, -87.8, -154, -104.8, -82, -183.8, -65, -168.8, -39 )
+polygon = PoolVector2Array( -140.8, 21, -126.8, -1, -113.8, -23, -97.8, -49, -78.8, -86, -66.8, -132, -48.8, -207, -34.8, -231, -21.8, -247, -1.79999, -260, 26.2, -269, 70.2, -274, 117.2, -269, 153.2, -266, 165.2, -263, 180.2, -305, 148.2, -338, 58.2, -349, -36.8, -341, -52.8, -251, -87.8, -154, -104.8, -82, -183.8, -65, -168.8, -39 )
 
 [node name="Targets" type="Node2D" parent="."]
 
@@ -397,6 +403,15 @@ custom_fonts/font = SubResource( 15 )
 
 [node name="EffectTarget" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 18 )
+
+[node name="SRTime" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = 19.0
+margin_top = 418.0
+margin_right = 247.0
+margin_bottom = 469.0
+theme = ExtResource( 22 )
+custom_fonts/font = SubResource( 18 )
 
 [editable path="Ricochets/Ricochet"]
 [editable path="Ricochets/Ricochet2"]

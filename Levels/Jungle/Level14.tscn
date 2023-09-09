@@ -1,12 +1,12 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Effects/bulletParticles.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=3]
 [ext_resource path="res://Levels/Props/Target.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Cam/Anchor.gd" type="Script" id=5]
-[ext_resource path="res://assets/sprites/levels/jungle/level14.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/levels/jungle/BG.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/levels/jungle/BG2.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/levels/jungle/level18.png" type="Texture" id=7]
 [ext_resource path="res://Player/Cam/Cam.gd" type="Script" id=8]
 [ext_resource path="res://Themes/UI16.tres" type="Theme" id=9]
 [ext_resource path="res://assets/sprites/player/start1.png" type="Texture" id=10]
@@ -18,11 +18,9 @@
 [ext_resource path="res://Player/Effects/godGunBulletParticles.tscn" type="PackedScene" id=16]
 [ext_resource path="res://UI/inGame/EndGameScreen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Levels/Desert/EffectTarget.gd" type="Script" id=18]
+[ext_resource path="res://Themes/UI.tres" type="Theme" id=19]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=20]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=21]
-
-[sub_resource type="RectangleShape2D" id=16]
-extents = Vector2( 20, 111 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -69,13 +67,21 @@ tracks/0/keys = {
 size = 64
 font_data = ExtResource( 21 )
 
-[node name="Level 11" type="Node2D"]
+[sub_resource type="DynamicFont" id=16]
+size = 64
+font_data = ExtResource( 21 )
+
+[node name="Level 14" type="Node2D"]
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 545.0 ],
+"_edit_vertical_guides_": [ 899.0 ]
+}
 currentLevel = 14
 Biome = 1
 bronzeSpeedStar = 8
-silverSpeedStar = 5
-goldSpeedStar = 3
+silverSpeedStar = 6
+goldSpeedStar = 4
 bronzeSharpStar = 7
 silverSharpStar = 6
 goldSharpStar = 5
@@ -84,39 +90,39 @@ goldSharpStar = 5
 
 [node name="Top" type="ColorRect" parent="colorAround"]
 margin_left = -9.0
-margin_top = -303.0
-margin_right = 1087.0
-margin_bottom = 20.0
+margin_top = -320.0
+margin_right = 1512.0
+margin_bottom = 3.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Right" type="ColorRect" parent="colorAround"]
-margin_left = 930.0
-margin_top = -252.0
-margin_right = 1346.0
-margin_bottom = 866.0
+margin_left = 1433.0
+margin_top = -288.0
+margin_right = 1849.0
+margin_bottom = 1011.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Bottom" type="ColorRect" parent="colorAround"]
-margin_left = -412.0
-margin_top = 848.0
-margin_right = 1367.0
-margin_bottom = 1090.0
+margin_left = 1.0
+margin_top = 947.0
+margin_right = 1868.0
+margin_bottom = 1189.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Left" type="ColorRect" parent="colorAround"]
-margin_left = -403.0
-margin_top = -302.0
-margin_right = 13.0
-margin_bottom = 988.0
+margin_left = -414.0
+margin_top = -311.0
+margin_right = 2.0
+margin_bottom = 1200.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -126,7 +132,7 @@ __meta__ = {
 margin_right = 132.0
 margin_bottom = 126.0
 rect_scale = Vector2( 4, 4 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -134,9 +140,9 @@ texture = ExtResource( 6 )
 motion_scale = Vector2( 0.7, 0.7 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 423, 435 )
+position = Vector2( 356, 288 )
 scale = Vector2( 4, 4 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -145,86 +151,46 @@ collision_layer = 257
 collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
-polygon = PoolVector2Array( 72, 248, 85, 222, 107, 198, 133, 155, 147, 125, 150, 119, 171, 100, 213, 97, 255, 91, 273, 88, 307, 97, 326, 102, 346, 105, 366, 108, 380, 109, 393, 114, 413, 117, 423, 127, 431, 146, 431, 196, 415, 247, 400, 264, 394, 280, 389, 295, 382, 307, 373, 311, 365, 321, 443, 352, 464, 359, 478, 353, 496, 345, 545, 303, 555, 290, 570, 286, 584, 273, 621, 272, 653, 295, 672, 314, 683, 324, 686, 334, 709, 371, 720, 385, 723, 409, 727, 412, 739, 448, 761, 474, 776, 488, 781, 502, 781, 520, 784, 528, 780, 545, 774, 562, 758, 582, 746, 614, 744, 636, 751, 669, 763, 685, 764, 708, 726, 740, 715, 755, 645, 810, 497, 764, 479, 753, 430, 710, 400, 685, 401, 672, 417, 651, 429, 637, 432, 629, 431, 621, 426, 614, 273, 600, 248, 578, 244, 576, 237, 568, 214, 565, 193, 558, 178, 553, 128, 528, 104, 519, 68, 493, 49, 466, 33, 434, 30, 392, 41, 346, 56, 292, 72, 248, -254, 276, -257, 967, 1264, 968, 1174, -83, -210, -103, -209, 292 )
+visible = false
+position = Vector2( 765, 222 )
+polygon = PoolVector2Array( 329, 664, 354, 641, 356, 628, 394, 612, 438, 587, 447, 555, 456, 540, 480, 528, 511, 504, 523, 497, 530, 459, 530, 437, 527, 427, 523, 421, 524, 405, 535, 392, 561, 382, 571, 375, 573, 369, 574, 359, 564, 340, 561, 314, 565, 282, 600, 257, 612, 247, 614, 184, 612, 142, 579, 101, 572, 81, 553, 34, 519, -6, 473, -41, 406, -70, 359, -85, 326, -102, 319, -129, 259, -188, 159, -190, -125, -185, -156, -178, -189, -173, -235, -120, -273, -98, -330, -31, -409, 84, -470, 198, -482, 216, -519, 258, -522, 277, -542, 286, -565, 276, -595, 255, -643, 240, -686, 239, -714, 257, -721, 275, -718, 338, -719, 369, -738, 397, -742, 445, -718, 497, -704, 528, -672, 567, -620, 573, -535, 575, -503, 556, -456, 502, -375, 407, -325, 319, -263, 244, -190, 159, -117, 156, 45, 155, 130, 157, 177, 168, 205, 189, 223, 234, 246, 315, 244, 362, 235, 395, 239, 474, 221, 529, 205, 585, 205, 621, 211, 637, 226, 640, 270, 645, 307, 656, 328, 664, 362, 766, -878, 769, -815, 101, -818, -290, 706, -295, 759, -288, 717, 768, 352, 770 )
 
 [node name="Targets" type="Node2D" parent="."]
 
 [node name="Target" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 600, 316 )
+position = Vector2( 1128, 789 )
 
 [node name="Target2" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 736, 512 )
+position = Vector2( 1236, 685 )
 
 [node name="Target3" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 344, 380 )
+position = Vector2( 1292, 569 )
 
 [node name="Target4" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 344, 271 )
+position = Vector2( 1324, 441 )
+
+[node name="Target5" parent="Targets" instance=ExtResource( 4 )]
+position = Vector2( 112, 496 )
 
 [node name="Ricochets" type="Node2D" parent="."]
+visible = false
 position = Vector2( 576, 419 )
 rotation = 1.5708
 
 [node name="Ricochet" parent="Ricochets" instance=ExtResource( 15 )]
-position = Vector2( 353, -23.0013 )
+position = Vector2( 944.996, -1006 )
 rotation = 0.0
 bipLeft = false
-bipRight = false
-
-[node name="Sprite" parent="Ricochets/Ricochet" index="0"]
-visible = false
-
-[node name="CollisionShape2D" parent="Ricochets/Ricochet" index="1"]
-position = Vector2( 6.10352e-05, 4 )
 
 [node name="ricochetFlash" parent="Ricochets/Ricochet" index="2"]
-polygon = PoolVector2Array( 75.9996, 155, 79.9996, 155, 79.9996, 163, 83.9996, 163, 83.9996, 167, 87.9996, 167, 87.9996, 171, 91.9996, 171, 91.9996, 179, 95.9996, 179, 95.9998, 207, 99.9998, 207, 99.9999, 259, 95.9999, 259, 96.0001, 291, 92.0001, 291, 92.0001, 307, 88.0001, 307, 88.0002, 331, 84.0002, 331, 84.0003, 363, 76, 363 )
-
-[node name="cligno" parent="Ricochets/Ricochet" index="5"]
-visible = false
-
-[node name="Ricochet2" parent="Ricochets" instance=ExtResource( 15 )]
-position = Vector2( 178.001, 231.999 )
-rotation = 0.0
-bipRight = false
-
-[node name="Sprite" parent="Ricochets/Ricochet2" index="0"]
-visible = false
-
-[node name="CollisionShape2D" parent="Ricochets/Ricochet2" index="1"]
-position = Vector2( -1.00018, 7.00037 )
-
-[node name="ricochetFlash" parent="Ricochets/Ricochet2" index="2"]
-position = Vector2( 95.001, 268 )
-rotation = 3.14159
-polygon = PoolVector2Array( 80.0012, 340, 80.0012, 328, 84.0012, 328, 84.0012, 320, 88.0012, 320, 88.0008, 216, 92.0008, 216, 92.0007, 200, 96.0007, 200, 96.0007, 192, 100.001, 192, 100.001, 188, 104.001, 188, 104.001, 180, 108.001, 180, 108.001, 176, 112.001, 176, 112.001, 172, 116.001, 172, 116, 364, 116, 384, 112, 384, 112, 388, 80, 388, 80, 384, 76, 384, 76.0012, 340 )
-
-[node name="Ricochet3" parent="Ricochets" instance=ExtResource( 15 )]
-position = Vector2( -85.9992, 232 )
-rotation = 0.0
-bipLeft = false
-
-[node name="Sprite" parent="Ricochets/Ricochet3" index="0"]
-visible = false
-
-[node name="CollisionShape2D" parent="Ricochets/Ricochet3" index="1"]
-position = Vector2( -1.00006, 11.0004 )
-shape = SubResource( 16 )
-
-[node name="ricochetFlash" parent="Ricochets/Ricochet3" index="2"]
-position = Vector2( -97, -268 )
-polygon = PoolVector2Array( 79.9999, 236, 79.9998, 208, 83.9998, 208, 83.9998, 204, 87.9998, 204, 87.9998, 200, 91.9998, 200, 91.9998, 196, 99.9998, 196, 99.9998, 192, 108, 192, 108, 188, 112, 188, 112, 192, 116, 192, 116, 364, 116, 384, 112, 384, 112, 388, 80, 388, 80, 384, 76, 384, 76, 352, 76, 260, 76, 252, 75.9999, 236 )
-
-[node name="cligno" parent="Ricochets/Ricochet3" index="5"]
-position = Vector2( -1, 3.05176e-05 )
+polygon = PoolVector2Array( 76, 197, 78.9998, 197, 78.9997, 189, 82.9997, 189, 82.9997, 185, 86.9997, 185, 86.9997, 181, 98.9997, 181, 98.9997, 185, 116, 185, 116, 364, 116, 384, 112, 384, 112, 388, 80, 388, 80, 384, 76, 384, 76, 352 )
 
 [node name="PlayerRoot" type="Node2D" parent="."]
-position = Vector2( 594, 652 )
-rotation = 1.5708
+position = Vector2( 1131, 607 )
 
 [node name="Player" parent="PlayerRoot" instance=ExtResource( 1 )]
-position = Vector2( -1, -3 )
-collision_layer = 524802
+position = Vector2( 0, -1 )
+collision_layer = 524801
 
 [node name="Anchor" type="Position2D" parent="PlayerRoot"]
 script = ExtResource( 5 )
@@ -232,16 +198,12 @@ script = ExtResource( 5 )
 [node name="Cam" type="Camera2D" parent="PlayerRoot/Anchor"]
 current = true
 zoom = Vector2( 1.05, 1.05 )
-limit_left = -20
-limit_top = 40
-limit_right = 830
-limit_bottom = 800
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 script = ExtResource( 8 )
 
 [node name="Start1" type="Sprite" parent="PlayerRoot"]
-position = Vector2( 0, 2 )
+position = Vector2( 1, 4 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 10 )
 
@@ -341,13 +303,20 @@ margin_bottom = 68.0
 theme = ExtResource( 9 )
 custom_fonts/font = SubResource( 15 )
 
-[node name="EffectTarget" type="Node2D" parent="CanvasLayer"]
-script = ExtResource( 18 )
+[node name="EndGameScreen" parent="CanvasLayer" instance=ExtResource( 17 )]
 
 [node name="TargetsIndicators" type="Node2D" parent="CanvasLayer"]
 
-[node name="EndGameScreen" parent="CanvasLayer" instance=ExtResource( 17 )]
+[node name="EffectTarget" type="Node2D" parent="CanvasLayer"]
+script = ExtResource( 18 )
+
+[node name="SRTime" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = 19.0
+margin_top = 418.0
+margin_right = 247.0
+margin_bottom = 469.0
+theme = ExtResource( 19 )
+custom_fonts/font = SubResource( 16 )
 
 [editable path="Ricochets/Ricochet"]
-[editable path="Ricochets/Ricochet2"]
-[editable path="Ricochets/Ricochet3"]

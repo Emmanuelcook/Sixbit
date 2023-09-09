@@ -23,8 +23,8 @@ func _ready():
 		$playerName/Name.text = Global.playerName
 		
 	
+		
 	
-
 func _on_playerName_mouse_entered():
 	$playerName/Title.modulate = Color(1,1,1,1)
 	$playerName/Name.modulate = Color(1,1,1,1)

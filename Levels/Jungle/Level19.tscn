@@ -1,11 +1,11 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Effects/bulletParticles.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=3]
 [ext_resource path="res://Levels/Props/Target.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Cam/Anchor.gd" type="Script" id=5]
-[ext_resource path="res://assets/sprites/levels/jungle/level17.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/levels/jungle/level19.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/levels/jungle/BG2.png" type="Texture" id=7]
 [ext_resource path="res://Player/Cam/Cam.gd" type="Script" id=8]
 [ext_resource path="res://Themes/UI16.tres" type="Theme" id=9]
@@ -18,8 +18,12 @@
 [ext_resource path="res://Player/Effects/godGunBulletParticles.tscn" type="PackedScene" id=16]
 [ext_resource path="res://UI/inGame/EndGameScreen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Levels/Desert/EffectTarget.gd" type="Script" id=18]
+[ext_resource path="res://Themes/UI.tres" type="Theme" id=19]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=20]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=21]
+
+[sub_resource type="PhysicsMaterial" id=16]
+friction = 0.0
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -66,6 +70,10 @@ tracks/0/keys = {
 size = 64
 font_data = ExtResource( 21 )
 
+[sub_resource type="DynamicFont" id=17]
+size = 64
+font_data = ExtResource( 21 )
+
 [node name="Level 19" type="Node2D"]
 script = ExtResource( 3 )
 __meta__ = {
@@ -75,19 +83,19 @@ __meta__ = {
 currentLevel = 19
 Biome = 1
 isLastLevel = true
-bronzeSpeedStar = 9
-silverSpeedStar = 7
-goldSpeedStar = 5
-bronzeSharpStar = 5
-silverSharpStar = 4
-goldSharpStar = 3
+bronzeSpeedStar = 15
+silverSpeedStar = 12
+goldSpeedStar = 10
+bronzeSharpStar = 9
+silverSharpStar = 7
+goldSharpStar = 6
 
 [node name="colorAround" type="Node2D" parent="."]
 
 [node name="Top" type="ColorRect" parent="colorAround"]
-margin_left = -9.0
+margin_left = -171.0
 margin_top = -320.0
-margin_right = 1087.0
+margin_right = 1509.0
 margin_bottom = 3.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
@@ -95,20 +103,20 @@ __meta__ = {
 }
 
 [node name="Right" type="ColorRect" parent="colorAround"]
-margin_left = 946.0
-margin_top = -252.0
-margin_right = 1362.0
-margin_bottom = 2100.0
+margin_left = 1424.0
+margin_top = -366.0
+margin_right = 1840.0
+margin_bottom = 1216.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Bottom" type="ColorRect" parent="colorAround"]
-margin_left = -25.0
-margin_top = 1801.0
-margin_right = 975.0
-margin_bottom = 2043.0
+margin_left = -387.0
+margin_top = 971.0
+margin_right = 1565.0
+margin_bottom = 1213.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -118,16 +126,15 @@ __meta__ = {
 margin_left = -403.0
 margin_top = -302.0
 margin_right = 13.0
-margin_bottom = 2120.0
-rect_pivot_offset = Vector2( 339, 1523 )
+margin_bottom = 1042.0
 color = Color( 0.156863, 0.184314, 0.180392, 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 240.0
-margin_bottom = 240.0
+margin_right = 132.0
+margin_bottom = 126.0
 rect_scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 
@@ -137,52 +144,106 @@ texture = ExtResource( 6 )
 motion_scale = Vector2( 0.7, 0.7 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 809, 761 )
+position = Vector2( 512, 390 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
 
 [node name="Walls" type="Node2D" parent="."]
+visible = false
 
 [node name="Walls" type="StaticBody2D" parent="Walls"]
-position = Vector2( 760, 0 )
+position = Vector2( 1817, 457 )
 collision_layer = 257
 collision_mask = 257
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls"]
-polygon = PoolVector2Array( -537, 112, -503, 134, -493, 156, -492, 183, -502, 196, -508, 240, -511, 286, -509, 304, -493, 323, -479, 331, -451, 341, -448, 355, -457, 360, -460, 417, -449, 454, -437, 477, -422, 478, -405, 481, -396, 498, -388, 528, -363, 586, -359, 620, -344, 661, -344, 675, -364, 697, -365, 765, -388, 809, -387, 853, -394, 869, -396, 939, -388, 987, -361, 1028, -342, 1071, -335, 1150, -334, 1221, -333, 1275, -352, 1313, -357, 1318, -360, 1377, -371, 1528, -387, 1555, -406, 1559, -432, 1560, -460, 1532, -484, 1525, -534, 1524, -554, 1540, -573, 1566, -576, 1601, -566, 1629, -528, 1658, -492, 1661, -407, 1646, -372, 1636, -351, 1616, -331, 1584, -286, 1551, -238, 1509, -229, 1477, -204, 1449, -199, 1412, -194, 1294, -157, 1181, -145, 1107, -141, 1036, -149, 1004, -175, 959, -207, 922, -210, 884, -237, 811, -268, 726, -287, 688, -299, 673, -300, 636, -308, 618, -310, 609, -308, 563, -318, 542, -334, 519, -355, 433, -367, 392, -370, 346, -378, 311, -391, 290, -417, 278, -438, 273, -444, 255, -453, 210, -464, 193, -475, 176, -474, 137, -458, 100, -448, 86, -451, 68, -465, 43, -559, 39, -585, 57, -588, 74, -586, 97, -577, 116, -747, 114, -744, -69, -117, -53, -35, 1822, -717, 1801, -744, 130, -578, 120, -573, 127, -558, 130, -546, 114 )
+polygon = PoolVector2Array( -1265, -8, -1260, -12, -1225, -16, -1177, -12, -1175, -137, -1185, -165, -1181, -186, -1170, -205, -1160, -205, -1138, -195, -1087, -185, -1047, -173, -1009, -168, -946, -145, -938, -141, -940, -101, -950, -97, -995, -50, -1023, -23, -1025, -6, -1002, 17, -980, 25, -963, 27, -941, 22, -919, 10, -867, -33, -812, -73, -793, -85, -776, -70, -750, -60, -711, -50, -679, -47, -637, -39, -601, -40, -577, -33, -555, 8, -548, 20, -540, 64, -536, 103, -537, 128, -548, 178, -573, 242, -580, 264, -570, 278, -590, 288, -633, 284, -681, 278, -700, 251, -742, 223, -794, 211, -907, 201, -1003, 200, -1025, 205, -1080, 229, -1124, 260, -1164, 283, -1287, 285, -1470, 287, -1530, 255, -1583, 253, -1650, 192, -1652, 140, -1627, 122, -1596, 100, -1541, 90, -1481, 69, -1435, 44, -1411, 35, -1404, 17, -1369, 8, -1362, 65, -1336, 87, -1314, 108, -1303, 140, -1281, 155, -1259, 161, -1215, 159, -1196, 145, -1174, 116, -1173, 88, -1167, 61, -1166, 55, -1189, 42, -1215, 38, -1260, 39, -1266, 34 )
 
-[node name="Walls2" type="StaticBody2D" parent="Walls"]
-position = Vector2( 760, 0 )
+[node name="Walls3" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1817, 457 )
 collision_layer = 257
 collision_mask = 257
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls2"]
-polygon = PoolVector2Array( -320, 732, -323, 791, -341, 824, -353, 904, -346, 956, -309, 1031, -297, 1059, -288, 1162, -290, 1272, -293, 1309, -312, 1337, -317, 1473, -324, 1517, -302, 1504, -283, 1484, -276, 1463, -269, 1438, -248, 1430, -241, 1293, -236, 1266, -202, 1175, -193, 1116, -186, 1061, -191, 1033, -211, 994, -237, 959, -252, 944, -255, 901, -283, 823, -303, 773 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls3"]
+polygon = PoolVector2Array( -740, -191, -789, -234, -824, -254, -857, -269, -875, -292, -889, -311, -946, -362, -1005, -401, -1069, -420, -1199, -421, -1227, -413, -1249, -396, -1287, -358, -1302, -337, -1325, -304, -1344, -254, -1351, -213, -1349, -174, -1338, -155, -1338, -113, -1349, -102, -1378, -65, -1384, -65, -1401, -76, -1412, -94, -1437, -121, -1460, -178, -1467, -202, -1520, -266, -1620, -270, -1627, -277, -1739, -285, -1773, -246, -1780, -201, -1789, -168, -1778, -146, -1735, -134, -1722, -128, -1718, -118, -1721, -106, -1749, -51, -1777, 10, -1786, 74, -1794, 129, -1796, 191, -1782, 289, -1767, 358, -1715, 368, -1656, 374, -1610, 382, -1586, 383, -1575, 390, -1661, 648, -1962, 623, -1991, 162, -1887, -554, -988, -626, -611, -483, -664, -252 )
+
+[node name="Walls4" type="StaticBody2D" parent="Walls"]
+position = Vector2( 3634, 914 )
+collision_layer = 257
+collision_mask = 257
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Walls4"]
+polygon = PoolVector2Array( -2725, -93, -2586, -94, -2520, 25, -2663, 75, -2722, 79, -2765, -1 )
+
+[node name="OIL" type="RigidBody2D" parent="Walls" groups=["slippy"]]
+position = Vector2( -36, 5 )
+collision_layer = 257
+collision_mask = 257
+mode = 1
+physics_material_override = SubResource( 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/OIL"]
+position = Vector2( 528.8, 220 )
+scale = Vector2( 1, -1 )
+polygon = PoolVector2Array( 736.2, -107, 776.2, -137, 817.2, -182, 856.2, -254, 880.2, -326, 895.2, -405, 905.2, -485, 899.2, -549, 878.2, -587, 862.2, -603, 838.2, -621, 814.2, -635, 785.2, -647, 741.2, -651, 703.2, -652, 667.2, -647, 621.2, -636, 595.2, -623, 555.2, -595, 525.2, -650, 653.2, -725, 807.2, -725, 889.2, -713, 977.2, -653, 974.2, -393, 981.2, -264, 906.2, -168, 863.2, -106, 703.2, -6, 622.2, 27, 584.2, -41, 659.2, -69 )
+
+[node name="OIL2" type="RigidBody2D" parent="Walls" groups=["slippy"]]
+position = Vector2( -72, 10 )
+collision_layer = 257
+collision_mask = 257
+mode = 1
+physics_material_override = SubResource( 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/OIL2"]
+position = Vector2( 528.8, 220 )
+scale = Vector2( 1, -1 )
+polygon = PoolVector2Array( 452.2, -591, 409.2, -632, 363.2, -662, 312.2, -683, 250.2, -705, 189.2, -715, 82.2, -721, 3.20001, -722, -48.8, -721, -84.8, -713, -135.8, -689, -169.8, -660, -207.8, -627, -214.8, -617, -276.8, -694, -271.8, -781, -99.8, -840, 85.2, -832, 335.2, -832, 462.2, -825, 496.2, -745, 497.2, -699 )
+
+[node name="OIL3" type="RigidBody2D" parent="Walls" groups=["slippy"]]
+position = Vector2( -72, 10 )
+collision_layer = 257
+collision_mask = 257
+mode = 1
+physics_material_override = SubResource( 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/OIL3"]
+position = Vector2( 528.8, 220 )
+scale = Vector2( 1, -1 )
+polygon = PoolVector2Array( 321.2, -566, 251.2, -581, 148.2, -592, 10.2, -594, -54.8, -594, -100.8, -587, -74.8, -617, -37.8, -642, -17.8, -655, 34.2, -660, 117.2, -656, 187.2, -641, 243.2, -629, 297.2, -598, 314.2, -578 )
 
 [node name="Targets" type="Node2D" parent="."]
 
 [node name="Target" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 272, 80 )
+position = Vector2( 848, 436 )
 
 [node name="Target2" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 336, 432 )
+position = Vector2( 576, 576 )
 
 [node name="Target3" parent="Targets" instance=ExtResource( 4 )]
-position = Vector2( 248, 1559 )
+position = Vector2( 76, 288 )
 
 [node name="Ricochets" type="Node2D" parent="."]
 position = Vector2( 576, 419 )
 rotation = 1.5708
 
 [node name="Ricochet" parent="Ricochets" instance=ExtResource( 15 )]
-position = Vector2( 845.994, -1544 )
+position = Vector2( 18.0004, 120 )
 bipLeft = false
 
+[node name="Sprite" parent="Ricochets/Ricochet" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="Ricochets/Ricochet" index="1"]
+position = Vector2( 0, 1 )
+
 [node name="ricochetFlash" parent="Ricochets/Ricochet" index="2"]
-polygon = PoolVector2Array( 76, 197, 78.9998, 197, 78.9997, 189, 82.9997, 189, 82.9997, 185, 86.9997, 185, 86.9997, 181, 98.9997, 181, 98.9997, 185, 116, 185, 116, 364, 116, 384, 112, 384, 112, 388, 80, 388, 80, 384, 76, 384, 76, 352 )
+polygon = PoolVector2Array( 75.9994, 177, 79.9994, 177, 79.9994, 181, 83.9994, 181, 83.9995, 193, 91.9995, 193, 91.9995, 201, 95.9995, 201, 95.9996, 209, 99.9996, 209, 99.9996, 213, 104, 213, 104, 225, 108, 225, 108, 233, 116, 233, 116, 329, 112, 329, 112.001, 341, 108.001, 341, 108.001, 349, 104.001, 349, 104.001, 365, 100.001, 365, 100.001, 377, 96.0008, 377, 96.0009, 389, 80.0009, 389, 80.0008, 373, 76.0008, 373, 76, 352 )
+
+[node name="cligno" parent="Ricochets/Ricochet" index="5"]
+position = Vector2( -3.99997, 1.00003 )
 
 [node name="PlayerRoot" type="Node2D" parent="."]
-position = Vector2( 281, 281 )
+position = Vector2( 582, 380 )
 
 [node name="Player" parent="PlayerRoot" instance=ExtResource( 1 )]
 position = Vector2( 0, -1 )
@@ -305,5 +366,14 @@ custom_fonts/font = SubResource( 15 )
 
 [node name="EffectTarget" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 18 )
+
+[node name="SRTime" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = 19.0
+margin_top = 418.0
+margin_right = 247.0
+margin_bottom = 469.0
+theme = ExtResource( 19 )
+custom_fonts/font = SubResource( 17 )
 
 [editable path="Ricochets/Ricochet"]

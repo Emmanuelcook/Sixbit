@@ -60,14 +60,28 @@ func _ready():
 	
 	if Biome == 0:
 		Global._biome = Global.Biomes.DESERT
+		Global.save[2]["actualBiome"] = 0
 	if Biome == 1:
 		Global._biome = Global.Biomes.JUNGLE
+		Global.save[2]["actualBiome"] = 1
+	
+	Global.saveGame()
 	
 	$CanvasLayer/EffectTarget.changeBiome()
 	
 	Global.currentLevel = currentLevel
+	
+	
 	nextLevel = currentLevel + 1 # update nextlevel number
+	
+	if currentLevel == 9:
+		nextLevel = nextLevel + 1
+		
 	get_tree().paused = false # unpaused if coming from menu
+	
+	if !isLastLevel:
+		if Global.save[0][nextLevel][7] == true:
+			endGameScreenNode.unlockNext()
 	
 	# Display UI but the endscreen game
 	$CanvasLayer.visible = true
@@ -86,7 +100,7 @@ func _ready():
 	if Global.speedRunActive:
 		
 		Global.godGun = false
-		
+
 		$CanvasLayer/SRTime.visible = true
 		endGameScreenNode.get_node("SRRetryButton").visible = true
 		endGameScreenNode.get_node("SRStopSR").visible = true
@@ -346,6 +360,9 @@ func ending_level():
 func unlockNextLevel():
 	if !isLastLevel:
 		Global.save[0][nextLevel][7] = true
+		endGameScreenNode.unlockNext()
+	if currentLevel == 9:
+		Global.save[2]["isJungleUnlocked"] = true
 
 func get_results():
 	# hide game UI

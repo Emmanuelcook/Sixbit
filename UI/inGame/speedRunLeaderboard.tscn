@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://UI/inGame/speedRunLeaderboard.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/UI/titleBG2test2.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/UI/titleBGJungle2.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/UI/bgScoreboard.png" type="Texture" id=4]
 [ext_resource path="res://assets/Fonts/Gamer.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Themes/ui16real.tres" type="Theme" id=6]

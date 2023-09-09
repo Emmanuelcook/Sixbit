@@ -2,8 +2,8 @@ extends Node2D
 
 func _ready():
 	$ambiance.play()
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -80)
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), -80)
+#	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -80)
+#	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), -80)
 
 func playSound(sound):
 	if sound == "metalHit":

@@ -48,4 +48,25 @@ func _on_Button_pressed():
 		yield(get_tree().create_timer(.1), "timeout")
 		$hidden.modulate = Color(1,1,1,1)
 		
-		
+
+func _on_Button_mouse_entered():
+	if unlockedLevel:
+		var tween = $Button/Tween
+		tween.interpolate_property($Button/Sprite, "position",
+				Vector2(60, 30), Vector2(60, 25), .3,
+				Tween.TRANS_CUBIC , Tween.EASE_IN_OUT)
+		tween.interpolate_property($Button/Label, "margin_top",
+				13, 8, .35,
+				Tween.TRANS_CUBIC , Tween.EASE_IN_OUT)
+		tween.start()
+
+func _on_Button_mouse_exited():
+	if unlockedLevel:
+		var tween = $Button/Tween
+		tween.interpolate_property($Button/Sprite, "position",
+				Vector2(60, 25), Vector2(60, 30), .3,
+				Tween.TRANS_CUBIC , Tween.EASE_IN_OUT)
+		tween.interpolate_property($Button/Label, "margin_top",
+				8, 13, .35,
+				Tween.TRANS_CUBIC , Tween.EASE_IN_OUT)
+		tween.start()

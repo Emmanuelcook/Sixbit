@@ -1,11 +1,22 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/sprites/UI/titleBG2.png" type="Texture" id=1]
 [ext_resource path="res://UI/Levels/levelTarget.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/UI/titleBGJungle2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/UI/next.png" type="Texture" id=4]
 [ext_resource path="res://Themes/UI.tres" type="Theme" id=5]
 [ext_resource path="res://assets/sprites/UI/button.png" type="Texture" id=6]
 [ext_resource path="res://UI/Levels/Levels.gd" type="Script" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -41,7 +52,6 @@ texture = ExtResource( 3 )
 
 [node name="Level1" parent="Desert" instance=ExtResource( 2 )]
 position = Vector2( 157, 92 )
-level = 11
 
 [node name="Level2" parent="Desert" instance=ExtResource( 2 )]
 position = Vector2( 319, 92 )
@@ -75,12 +85,32 @@ level = 8
 position = Vector2( 485, 304 )
 level = 9
 
+[node name="goRight" type="Button" parent="Desert"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 567.0
+margin_top = 217.0
+margin_right = 613.0
+margin_bottom = 260.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+flat = true
+
+[node name="next" type="Sprite" parent="Desert/goRight"]
+position = Vector2( 22, 22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 4 )
+
 [node name="Jungle" type="Node2D" parent="."]
 position = Vector2( 640, 0 )
 
 [node name="Level1" parent="Jungle" instance=ExtResource( 2 )]
 position = Vector2( 157, 92 )
 level = 11
+unlockedLevel = false
 
 [node name="Level2" parent="Jungle" instance=ExtResource( 2 )]
 position = Vector2( 319, 92 )
@@ -114,6 +144,23 @@ level = 18
 position = Vector2( 485, 304 )
 level = 19
 
+[node name="goLeft" type="Button" parent="Jungle"]
+margin_left = 35.0
+margin_top = 217.0
+margin_right = 81.0
+margin_bottom = 260.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+flat = true
+
+[node name="next" type="Sprite" parent="Jungle/goLeft"]
+position = Vector2( 22, 22 )
+scale = Vector2( -4, 4 )
+texture = ExtResource( 4 )
+
 [node name="Back" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Back"]
@@ -136,4 +183,8 @@ custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 text = "Back"
 
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="Desert/goRight" to="." method="_on_goRight_pressed"]
+[connection signal="pressed" from="Jungle/goLeft" to="." method="_on_goLeft_pressed"]
 [connection signal="pressed" from="Back/Button" to="." method="_on_Button_pressed"]

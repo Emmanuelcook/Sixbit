@@ -42,11 +42,12 @@ texture = ExtResource( 6 )
 margin_left = 34.0
 margin_top = 13.0
 margin_right = 88.0
-margin_bottom = 130.0
 theme = ExtResource( 7 )
 text = "1
 "
 align = 1
+
+[node name="Tween" type="Tween" parent="Button"]
 
 [node name="stars" type="Node2D" parent="."]
 
@@ -126,4 +127,6 @@ position = Vector2( 2, 2 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 5 )
 
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_Button_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

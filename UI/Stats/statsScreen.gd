@@ -110,9 +110,11 @@ func _on_YES_pressed():
 	$resetParticles.emitting = true
 	
 	$fullRunStat.text = "--:--"
+	$speedRunStat.text = "--:--"
 	$accuracyStat.text = "-%"
 	$bulletsStat.text = str(Global.save[2]["allTimebulletsShot"])
 	$targetsStat.text = str(Global.save[2]["AllTimetargetHits"])
+	Global._biome = Global.Biomes.DESERT
 	
 
 func _on_changeName_mouse_entered():

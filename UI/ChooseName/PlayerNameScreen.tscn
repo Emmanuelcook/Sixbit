@@ -36,6 +36,7 @@ margin_bottom = 120.0
 texture = ExtResource( 3 )
 
 [node name="bgJungle" type="TextureRect" parent="Node2D"]
+visible = false
 margin_right = 160.0
 margin_bottom = 120.0
 texture = ExtResource( 8 )

@@ -11,6 +11,7 @@ var maxTrauma = .6
 enum Biomes {DESERT, JUNGLE}
 var _biome : int = Biomes.DESERT
 
+
 var currentLevel = 1
 var cheat_code: Array
 var godGun = false
@@ -82,7 +83,8 @@ var save = [
 		"allTimebulletsShot" : 0,
 		"AllTimetargetHits" : 0,
 		"accuracy" : 0,
-		
+		"isJungleUnlocked" : false,
+		"actualBiome" : 0,
 	}
 ]
 
@@ -119,7 +121,8 @@ func resetSave():
 			"allTimebulletsShot" : 0,
 			"AllTimetargetHits" : 0,
 			"accuracy" : 0,
-			
+			"isJungleUnlocked" : false,
+			"actualBiome" : 0,
 		}
 	]
 	
@@ -127,7 +130,6 @@ func resetSave():
 	
 
 func _ready():
-	Global._biome = Global.Biomes.JUNGLE
 	
 	# CONFIGURE SILENT WOLF
 	var f=File.new()
@@ -166,15 +168,34 @@ func _ready():
 			}
 		]
 		save[0].merge(addSave[0])
-
+	
+	if save[2].size() < 7:
+		var addSave = [
+			{
+				"speedRunTime" : 0,
+				"isJungleUnlocked" : false,
+				"actualBiome" : 0,
+			}
+		]
+		save[2].merge(addSave[0])
+	
+	if save[0][9][6] != 99:
+		save[2]["isJungleUnlocked"] = true
+		
+	saveGame()
+	
 	# for example, "cheat1" and "cheat2" for codes
 	cheat_code.resize(3)
 	cheat_code[0] = [int(0), KEY_U, KEY_N, KEY_L, KEY_O, KEY_C, KEY_K]
 	cheat_code[1] = [int(0), KEY_G, KEY_O, KEY_D, KEY_G, KEY_U, KEY_N]
 	cheat_code[2] = [int(0), KEY_J, KEY_U, KEY_N, KEY_G, KEY_L, KEY_E]
 	
+	print(save[2]["actualBiome"])
 	
-	
+	if save[2]["actualBiome"] == 0:
+		Global._biome = Global.Biomes.DESERT
+	if save[2]["actualBiome"] == 1:
+		Global._biome = Global.Biomes.JUNGLE
 
 func saveScore(currentLevel, levelSpeed, levelSharp, levelTime, levelTimeMins, levelTimeSecs, levelTimeMils, bulletsFired, timeToFinish):
 	
@@ -290,6 +311,15 @@ func cheat_entry(key: int):
 			save[0][7][7] = true
 			save[0][8][7] = true
 			save[0][9][7] = true
+			save[0][11][7] = true
+			save[0][12][7] = true
+			save[0][13][7] = true
+			save[0][14][7] = true
+			save[0][15][7] = true
+			save[0][16][7] = true
+			save[0][17][7] = true
+			save[0][18][7] = true
+			save[0][19][7] = true
 			GlobalScene.playSound('unlocked')
 			
 		1:  # "CHEAT2"
@@ -350,7 +380,7 @@ func resetSR():
 func saveSRTime():
 	speedRunFinished = true
 	var SRtimeToFinishInv = 100000 - SRtimeToFinish
-	SilentWolf.Scores.persist_score(Global.playerName, SRtimeToFinishInv, "speedrun")
+	SilentWolf.Scores.persist_score(Global.playerName, SRtimeToFinishInv, "speedrun2")
 	save[2]["speedRunTime"] = SRtimeToFinish
 	saveForLeaderBoardDisplay = SRtime_passed
 	resetSR()
