@@ -224,10 +224,21 @@ polygon = PoolVector2Array( 76.0007, 196, 80.0007, 196, 80.0007, 192, 84.0007, 1
 [node name="Ricochet2" parent="Ricochets" instance=ExtResource( 15 )]
 position = Vector2( 1077, -470.004 )
 rotation = 0.0
-bipLeft = false
+bipRight = false
+
+[node name="Sprite" parent="Ricochets/Ricochet2" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="Ricochets/Ricochet2" index="1"]
+position = Vector2( 0, 2.99997 )
 
 [node name="ricochetFlash" parent="Ricochets/Ricochet2" index="2"]
-polygon = PoolVector2Array( 76, 197, 78.9998, 197, 78.9997, 189, 82.9997, 189, 82.9997, 185, 86.9997, 185, 86.9997, 181, 98.9997, 181, 98.9997, 185, 116, 185, 116, 364, 116, 384, 112, 384, 112, 388, 80, 388, 80, 384, 76, 384, 76, 352 )
+position = Vector2( 95.9993, 271 )
+rotation = 3.14159
+polygon = PoolVector2Array( 116, 364, 116, 384, 112, 384, 112, 388, 80, 388, 80, 384, 80.0013, 381, 84.0013, 381, 84.0013, 377, 88.0013, 377, 88.0013, 373, 92.0013, 373, 92.0013, 369, 96.0013, 369, 96.0012, 337, 100.001, 337, 100.001, 241, 104.001, 241, 104.001, 237, 108.001, 237, 112.001, 237, 112.001, 233, 116.001, 233 )
+
+[node name="cligno" parent="Ricochets/Ricochet2" index="5"]
+position = Vector2( -4, 2 )
 
 [node name="PlayerRoot" type="Node2D" parent="."]
 position = Vector2( 61, -166 )
