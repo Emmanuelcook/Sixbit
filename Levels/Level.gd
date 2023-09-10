@@ -61,9 +61,12 @@ func _ready():
 	if Biome == 0:
 		Global._biome = Global.Biomes.DESERT
 		Global.save[2]["actualBiome"] = 0
+		GlobalScene.changeAmbianceMusic(0)
 	if Biome == 1:
 		Global._biome = Global.Biomes.JUNGLE
 		Global.save[2]["actualBiome"] = 1
+		GlobalScene.changeAmbianceMusic(1)
+		
 	
 	Global.saveGame()
 	

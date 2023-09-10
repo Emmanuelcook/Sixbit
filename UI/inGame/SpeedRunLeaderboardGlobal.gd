@@ -18,7 +18,7 @@ func _ready():
 #	$SRSubmit/score.text = Global.saveForLeaderBoardDisplay
 	Global.saveForLeaderBoardDisplay = ""
 #	timeToFinishForSilentWolf = 100000 - Global.SRtime_ToFinish
-	yield(SilentWolf.Scores.get_high_scores(0, "speedrun"), "sw_scores_received")
+	yield(SilentWolf.Scores.get_high_scores(0, "speedrun2"), "sw_scores_received")
 
 	var i = 0
 	

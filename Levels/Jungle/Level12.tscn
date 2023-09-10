@@ -220,6 +220,7 @@ position = Vector2( -1, 0 )
 position = Vector2( -8.99945, 152 )
 rotation = 0.0
 bipLeft = false
+bipRight = false
 
 [node name="Sprite" parent="Ricochets/Ricochet4" index="0"]
 visible = false
@@ -256,7 +257,6 @@ drag_margin_v_enabled = true
 script = ExtResource( 8 )
 
 [node name="Start1" type="Sprite" parent="PlayerRoot"]
-modulate = Color( 0.878431, 0.670588, 0.298039, 1 )
 position = Vector2( 243, 466 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 10 )
@@ -268,7 +268,7 @@ margin_right = 304.0
 margin_bottom = 431.0
 rect_pivot_offset = Vector2( 61, 16 )
 theme = ExtResource( 20 )
-custom_colors/default_color = Color( 0.878431, 0.670588, 0.298039, 1 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_constants/line_separation = -3
 bbcode_enabled = true
 

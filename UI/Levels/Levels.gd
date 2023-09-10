@@ -58,6 +58,8 @@ func unlockJungle():
 	Global._biome = Global.Biomes.JUNGLE
 	Global.save[2]["actualBiome"] = 1
 	Global.saveGame()
+	GlobalScene.changeAmbianceMusic(1)	
+
 	
 func _on_goRight_pressed():
 	var tween = $Tween
@@ -80,6 +82,7 @@ func _on_goRight_pressed():
 	Global._biome = Global.Biomes.JUNGLE
 	Global.save[2]["actualBiome"] = 1
 	Global.saveGame()
+	GlobalScene.changeAmbianceMusic(1)
 
 
 func _on_goLeft_pressed():
@@ -103,3 +106,4 @@ func _on_goLeft_pressed():
 	Global._biome = Global.Biomes.DESERT
 	Global.save[2]["actualBiome"] = 0
 	Global.saveGame()
+	GlobalScene.changeAmbianceMusic(0)	

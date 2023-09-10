@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Autoload/GlobalScene.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/music/Slinger Swagger (loop).wav" type="AudioStream" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sounds/shotComp.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/unlocked.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sounds/Monkey Sound Effect (mp3cut.net).wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/music/Confronting The Man In Black.wav" type="AudioStream" id=7]
 
 [node name="Global" type="Node2D"]
 pause_mode = 2
@@ -13,6 +14,10 @@ script = ExtResource( 1 )
 
 [node name="ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "Music"
+
+[node name="ambianceJungle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 bus = "Music"
 
 [node name="shot" type="AudioStreamPlayer" parent="."]
@@ -35,5 +40,7 @@ bus = "SFX"
 position = Vector2( 854, 113 )
 stream = ExtResource( 6 )
 bus = "SFX"
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="request_completed" from="leaderboard" to="." method="_on_Leaderboard_request_completed"]
